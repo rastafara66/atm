@@ -3,8 +3,7 @@
     'name': "atm",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        odoo module""",
 
     'description': """
         Long description of module's purpose
@@ -21,13 +20,13 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base',
-                'sales',],
+                'sale',],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        #'security/ir.model.access.csv',
     ],
     # only loaded in demonstration mode
     'demo': [
