@@ -13,10 +13,10 @@ class OrderList(models.Model):
             order_dict = {
                 'id': order.id,
                 'name': order.name,
-                'customer': order.customer.name,
+                # 'customer': order.customer.name,
                 'partner_id': order.partner_id.name,
                 'amount_total': order.amount_total,
-                'date_order': order.date_order,
+                # 'date_order': order.date_order,
             }
             order_list.append(order_dict)
 
