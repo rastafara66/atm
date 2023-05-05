@@ -3,8 +3,8 @@ from odoo import models, fields, api
 import json
 
 class OrderList(models.Model):
-    _name = 'order.list'
-    
+    _name = 'atm.orderlist'
+    _description ='Order list'
     @api.model
     def export_order_list_to_json(self):
         orders = self.env['sale.order'].search([])
@@ -20,6 +20,6 @@ class OrderList(models.Model):
             }
             order_list.append(order_dict)
 
-        with open('order_list.json', 'w') as f:
+        with open('D:/order_list.json', 'w') as f:
             json.dump(order_list, f, indent=4)
             
