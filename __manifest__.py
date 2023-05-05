@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "atm",
+    'name': "Automated Transaction Mechanics",
 
     'summary': """
         odoo module""",
@@ -9,7 +9,7 @@
         Long description of module's purpose
     """,
 
-    'author': "My Company",
+    'author': "chukhin",
     'website': "https://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
