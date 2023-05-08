@@ -1,5 +1,13 @@
 <odoo>
   <data>
+      <!-- <record id="view_order_list_button" model="ir.ui.view">
+          <field name="name">Order List Button</field>
+          <field name="model">sale.order</field>
+          <field name="arch" type="xml">
+              <button name="export_order_list_to_json" string="Export Order List to JSON"/>
+          </field>
+      </record> -->
+
     <!-- explicit list view definition -->
 <!--
     <record model="ir.ui.view" id="atm.list">
