@@ -32,3 +32,28 @@ class DateTimeEncoder(json.JSONEncoder):
             return o.isoformat()
 
         return super().default(o)
+
+class ProductStockReport(models.AbstractModel):
+    _name = 'report.product_stock_report.stock_report_template'
+    _description = 'Product Stock Report'
+
+    @api.model
+    def _get_report_values(self, docids, data=None):
+        products = self.env['product.product'].search([])
+        report_data = []
+        for product in products:
+            product_data = {
+                'name': product.name,
+                'default_code': product.default_code,
+                'qty_available': product.qty_available,
+                'incoming_qty': product.incoming_qty,
+                'outgoing_qty': product.outgoing_qty,
+                'virtual_available': product.virtual_available,
+            }
+            report_data.append(product_data)
+        return {
+            'doc_ids': docids,
+            'doc_model': 'product.product',
+            'docs': self.env['product.product'].browse(docids),
+            'report_data': report_data,
+        }
