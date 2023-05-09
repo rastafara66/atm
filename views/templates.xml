@@ -1,5 +1,16 @@
 <odoo>
     <data>
+        <report
+            id="report_product_stock"
+            model="product.product"
+            string="Product Stock Report"
+            report_type="qweb-pdf"
+            name="product_stock_report.stock_report_template"
+            file="product_stock_report.stock_report_template"
+            attachment_use="False"
+            attachment="(object.name or 'report').replace('/','_')"
+            menu="True"
+            />
 <!--
         <template id="listing">
           <ul>

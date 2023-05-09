@@ -61,14 +61,15 @@
 -->
 
     <!-- Top menu item -->
-<!--
-    <menuitem name="atm" id="atm.menu_root"/>
--->
+
+    <menuitem name="ATM" id="atm.menu_root"/>
+
     <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="atm.menu_1" parent="atm.menu_root"/>
-    <menuitem name="Menu 2" id="atm.menu_2" parent="atm.menu_root"/>
--->
+
+        <menuitem name="General" id="atm.menu_1" parent="atm.menu_root" groups="base.group_user"/>
+        <menuitem name="Operations" id="atm.menu_2" parent="atm.menu_root" groups="base.group_user"/>
+        <menuitem name="Reports" id="atm.menu_3" parent="atm.menu_root" groups="base.group_user"/>
+
     <!-- actions -->
 <!--
     <menuitem name="List" id="atm.menu_1_list" parent="atm.menu_1"
