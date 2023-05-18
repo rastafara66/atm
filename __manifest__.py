@@ -3,10 +3,10 @@
     'name': "Automated Transaction Mechanics",
 
     'summary': """
-        odoo module""",
+        ATM odoo module""",
 
     'description': """
-        Long description of module's purpose
+        ATM - Automated Transaction Mechanics
     """,
 
     'author': "chukhin",
@@ -26,11 +26,13 @@
         'views/views.xml',
         'views/templates.xml',
         'data/cron.xml',
+        #'data/sale_demo.xml',
         'security/ir.model.access.csv',
     ],
     # only loaded in demonstration mode
     'demo': [
-        'demo/demo.xml',
+        'data/product_demo.xml',
+        'data/sale_demo.xml',
     ],
     #     'odoo.cron': [
     #     '1 1 * * * atm.OrderList.export_order_list_to_json()',
