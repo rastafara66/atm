@@ -22,7 +22,7 @@ class OrderList(models.Model):
             }
             order_list.append(order_dict)
 
-        with open('D:/order_list.json', 'w') as f:
+        with open('order_list.json', 'w') as f:
             json.dump(order_list, f, cls=DateTimeEncoder, indent=4)
             
 

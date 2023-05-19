@@ -16,9 +16,10 @@
     # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Specific Industry Applications',
-    'version': '0.1',
+    'version': '0.2',
     # any module necessary for this one to work correctly
     'depends': ['base',
+                'account'
                 'sale',],
 
     # always loaded
@@ -32,7 +33,8 @@
     # only loaded in demonstration mode
     'demo': [
         'data/product_demo.xml',
-        'data/sale_demo.xml',
+        # 'data/account.xml',
+        # 'data/sale_demo.xml',
     ],
     #     'odoo.cron': [
     #     '1 1 * * * atm.OrderList.export_order_list_to_json()',
