@@ -1,0 +1,6 @@
+/.vscode
+/atm.code-workspace
+/odoo-atm.bat
+/__pycache__
+/models/__pycache__
+
