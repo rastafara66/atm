@@ -1,5 +1,5 @@
-ATM
+ATM orders - odoo 16 module
 
 Automated Transaction Mechanics
 
-odoo 16 module
+Automatically creates a scheduled task to export orders to a json file
