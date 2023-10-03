@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "ATM - orders",
+    'name': "ATM - auto export orders",
     'summary': """
         Automatically creates a scheduled task to export orders to a json file
 	""",
