@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_atm_settings_form" model="ir.ui.view">
+            <field name="name">atm.settings.form</field>
+            <field name="model">atm.settings</field>
+            <field name="arch" type="xml">
+                <form string="ATM Orders Settings">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="value"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

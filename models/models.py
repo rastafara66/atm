@@ -57,3 +57,11 @@ class ProductStockReport(models.AbstractModel):
             'docs': self.env['product.product'].browse(docids),
             'report_data': report_data,
         }
+    
+# Settings
+class ATMSettings(models.Model):
+    _name = 'atm.settings'
+    _description = 'ATM Settings'
+
+    name = fields.Char(string='Directory for JSON files', required=True)
+    value = fields.Char(string='D:\\OneDrive\\Projects\\odoo-addons16\\atm\\')

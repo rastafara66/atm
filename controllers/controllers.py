@@ -1,21 +1,27 @@
 # -*- coding: utf-8 -*-
-# from odoo import http
+from odoo import http
 
+from odoo import http
+from odoo.http import request
 
-# class Atm(http.Controller):
-#     @http.route('/atm/atm', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+class ATMController(http.Controller):
+    
+    @http.route('/atm/save_settings', type='http', auth="user")
+    def save_settings(self, **post):
+        settings = request.env['atm.settings'].sudo().search([])
+        for setting in settings:
+            setting.write({
+                'value': post.get(setting.name)
+            })
+        return http.request.redirect('/my_module/settings')
 
-#     @http.route('/atm/atm/objects', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('atm.listing', {
-#             'root': '/atm/atm',
-#             'objects': http.request.env['atm.atm'].search([]),
-#         })
-
-#     @http.route('/atm/atm/objects/<model("atm.atm"):obj>', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('atm.object', {
-#             'object': obj
-#         })
+    @http.route('/atm/cancel_settings', type='http', auth="user")
+    def cancel_settings(self, **post):
+        return http.request.redirect('/atm/settings')
+    
+    @http.route('/atm/settings', type='http', auth="user")
+    def open_settings(self, **post):
+        settings = request.env['atm.settings'].sudo().search([])
+        return http.request.render('atm.view_atm_settings_form', {
+            'settings': settings,
+        })
