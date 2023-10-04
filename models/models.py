@@ -25,7 +25,6 @@ class OrderList(models.Model):
         with open('order_list.json', 'w') as f:
             json.dump(order_list, f, cls=DateTimeEncoder, indent=4)
             
-
 class DateTimeEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, datetime):
