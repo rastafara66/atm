@@ -22,7 +22,7 @@ class OrderList(models.Model):
             }
             order_list.append(order_dict)
 
-        with open('D:\\OneDrive\\Projects\\odoo-addons16\\order_list.json', 'w') as f:
+        with open('order_list.json', 'w') as f:
             json.dump(order_list, f, cls=DateTimeEncoder, indent=4)
             
 
@@ -57,11 +57,3 @@ class ProductStockReport(models.AbstractModel):
             'docs': self.env['product.product'].browse(docids),
             'report_data': report_data,
         }
-    
-# Settings
-class ATMSettings(models.Model):
-    _name = 'atm.settings'
-    _description = 'ATM Settings'
-
-    name = fields.Char(string='Directory for JSON files', required=True)
-    value = fields.Char(string='D:\\OneDrive\\Projects\\odoo-addons16\\')

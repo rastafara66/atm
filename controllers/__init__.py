@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
-
-from . import controllers
+from odoo import models
+from odoo import controllers
