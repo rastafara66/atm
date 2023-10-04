@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from odoo import http
-
-from odoo import http
 from odoo.http import request
 
 class ATMController(http.Controller):
@@ -13,7 +11,7 @@ class ATMController(http.Controller):
             setting.write({
                 'value': post.get(setting.name)
             })
-        return http.request.redirect('/my_module/settings')
+        return http.request.redirect('/atm/settings')
 
     @http.route('/atm/cancel_settings', type='http', auth="user")
     def cancel_settings(self, **post):
