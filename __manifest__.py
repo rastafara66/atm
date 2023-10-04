@@ -30,6 +30,7 @@
     'data': [
         'views/views.xml',
         'views/templates.xml',
+		'views/atm_settings.xml',
         'data/cron.xml',
         #'data/sale_demo.xml',
         'security/ir.model.access.csv',
