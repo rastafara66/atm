@@ -33,7 +33,7 @@
         'data/cron.xml',
         #'data/sale_demo.xml',
         'security/ir.model.access.csv',
-		'views/atm_settings.xml',
+		'views/res_config_settings_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
