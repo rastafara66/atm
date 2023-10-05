@@ -18,7 +18,7 @@
     'version': '16.0.0.38',
 	'license': 'LGPL-3',
 	'images': ['images/thumb.png'],
-	'price': 10.00,
+	'price': 00.00,
 	'currency': 'EUR',
     # any module necessary for this one to work correctly
     'depends': ['base',
