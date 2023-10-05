@@ -32,9 +32,7 @@
         'views/views.xml',
         'views/templates.xml',
 		'views/res_config_settings_views.xml',
-        'data/cron.xml',
-        #'data/sale_demo.xml',
-        'security/ir.model.access.csv',		
+        'data/cron.xml',	
     ],
     # only loaded in demonstration mode
     'demo': [
