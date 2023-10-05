@@ -14,12 +14,12 @@
                             <div class="col-12 col-lg-6 o_setting_box">
                                 <div class="o_setting_left_pane"/>
                                 <div class="o_setting_right_pane">
-                                    <span class="o_form_label">WareHouses corresponding </span>
+                                    <span class="o_form_label">Directory for export files </span>
                                     <div class="text-muted content-group mt16">
-                                        <span> WH ID 3A </span>
-                                        <field name="wh_id_3a" class="text-center oe_inline" />
+                                        <span> Directory </span>
+                                        <field name="export_dir" class="text-center oe_inline" />
                                     </div>
-                                    <div class="text-muted content-group mt16">
+                                    <!-- <div class="text-muted content-group mt16">
                                         <span> WH ID 1C </span>
                                         <field name="wh_id_1c" class="text-center oe_inline" />
                                     </div>
@@ -30,7 +30,7 @@
                                     <div class="text-muted content-group mt16">
                                         <span> WH Name 1C </span>
                                         <field name="wh_name_1c" class="text-center oe_inline" />
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <!-- <div class="col-12 col-lg-6 o_setting_box" invisible="1">
