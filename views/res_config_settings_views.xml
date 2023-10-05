@@ -50,19 +50,19 @@
             </field>
         </record>
 
-        <record model="ir.actions.act_window" id="adealer.action_window_config_settings">
-            <field name="name">Settings</field>
+        <record model="ir.actions.act_window" id="atm.action_window_config_settings">
+            <field name="name">ATM Settings</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.config.settings</field>
             <field name="view_mode">form</field>
             <field name="target">inline</field>
-            <field name="context">{'module' : 'adealer'}</field>
+            <field name="context">{'module' : 'atm'}</field>
         </record> 
 
         <!-- Menu Configuration -->
-        <menuitem name="Configuration" id="adealer.configuration" parent="adealer.menu_root" sequence="7"/>
-        <menuitem name="Settings" id="adealer.settings" parent="adealer.configuration"
-                action="adealer.action_window_config_settings" sequence="71"/>              
+        <menuitem name="Configuration" id="atm.configuration" parent="atm.menu_root" sequence="7"/>
+        <menuitem name="Settings" id="atm.settings" parent="atm.configuration"
+                action="atm.action_window_config_settings" sequence="71"/>              
                 
     </data>
 </odoo>
