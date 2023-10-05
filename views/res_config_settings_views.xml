@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.atm</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="90"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="ATM" id="atm" string="ATM" data-key="atm" groups="base.group_user">
+                        <h2>ATM Settings</h2>
+                        <div class="row mt16 o_settings_container" id="end_contract_setting">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">WareHouses corresponding </span>
+                                    <div class="text-muted content-group mt16">
+                                        <span> WH ID 3A </span>
+                                        <field name="wh_id_3a" class="text-center oe_inline" />
+                                    </div>
+                                    <div class="text-muted content-group mt16">
+                                        <span> WH ID 1C </span>
+                                        <field name="wh_id_1c" class="text-center oe_inline" />
+                                    </div>
+                                    <div class="text-muted content-group mt16">
+                                        <span> WH Name 3A </span>
+                                        <field name="wh_name_3a" class="text-center oe_inline" />
+                                    </div>
+                                    <div class="text-muted content-group mt16">
+                                        <span> WH Name 1C </span>
+                                        <field name="wh_name_1c" class="text-center oe_inline" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-12 col-lg-6 o_setting_box" invisible="1">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_fleet_account" widget="upgrade_boolean"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="module_fleet_account" string="Analytic Accounting"/>
+                                    <div class="text-muted">
+                                        Analyse vehicle costs with analytic accounting
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="adealer.action_window_config_settings">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'adealer'}</field>
+        </record> 
+
+        <!-- Menu Configuration -->
+        <menuitem name="Configuration" id="adealer.configuration" parent="adealer.menu_root" sequence="7"/>
+        <menuitem name="Settings" id="adealer.settings" parent="adealer.configuration"
+                action="adealer.action_window_config_settings" sequence="71"/>              
+                
+    </data>
+</odoo>

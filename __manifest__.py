@@ -15,10 +15,10 @@
     # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Specific Industry Applications',
-    'version': '16.0.0.38',
+    'version': '16.0.0.39',
 	'license': 'LGPL-3',
 	'images': ['images/thumb.png'],
-	'price': 10.00,
+	'price': 00.00,
 	'currency': 'EUR',
     # any module necessary for this one to work correctly
     'depends': ['base',
@@ -28,11 +28,12 @@
 
     # always loaded
     'data': [
+		'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+		'views/res_config_settings_views.xml',
         'data/cron.xml',
         #'data/sale_demo.xml',
-        'security/ir.model.access.csv',
     ],
     # only loaded in demonstration mode
     'demo': [
