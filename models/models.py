@@ -2,10 +2,15 @@
 from odoo import models, fields, api
 import json
 from datetime import datetime
+# from . import res_config_settings 
 
 class OrderList(models.Model):
     _name = 'atm.orderlist'
     _description ='Order list'
+
+    # ConfigSet = res_config_settings.ResConfigSettings()
+    # ExpDir = ConfigSet.get_values()
+
     @api.model
     def export_order_list_to_json(self):
         orders = self.env['sale.order'].search([])
@@ -21,7 +26,7 @@ class OrderList(models.Model):
                 #TODO: add order lines to OrderList json files
             }
             order_list.append(order_dict)
-
+        #TODO add self.ExpDir +
         with open('order_list.json', 'w') as f:
             json.dump(order_list, f, cls=DateTimeEncoder, indent=4)
             

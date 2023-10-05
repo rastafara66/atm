@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-
 from odoo import api, fields, models, _
-
 
 class ResConfigSettings(models.TransientModel):
     _inherit = ['res.config.settings']
-    export_dir = fields.Char("Export Dir", default="Directory to export")  
+    export_dir = fields.Char("Export Dir", default="D:\\Export")  
 
     @api.model
     def set_values(self):
