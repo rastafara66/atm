@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 import json
 from datetime import datetime
-# from . import res_config_settings 
+import os
+
 
 class OrderList(models.Model):
     _name = 'atm.orderlist'
-    _description ='Order list'
-
-    # ConfigSet = res_config_settings.ResConfigSettings()
-    # ExpDir = ConfigSet.get_values()
+    _description = 'Order list'
 
     @api.model
     def export_order_list_to_json(self):
@@ -23,13 +21,15 @@ class OrderList(models.Model):
                 'partner_id': order.partner_id.name,
                 'amount_total': order.amount_total,
                 'date_order': order.date_order,
-                #TODO: add order lines to OrderList json files
+                # TODO: add order lines to OrderList json files
             }
             order_list.append(order_dict)
-        #TODO add self.ExpDir +
+        # TODO add self.ExpDir +
         with open('order_list.json', 'w') as f:
             json.dump(order_list, f, cls=DateTimeEncoder, indent=4)
-            
+        current_directory = os.getcwd()
+        print("File order_list.json in dir:", current_directory)
+
 class DateTimeEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, datetime):

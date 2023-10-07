@@ -3,4 +3,5 @@
 /odoo-atm.bat
 /__pycache__
 /models/__pycache__
+_+*
 
