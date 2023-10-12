@@ -1,9 +1,5 @@
 <odoo>
   <data>
-    <!-- <template id="assets_backend" name="Custom Assets" inherit_id="web.assets_backend">
-      <xpath expr="." position="inside">
-        <script type="text/javascript" src="/atm/static/src/js/your_script.js"></script>
-      </xpath>
-    </template> -->
+
   </data>
 </odoo>

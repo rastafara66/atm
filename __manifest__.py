@@ -6,7 +6,7 @@
     'author': "chukhin",
     'website': "https://github.com/rastafara66",
     'category': 'Specific Industry Applications',
-    'version': '16.0.0.60',
+    'version': '16.0.0.80',
 	'license': 'LGPL-3',
 	'images': ['images/thumb.png'],
 	'price': 00.00,

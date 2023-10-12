@@ -4,7 +4,6 @@ import json
 from datetime import datetime
 import os
 
-
 class OrderList(models.Model):
     _name = 'atm.orderlist'
     _description = 'Order list'
@@ -13,22 +12,26 @@ class OrderList(models.Model):
     def export_order_list_to_json(self):
         orders = self.env['sale.order'].search([])
         order_list = []
+        exp_dir = self.env['ir.config_parameter'].sudo().get_param('atm.export_dir')
+
         for order in orders:
             order_dict = {
                 'id': order.id,
                 'name': order.name,
-                # 'customer': order.customer.name,
                 'partner_id': order.partner_id.name,
                 'amount_total': order.amount_total,
                 'date_order': order.date_order,
-                # TODO: add order lines to OrderList json files
+                # TODO: add order lines to OrderList JSON files
             }
             order_list.append(order_dict)
-        # TODO add self.ExpDir +
-        with open('order_list.json', 'w') as f:
+        # 
+        with open(exp_dir + 'order_list.json', 'w') as f:
             json.dump(order_list, f, cls=DateTimeEncoder, indent=4)
+        # get current directory
         current_directory = os.getcwd()
-        print("File order_list.json in dir:", current_directory)
+        print("Current directory:", current_directory) 
+        # user export directory   
+        print("File saved to the export directory - " + exp_dir + 'order_list.json')
 
 class DateTimeEncoder(json.JSONEncoder):
     def default(self, o):
