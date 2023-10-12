@@ -5,7 +5,7 @@
     'description': """Automatically creates a scheduled task to export orders to a json file""",
     'author': "chukhin",
     'website': "https://github.com/rastafara66",
-    'category': 'Specific Industry Applications',
+    'category': 'Tools, Specific Industry Applications',
     'version': '16.0.0.80',
 	'license': 'LGPL-3',
 	'images': ['images/thumb.png'],
