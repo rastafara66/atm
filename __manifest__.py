@@ -8,7 +8,10 @@
     'category': 'Tools, Specific Industry Applications',
     'version': '16.0.0.80',
 	'license': 'LGPL-3',
-	'images': ['images/thumb.png'],
+	'images': [
+		'images/thumb.png',
+		'images/atm_settings.png'
+	],
 	'price': 00.00,
 	'currency': 'EUR',
     'depends': ['base',
