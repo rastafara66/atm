@@ -11,22 +11,34 @@ class OrderList(models.Model):
     @api.model
     def export_order_list_to_json(self):
         orders = self.env['sale.order'].search([])
-        order_list = []
+        order_data = []
         exp_dir = self.env['ir.config_parameter'].sudo().get_param('atm.export_dir')
 
         for order in orders:
+            order_line_data = []
+            for line in order.order_line:
+                order_line_data.append({
+                    'product_id': line.product_id.id,
+                    'product_name': line.product_id.name,
+                    'product_uom_qty': line.product_uom_qty,
+                    'price_unit': line.price_unit,
+                    'price_subtotal': line.price_subtotal,
+                })
             order_dict = {
                 'id': order.id,
                 'name': order.name,
-                'partner_id': order.partner_id.name,
+                'partner_name': order.partner_id.name,
+                'partner_id': order.partner_id.id,
+                'state': order.state,
                 'amount_total': order.amount_total,
                 'date_order': order.date_order,
+                'order_line': order_line_data,
                 # TODO: add order lines to OrderList JSON files
             }
-            order_list.append(order_dict)
+            order_data.append(order_dict)
         # 
         with open(exp_dir + 'order_list.json', 'w') as f:
-            json.dump(order_list, f, cls=DateTimeEncoder, indent=4)
+            json.dump(order_data, f, cls=DateTimeEncoder, indent=4)
         # get current directory
         current_directory = os.getcwd()
         print("Current directory:", current_directory) 
