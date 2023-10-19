@@ -12,6 +12,8 @@ class OrderList(models.Model):
     def export_order_list_to_json(self):
         '''
         Exort sale orders to JSON file "order_list.json" in specified directory
+            Return:
+        None.
         '''
         orders = self.env['sale.order'].search([])
         order_data = []
@@ -48,6 +50,53 @@ class OrderList(models.Model):
         # user export directory   
         print("File saved to the export directory - " + exp_dir + 'order_list.json')
 
+    def import_orders(self):
+        '''
+        Import sale orders from JSON file "order_list.json" in specified directory
+            Return:
+        None.
+        '''
+
+    # We establish a connection with Odoo.
+    # env = api.Environment(
+    #     client=Client(),
+    #     user=user,
+    #     password=password,
+    #     database=database,
+    # )
+        
+        exp_dir = self.env['ir.config_parameter'].sudo().get_param('atm.export_dir')
+        file_name =  exp_dir + 'order_list.json'
+        # Читаємо файл JSON.
+        with open(file_name, "r") as f:
+            data = json.load(f)
+
+        # We get on each order in the JSON file.
+        for order in data:
+            # We create a new order in Odoo.
+            order_id = self.env["sale.order"].create({
+            "name": order["name"],
+            "partner_id": order["partner_id"],
+            "state": order["state"],
+            "amount_total": order["amount_total"],
+            "date_order": order["date_order"],
+            })
+
+            # We get on each position in the order.
+            for line in order["order_line"]:
+                # We create a new order position in Odoo.
+                line_id = self.env["sale.order.line"].create({
+                    "order_id": order_id,
+                    "product_id": line["product_id"],
+                    "product_uom_qty": line["product_uom_qty"],
+                    "price_unit": line["price_unit"],
+                    "price_subtotal": line["price_subtotal"],
+                })
+                print(line_id)
+
+    # Let's notify the user of success.
+    print("Замовлення успішно імпортовані.")
+    
 class DateTimeEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, datetime):
