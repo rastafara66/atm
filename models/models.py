@@ -79,6 +79,8 @@ class OrderList(models.Model):
             "partner_id": order["partner_id"],
             "state": order["state"],
             "amount_total": order["amount_total"],
+            # "date_order": JSONDecoder.json_decoder(order["date_order"]),
+            # "date_order": order["date_order"].replace("T", " "),
             "date_order": order["date_order"],
             })
 
@@ -104,6 +106,32 @@ class DateTimeEncoder(json.JSONEncoder):
 
         return super().default(o)
 
+class JSONDecoder(json.JSONDecoder):
+    def json_decoder(data):
+        """
+        JSONDecoder that accepts data in any format.
+
+        Args:
+            data (str): JSON data.
+
+        Returns:
+            dict: JSON data as a dictionary.
+        """
+        decoder = json.JSONDecoder()
+        decoder.strict = False
+
+        try:
+            result = decoder.decode(data)
+        except json.JSONDecodeError as e:
+            raise ValueError(e)
+
+        # Convert dates to Date objects.
+        for key, value in result.items():
+            if isinstance(value, str):
+                if value.startswith("%Y-%m-%dT"):
+                    result[key] = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
+
+        return result
 class ProductStockReport(models.AbstractModel):
     _name = 'report.product_stock_report.stock_report_template'
     _description = 'Product Stock Report'
