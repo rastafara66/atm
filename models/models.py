@@ -10,6 +10,9 @@ class OrderList(models.Model):
 
     @api.model
     def export_order_list_to_json(self):
+        '''
+        Exort sale orders to JSON file "order_list.json" in specified directory
+        '''
         orders = self.env['sale.order'].search([])
         order_data = []
         exp_dir = self.env['ir.config_parameter'].sudo().get_param('atm.export_dir')
