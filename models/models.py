@@ -50,7 +50,7 @@ class OrderList(models.Model):
         # user export directory   
         print("File saved to the export directory - " + exp_dir + 'order_list.json')
 
-    def import_orders(self):
+    def import_order_list_from_json(self):
         '''
         Import sale orders from JSON file "order_list.json" in specified directory
             Return:
