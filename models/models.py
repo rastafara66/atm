@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 import json
+# import datetime
 from datetime import datetime
 import os
 
@@ -50,51 +51,55 @@ class OrderList(models.Model):
         # user export directory   
         print("File saved to the export directory - " + exp_dir + 'order_list.json')
 
+    @api.model
     def import_order_list_from_json(self):
         '''
-        Import sale orders from JSON file "order_list.json" in specified directory
-            Return:
-        None.
+            Import sale orders from JSON file "order_list.json" in specified directory
+        Return:
+            None.
         '''
-
-    # We establish a connection with Odoo.
-    # env = api.Environment(
-    #     client=Client(),
-    #     user=user,
-    #     password=password,
-    #     database=database,
-    # )
-        
         exp_dir = self.env['ir.config_parameter'].sudo().get_param('atm.export_dir')
         file_name =  exp_dir + 'order_list.json'
-        # Читаємо файл JSON.
         with open(file_name, "r") as f:
             data = json.load(f)
 
-        # We get on each order in the JSON file.
         for order in data:
-            # We create a new order in Odoo.
+            date_string = order["date_order"]
+            date = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S")
+            new_date_string = date.strftime("%Y-%m-%d %H:%M:%S")
+            print(new_date_string)
+            # 1
+            # order_line_data = []
+            # for line in order["order_line"]:
+            #     order_line_data.append({
+            #         "product_id.id": line["product_id"],
+            #         "product_id.name": line["product_name"],
+            #         "product_uom_qty": line["product_uom_qty"],
+            #         "price_unit": line["price_unit"],
+            #         "price_subtotal": line["price_subtotal"],
+            #     })
+            #     print(order_line_data)        
+            # 2
+            for line in order["order_line"]:               
+                line_id = {
+                    # "order_id": order_id,
+                    "product_id": line["product_id"],
+                    "product_template_id": line["product_name"],
+                    "product_uom_qty": line["product_uom_qty"],
+                    "price_unit": line["price_unit"],
+                    "price_subtotal": line["price_subtotal"],
+                }
+                print(line_id) 
             order_id = self.env["sale.order"].create({
             "name": order["name"],
             "partner_id": order["partner_id"],
             "state": order["state"],
             "amount_total": order["amount_total"],
-            # "date_order": JSONDecoder.json_decoder(order["date_order"]),
-            # "date_order": order["date_order"].replace("T", " "),
-            "date_order": order["date_order"],
-            })
-
-            # We get on each position in the order.
-            for line in order["order_line"]:
-                # We create a new order position in Odoo.
-                line_id = self.env["sale.order.line"].create({
-                    "order_id": order_id,
-                    "product_id": line["product_id"],
-                    "product_uom_qty": line["product_uom_qty"],
-                    "price_unit": line["price_unit"],
-                    "price_subtotal": line["price_subtotal"],
-                })
-                print(line_id)
+            "date_order": "2023-10-20 10:10:10",
+            "order_line": line_id,
+            })                    
+            # order_id.write({'order_line': line_id})
+            print(order_id)
 
     # Let's notify the user of success.
     print("Замовлення успішно імпортовані.")
