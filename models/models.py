@@ -60,15 +60,53 @@ class OrderList(models.Model):
         '''
         exp_dir = self.env['ir.config_parameter'].sudo().get_param('atm.export_dir')
         file_name =  exp_dir + 'order_list.json'
-        with open(file_name, "r") as f:
-            data = json.load(f)
-
-        for order in data:
-            date_string = order["date_order"]
-            date = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S")
-            new_date_string = date.strftime("%Y-%m-%d %H:%M:%S")
-            print(new_date_string)
-            # 1
+        try:
+            with open(file_name, "r") as f:
+                data = json.load(f)
+        except Exception as e:
+                print("Error opening file: ", e)
+        try:
+            for order in data:
+                date_string = order["date_order"]
+                date = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S")
+                new_date_string = date.strftime("%Y-%m-%d %H:%M:%S")
+                print(new_date_string)
+                
+                order_id = self.env["sale.order"].create({
+                "name": order["name"],
+                "partner_id": order["partner_id"],
+                "state": order["state"],
+                "amount_total": order["amount_total"],
+                "date_order": "2023-10-20 10:10:10",
+                # "order_line": self._get_line_values(order_id, data),
+                }) 
+                self._get_line_values(order_id, data)
+        except Exception as e:
+                print("Error importing orders: ", e)
+        
+    # Let's notify the user of success.
+    print("Import success.")
+    
+    @api.model
+    def _get_line_values(self, order_id, data):
+            '''Get the line values from data for order_id'''
+            #? 2 
+            try:
+                for line in data["order_line"]:               
+                    line_id = {
+                        "order_id": order_id,
+                        "product_id": line["product_id"],
+                        "product_template_id": line["product_name"],
+                        "product_uom_qty": line["product_uom_qty"],
+                        "price_unit": line["price_unit"],
+                        "price_subtotal": line["price_subtotal"],
+                    }
+                    print(line_id)                    
+                order_id.write({'order_line': line_id})
+                print(order_id)
+            except Exception as e:
+                print("Error importing order lines: ", e)
+            #? 1
             # order_line_data = []
             # for line in order["order_line"]:
             #     order_line_data.append({
@@ -78,32 +116,20 @@ class OrderList(models.Model):
             #         "price_unit": line["price_unit"],
             #         "price_subtotal": line["price_subtotal"],
             #     })
-            #     print(order_line_data)        
-            # 2
-            for line in order["order_line"]:               
-                line_id = {
-                    # "order_id": order_id,
-                    "product_id": line["product_id"],
-                    "product_template_id": line["product_name"],
-                    "product_uom_qty": line["product_uom_qty"],
-                    "price_unit": line["price_unit"],
-                    "price_subtotal": line["price_subtotal"],
-                }
-                print(line_id) 
-            order_id = self.env["sale.order"].create({
-            "name": order["name"],
-            "partner_id": order["partner_id"],
-            "state": order["state"],
-            "amount_total": order["amount_total"],
-            "date_order": "2023-10-20 10:10:10",
-            "order_line": line_id,
-            })                    
-            # order_id.write({'order_line': line_id})
-            print(order_id)
-
-    # Let's notify the user of success.
-    print("Замовлення успішно імпортовані.")
-    
+            #     print(order_line_data) 
+            # 
+            #? 1
+            # order_line_data = []
+            # for line in order["order_line"]:
+            #     order_line_data.append({
+            #         "product_id.id": line["product_id"],
+            #         "product_id.name": line["product_name"],
+            #         "product_uom_qty": line["product_uom_qty"],
+            #         "price_unit": line["price_unit"],
+            #         "price_subtotal": line["price_subtotal"],
+            #     })
+            #     print(order_line_data) 
+            #  
 class DateTimeEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, datetime):
