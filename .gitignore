@@ -4,4 +4,6 @@
 /__pycache__
 /models/__pycache__
 _+*
+*_demo.xml
+sale_*.xml
 
