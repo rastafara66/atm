@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "ATM - auto export/import orders",
+    'name': "ATM - auto exim orders",
     'summary': """Automatically creates a scheduled task to export/import orders to a json file""",
     'description': """Automatically creates a scheduled task to export/import orders to a json file""",
     'author': "chukhin",
