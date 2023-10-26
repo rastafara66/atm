@@ -99,14 +99,12 @@ class OrderList(models.Model):
         except Exception as e:
             print("Error importing orders: ", e)
 
-
 class DateTimeEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, datetime):
             return o.isoformat()
 
         return super().default(o)
-
 
 class JSONDecoder(json.JSONDecoder):
     def json_decoder(data):
@@ -134,7 +132,6 @@ class JSONDecoder(json.JSONDecoder):
                     result[key] = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
 
         return result
-
 
 class ProductStockReport(models.AbstractModel):
     _name = 'report.product_stock_report.stock_report_template'
