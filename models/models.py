@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 import json
-# import datetime
 from datetime import datetime
-import os
+#import os
+
 
 class OrderList(models.Model):
     _name = 'atm.orderlist'
@@ -16,115 +16,89 @@ class OrderList(models.Model):
             Return:
         None.
         '''
-        orders = self.env['sale.order'].search([('state','=','sale'),('amount_total','>',0) ])
+        orders = self.env['sale.order'].search(
+            [('state', '=', 'sale'), ('amount_total', '>', 0)])
         order_data = []
-        exp_dir = self.env['ir.config_parameter'].sudo().get_param('atm.export_dir')
+        exp_dir = self.env['ir.config_parameter'].sudo(
+        ).get_param('atm.export_dir')
 
-        for order in orders:
-            order_line_data = []
-            for line in order.order_line:
-                order_line_data.append({
-                    'product_id': line.product_id.id,
-                    'product_template_id': line.product_id.name,
-                    'product_uom_qty': line.product_uom_qty,
-                    'price_unit': line.price_unit,
-                    'price_subtotal': line.price_subtotal,
-                })
-            order_dict = {
-                'id': order.id,
-                'name': order.name,
-                'partner_name': order.partner_id.name,
-                'partner_id': order.partner_id.id,
-                'state': order.state,
-                'amount_total': order.amount_total,
-                'date_order': order.date_order,
-                'order_line': order_line_data,
-                # TODO: add order lines to OrderList JSON files
-            }
-            order_data.append(order_dict)
-        # 
-        with open(exp_dir + 'order_list.json', 'w') as f:
-            json.dump(order_data, f, cls=DateTimeEncoder, indent=4)
-        # get current directory
-        current_directory = os.getcwd()
-        print("Current directory:", current_directory) 
-        # user export directory   
-        print("File saved to the export directory - " + exp_dir + 'order_list.json')
+        try:
+            for order in orders:
+                order_line_data = []
+                for line in order.order_line:
+                    order_line_data.append({
+                        'product_id': line.product_id.id,
+                        'product_template_id': line.product_id.name,
+                        'product_uom_qty': line.product_uom_qty,
+                        'price_unit': line.price_unit,
+                        'price_subtotal': line.price_subtotal,
+                    })
+                order_dict = {
+                    'id': order.id,
+                    'name': order.name,
+                    'partner_name': order.partner_id.name,
+                    'partner_id': order.partner_id.id,
+                    'state': order.state,
+                    'amount_total': order.amount_total,
+                    'date_order': order.date_order,
+                    'order_line': order_line_data,
+                    # TODO: add order lines to OrderList JSON files
+                }
+                order_data.append(order_dict)
+        except Exception as e:
+            print("Error reading the orders", e)
+
+        try:
+            with open(exp_dir + 'order_list.json', 'w') as f:
+                json.dump(order_data, f, cls=DateTimeEncoder, indent=4)
+                print("File saved to the export directory - " +
+                exp_dir + 'order_list.json')
+        except Exception as e:
+            print("Error writing to the file: ", e)
 
     @api.model
     def import_order_list_from_json(self):
         '''
-            Import sale orders from JSON file "order_list.json" in specified directory
+            Import sale orders from JSON file "order_list.json" from export directory
         Return:
             None.
         '''
-        exp_dir = self.env['ir.config_parameter'].sudo().get_param('atm.export_dir')
-        file_name =  exp_dir + 'order_list.json'
-        # try:
-        with open(file_name, "r") as f:
-            data = json.load(f)
-        # except Exception as e:
-        #         print("Error opening file: ", e)
-        # try:
+        exp_dir = self.env['ir.config_parameter'].sudo(
+        ).get_param('atm.export_dir')
+        file_name = exp_dir + 'order_list.json'
+        try:
+            with open(file_name, "r") as f:
+                data = json.load(f)
+        except Exception as e:
+            print("Error opening file: ", e)
+        try:
             for order in data:
                 date_string = order["date_order"]
                 date = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S")
                 new_date_string = date.strftime("%Y-%m-%d %H:%M:%S")
-                
-                order_id = self.env["sale.order"].create({
-                "name": order["name"],
-                "partner_id": order["partner_id"],
-                "state": order["state"],
-                "amount_total": order["amount_total"],
-                "date_order": new_date_string,
-                # "order_line": order["order_line"],
-                }) 
 
+                order_id = self.env["sale.order"].create({
+                    "name": order["name"],
+                    "partner_id": order["partner_id"],
+                    "state": order["state"],
+                    "amount_total": order["amount_total"],
+                    "date_order": new_date_string,
+                })
+                # orders lines
                 for line in order["order_line"]:
-                # for line in range(len(order["order_line"])):
-                    print (line)
                     line_id = self.env['sale.order.line'].create({
                         "order_id": order_id.id,
-                #         #? variant 2
-                #         # "product_id": data["order_line"][int(line)]["product_id"],
-                #         # "product_template_id": data["order_line"][int(line)]["product_name"],
-                #         # "product_uom_qty": data["order_line"][int(line)]["product_uom_qty"],
-                #         # "price_unit": data["order_line"][int(line)]["price_unit"],
-                #         # "price_subtotal": data["order_line"][int(line)]["price_subtotal"],                        
-                #         #? variant 1
                         "product_id": line["product_id"],
                         "product_template_id": line["product_template_id"],
                         "product_uom_qty": line["product_uom_qty"],
                         "price_unit": line["price_unit"],
                         "price_subtotal": line["price_subtotal"],
                     })
-                    print(line_id)
             # Let's notify the user of success.
-            # print("Import success.")
-        # except Exception as e:
-        #         print("Error importing orders: ", e)
-    
-    # @api.model
-    # def _get_line_values(self, order_id, data):
-    #         '''Get the line values from data for order_id'''
-    #         #? variant 3 
-    #         try:
-    #             line_ids = []
-    #             for line in data["order_line"]:               
-    #                 line_id = {
-    #                     "order_id": order_id,
-    #                     "product_id": line["product_id"],
-    #                     "product_template_id": line["product_name"],
-    #                     "product_uom_qty": line["product_uom_qty"],
-    #                     "price_unit": line["price_unit"],
-    #                     "price_subtotal": line["price_subtotal"],
-    #                 }
-    #                 print(line_id) 
-    #             line_ids.append(line_id)                   
-    #             order_id.write({'order_line': [line_ids]})
-    #             print(order_id)
-    #         except Exception as e:
-    #             print("Error importing order lines: ", e)
+            print("Import success.")
+        except Exception as e:
+            print("Error importing orders: ", e)
+
 
 class DateTimeEncoder(json.JSONEncoder):
     def default(self, o):
@@ -132,6 +106,8 @@ class DateTimeEncoder(json.JSONEncoder):
             return o.isoformat()
 
         return super().default(o)
+
+
 class JSONDecoder(json.JSONDecoder):
     def json_decoder(data):
         """
@@ -158,6 +134,8 @@ class JSONDecoder(json.JSONDecoder):
                     result[key] = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
 
         return result
+
+
 class ProductStockReport(models.AbstractModel):
     _name = 'report.product_stock_report.stock_report_template'
     _description = 'Product Stock Report'
