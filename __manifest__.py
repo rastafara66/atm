@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "ATM - auto export orders",
-    'summary': """Automatically creates a scheduled task to export orders to a json file""",
-    'description': """Automatically creates a scheduled task to export orders to a json file""",
+    'name': "ATM - auto export/import orders",
+    'summary': """Automatically creates a scheduled task to export/import orders to a json file""",
+    'description': """Automatically creates a scheduled task to export/import orders to a json file""",
     'author': "chukhin",
     'website': "https://github.com/rastafara66",
     'category': 'Tools, Specific Industry Applications',
@@ -10,7 +10,9 @@
 	'license': 'LGPL-3',
 	'images': [
 		'images/thumb.png',
-		'images/atm_settings.png'
+		'images/atm_settings.png',
+		'images/exp_sheduler.png',
+		'images/imp_sheduler.png',
 	],
 	'price': 00.00,
 	'currency': 'EUR',
