@@ -1,5 +1,3 @@
-ATM orders - odoo module
+Odoo addons modules
 
-Automated Transaction Mechanics
-
-Automatically creates a scheduled task to export/import orders to a json file
+* ATM orders #15 #16 - Automated Transaction Mechanics - Automatically creates a scheduled task to export/import orders to the JSON file
