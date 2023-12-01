@@ -6,7 +6,7 @@
     'author': "chukhin",
     'website': "https://github.com/rastafara66",
     'category': 'Tools',
-    'version': '16.0.1.23.11.62',
+    'version': '16.0.1.23.11.82',
 	'license': 'LGPL-3',
 	'images': [
 		'images/thumb.png',
