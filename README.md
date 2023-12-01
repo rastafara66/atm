@@ -1,4 +1,4 @@
-ATM orders - odoo 16 module
+ATM orders - odoo module
 
 Automated Transaction Mechanics
 
