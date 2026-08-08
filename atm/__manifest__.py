@@ -37,7 +37,9 @@ How it works
     # The first image is the card picture in the App Store listing.
     'images': [
         'static/description/banner.png',
-        'static/description/icon.png',
+        'static/description/screenshot_settings.png',
+        'static/description/screenshot_log.png',
+        'static/description/screenshot_json.png',
     ],
     'price': 0.00,
     'currency': 'EUR',
