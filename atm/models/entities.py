@@ -241,7 +241,7 @@ def _payment_spec(code, label, filename, payment_type, partner_type):
             'name': 'name',
             'date': 'date',
             'amount': 'amount',
-            'memo': 'memo',
+            'memo': 'ref',
             'state': 'state',
         },
         m2o_fields={
