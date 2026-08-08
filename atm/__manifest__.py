@@ -40,7 +40,7 @@ side. The user interface is available in Ukrainian.
     'author': 'chukhin',
     'website': 'https://github.com/rastafara66/atm',
     'category': 'Productivity',
-    'version': '17.0.2.0.1',
+    'version': '17.0.2.0.2',
     'license': 'LGPL-3',
     # The first image is the card picture in the App Store listing.
     'images': [
