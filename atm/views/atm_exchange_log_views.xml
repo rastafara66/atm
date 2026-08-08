@@ -11,7 +11,7 @@
                 <field name="record_count"/>
                 <field name="created_count" optional="show"/>
                 <field name="updated_count" optional="show"/>
-                <field name="skipped_count" optional="hide"/>
+                <field name="skipped_count" optional="show"/>
                 <field name="failed_count" optional="show"/>
                 <field name="state"/>
                 <field name="message" optional="hide"/>
