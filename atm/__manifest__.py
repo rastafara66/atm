@@ -2,7 +2,8 @@
 {
     'name': 'Data Exchange - JSON sync for orders, invoices and payments',
     'summary': 'Scheduled JSON exchange of contacts, products, orders, '
-               'invoices and payments with an external accounting system',
+               'invoices and payments with an external accounting system '
+               '(1C, BAS) - UA interface included',
     'description': """
 Data Exchange - JSON sync with an external accounting system
 ============================================================
@@ -28,6 +29,13 @@ How it works
 * Imported documents are created as drafts; confirming them is an explicit setting.
 * Posted documents are never rewritten by a later import.
 * Every run is written to an exchange log with created, updated, skipped and failed counters.
+
+Working with 1C and BAS
+-----------------------
+
+File exchange over a shared directory is how 1C and BAS integrate with other
+systems, so the same mechanism bridges them without changing anything on that
+side. The user interface is available in Ukrainian.
 """,
     'author': 'chukhin',
     'website': 'https://github.com/rastafara66/atm',
