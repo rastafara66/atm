@@ -31,6 +31,11 @@ engine. Available for Odoo 16.0, 17.0, 18.0 and 19.0.
 - **New icon and store banner**, showing two documents exchanged in both
   directions. The previous icon carried the ATM lettering. Both are drawn
   from code by `tools/make_icons.py` and can be regenerated.
+- **Ukrainian interface** (`i18n/uk.po`). The wording follows Ukrainian
+  accounting usage rather than a literal rendering: contacts are
+  «Контрагенти», products «Номенклатура» -- what the audience coming from
+  1C or BAS reads without stumbling. The listing page carries a Ukrainian
+  section too.
 - Two scheduled actions, one per direction, both disabled after installation.
 - A *Data Exchange Manager* group guarding the configuration and the manual run.
 
@@ -74,6 +79,9 @@ engine. Available for Odoo 16.0, 17.0, 18.0 and 19.0.
   "never configured"; the switches now store `True` / `False` explicitly.
 - Payments kept their source number in a field that does not exist:
   `account.payment` has `memo` from Odoo 18 on and `ref` before that.
+- The record counter and the run state both read `Failed` in English but
+  need different words elsewhere, so the counter is now `Failures` and the
+  two translate apart.
 - The exchange log read as if nothing had happened when documents were
   skipped: *Records* counted only created and updated rows, and the
   *Skipped* column was hidden by default. Importing a file back into the
