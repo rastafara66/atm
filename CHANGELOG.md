@@ -63,6 +63,14 @@ engine. Available for Odoo 16.0, 17.0, 18.0 and 19.0.
 - Values Odoo derives itself were decided by the `readonly` flag alone. Up to
   Odoo 16 plain fields were readonly by document state, so vendor bills arrived
   without an invoice date and could not be validated.
+- The settings page answered "Something went wrong": *Exchange Documents Since*
+  was a Date bound to a config parameter, and `res.config.settings` accepts only
+  boolean, integer, float, char, selection, many2one and datetime there.
+- An entity switched off came back on at the next run. Odoo deletes a config
+  parameter when a boolean is saved as False, which is indistinguishable from
+  "never configured"; the switches now store `True` / `False` explicitly.
+- Payments kept their source number in a field that does not exist:
+  `account.payment` has `memo` from Odoo 18 on and `ref` before that.
 
 ### Compatibility
 
@@ -82,7 +90,10 @@ then imported a second time:
 | 17.0 | full match, no failures |
 | 16.0 | full match (the target database needs a chart of accounts) |
 
-The second import created no records in any series.
+The second import created no records in any series. Odoo ships no payments in
+its demo data, so customer and vendor payments were tested against records
+created for the purpose. The settings page was exercised separately on each
+series: open, save, read back, and confirm a disabled entity stays disabled.
 
 ## 1.x — 2023–2024
 
