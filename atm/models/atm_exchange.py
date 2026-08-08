@@ -192,10 +192,15 @@ class AtmExchange(models.AbstractModel):
     def _export_record(self, spec, record):
         """Turn one record into its JSON representation."""
         data = {'external_ref': self._ensure_external_ref(record)}
+        # A spec is shared across Odoo versions, which do not all carry the
+        # same fields -- uom_po_id exists up to 18.0 and is gone in 19.0.
+        # Whatever this version does not have is simply not exported.
         for key, field_name in spec.fields.items():
-            data[key] = record[field_name]
+            if field_name in record._fields:
+                data[key] = record[field_name]
         for key, (field_name, entity_code) in spec.m2o_fields.items():
-            data[key] = self._export_m2o(record, field_name, entity_code)
+            if field_name in record._fields:
+                data[key] = self._export_m2o(record, field_name, entity_code)
 
         if spec.line_field:
             lines = []
@@ -204,9 +209,12 @@ class AtmExchange(models.AbstractModel):
                     continue
                 line_data = {}
                 for key, field_name in spec.line_fields.items():
-                    line_data[key] = line[field_name]
+                    if field_name in line._fields:
+                        line_data[key] = line[field_name]
                 for key, (field_name, entity_code) in spec.line_m2o_fields.items():
-                    line_data[key] = self._export_m2o(line, field_name, entity_code)
+                    if field_name in line._fields:
+                        line_data[key] = self._export_m2o(
+                            line, field_name, entity_code)
                 lines.append(line_data)
             data['lines'] = lines
         return data
