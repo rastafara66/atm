@@ -7,7 +7,7 @@ from .entities import ENTITIES
 
 class AtmExchangeLog(models.Model):
     _name = 'atm.exchange.log'
-    _description = 'ATM Exchange Log'
+    _description = 'Data Exchange Log'
     _order = 'create_date desc, id desc'
 
     direction = fields.Selection(

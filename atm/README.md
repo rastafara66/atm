@@ -1,4 +1,4 @@
-# ATM — Automated Transaction Mechanics
+# Data Exchange — JSON sync for orders, invoices and payments
 
 Scheduled JSON exchange between Odoo and an external accounting or ERP system.
 Odoo writes the documents into a shared directory and reads back whatever the
@@ -81,9 +81,9 @@ database.
    press *Export Now* / *Import Now*.
 4. Check the results under *ATM → Exchange Log*.
 
-## Upgrading from ATM 1.x
+## Upgrading from an earlier version
 
-The old `atm.orderlist` model is still there and its two methods now delegate
+The `atm.orderlist` model is still there and its two methods now delegate
 to the exchange engine, so scheduled actions created by earlier versions keep
 working. They only handle sales orders — switch to the new crons to exchange
 everything else.

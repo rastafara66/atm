@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'ATM - Automated Transaction Mechanics',
+    'name': 'Data Exchange - JSON sync for orders, invoices and payments',
     'summary': 'Scheduled JSON exchange of contacts, products, orders, '
                'invoices and payments with an external accounting system',
     'description': """
-ATM - Automated Transaction Mechanics
-=====================================
+Data Exchange - JSON sync with an external accounting system
+============================================================
 
 Keeps Odoo and an external accounting or ERP system in step through plain JSON
 files in a shared directory - no open port, no middleware.

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="action_atm_settings" model="ir.actions.act_window">
-        <field name="name">ATM Settings</field>
+        <field name="name">Data Exchange Settings</field>
         <field name="res_model">res.config.settings</field>
         <field name="view_mode">form</field>
         <field name="context">{'module': 'atm'}</field>
     </record>
 
-    <menuitem id="menu_atm_root" name="ATM" sequence="95"
+    <menuitem id="menu_atm_root" name="Data Exchange" sequence="95"
               groups="atm.group_atm_manager"
               web_icon="atm,static/description/icon.png"/>
 
