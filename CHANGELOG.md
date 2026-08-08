@@ -20,7 +20,7 @@ engine. Available for Odoo 16.0, 17.0, 18.0 and 19.0.
   held in `atm_external_ref`, so a file exported from one database can be
   imported into another, and importing the same file twice creates nothing the
   second time.
-- **Exchange log** (`ATM → Exchange Log`) recording every run: direction,
+- **Exchange log** (`Data Exchange → Exchange Log`) recording every run: direction,
   entity, file, and created / updated / skipped / failed counters.
 - **Settings screen** with the exchange directory, a date from which documents
   are exchanged, a system code used to build references, per-entity switches,
@@ -29,7 +29,7 @@ engine. Available for Odoo 16.0, 17.0, 18.0 and 19.0.
   created as drafts, and confirming or posting them goes through Odoo's own
   business methods rather than a write to `state`.
 - Two scheduled actions, one per direction, both disabled after installation.
-- An *ATM Exchange Manager* group guarding the configuration and the manual run.
+- A *Data Exchange Manager* group guarding the configuration and the manual run.
 
 ### Changed
 
