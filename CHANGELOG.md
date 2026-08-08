@@ -5,6 +5,19 @@ The technical name stays `atm`; earlier releases were published under the
 name "ATM - Automated Transaction Mechanics". Versions follow the Odoo
 convention: `<odoo series>.<major>.<minor>.<patch>`.
 
+## 2.0.1 — 2026-08-08
+
+Everything below was written while 2.0.0 still carried the same version number,
+which is why the store kept showing the old listing: the Apps Store refreshes a
+module's page from the manifest version, and it had not changed.
+
+- Ukrainian interface and a Ukrainian section on the listing page.
+- New icon and store banner, without the ATM lettering.
+- Screenshots on the listing page, and a changelog section on it.
+- Exchange log counts every record the file held and shows *Skipped*.
+- Payments store their source number in `memo` (18.0+) / `ref` (16.0–17.0).
+- Settings screen opens again, and a disabled entity stays disabled.
+
 ## 2.0.0 — 2026-08-08
 
 Rewritten from an exporter of sales orders into a general document exchange
