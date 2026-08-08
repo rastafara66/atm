@@ -429,7 +429,9 @@ class AtmExchange(models.AbstractModel):
 
             log.write({
                 'state': 'failed' if failed and not (created or updated) else 'done',
-                'record_count': created + updated,
+                # Everything the file held, not just what changed: a run that
+                # skipped every record is not a run that read nothing.
+                'record_count': len(records),
                 'created_count': created,
                 'updated_count': updated,
                 'skipped_count': skipped,
