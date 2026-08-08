@@ -315,7 +315,7 @@ class AtmExchange(models.AbstractModel):
     #: source number is kept in a reference field instead.
     SEQUENCE_OWNED_MODELS = {
         'account.move': 'ref',
-        'account.payment': 'ref',
+        'account.payment': 'memo',
     }
 
     @api.model
