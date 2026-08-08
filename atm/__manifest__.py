@@ -34,7 +34,9 @@ How it works
     'category': 'Productivity',
     'version': '16.0.2.0.0',
     'license': 'LGPL-3',
+    # The first image is the card picture in the App Store listing.
     'images': [
+        'static/description/banner.png',
         'static/description/icon.png',
     ],
     'price': 0.00,
