@@ -5,6 +5,12 @@ The technical name stays `atm`; earlier releases were published under the
 name "ATM - Automated Transaction Mechanics". Versions follow the Odoo
 convention: `<odoo series>.<major>.<minor>.<patch>`.
 
+## 2.0.3 — 2026-08-08
+
+- The listing showed a hand-written JSON sample where the screenshot of a real
+  exported file belongs. Swapped: the real file is shown, the invented one is
+  gone.
+
 ## 2.0.2 — 2026-08-08
 
 - The Ukrainian text on the listing page arrived as mojibake: the Apps Store
