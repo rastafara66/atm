@@ -97,6 +97,9 @@ MASTER_DATA = [
         },
         m2o_fields={
             'uom': ('uom_id', None),
+            # Odoo requires the default and the purchase unit to belong to the
+            # same category, so the purchase one has to travel along.
+            'uom_po': ('uom_po_id', None),
             'category': ('categ_id', None),
         },
     ),
@@ -134,7 +137,7 @@ DOCUMENTS = [
         },
         line_m2o_fields={
             'product': ('product_id', 'product'),
-            'uom': ('product_uom_id', None),
+            'uom': ('product_uom', None),
         },
     ),
     EntitySpec(
@@ -166,7 +169,7 @@ DOCUMENTS = [
         },
         line_m2o_fields={
             'product': ('product_id', 'product'),
-            'uom': ('product_uom_id', None),
+            'uom': ('product_uom', None),
         },
     ),
 ]

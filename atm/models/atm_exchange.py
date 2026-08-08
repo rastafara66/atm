@@ -292,6 +292,10 @@ class AtmExchange(models.AbstractModel):
             resolved = self._resolve_m2o(comodel, data[key], entity_code)
             if resolved:
                 values[field_name] = resolved
+            elif entity_code and data[key]:
+                raise ValueError(_(
+                    'Cannot resolve %(field)s: %(target)s was not imported yet.')
+                    % {'field': key, 'target': data[key]})
         return self._postprocess_values(spec, data, values)
 
     #: Models whose ``name`` is a legal sequence number owned by this database.
@@ -334,6 +338,14 @@ class AtmExchange(models.AbstractModel):
                 resolved = self._resolve_m2o(comodel, line_data[key], entity_code)
                 if resolved:
                     values[field_name] = resolved
+                elif entity_code and line_data[key]:
+                    # Silently dropping the product would leave a line the
+                    # document cannot be confirmed with. Fail the record and
+                    # let the log say why.
+                    raise ValueError(_(
+                        'Cannot resolve line %(field)s: %(target)s was not '
+                        'imported yet.')
+                        % {'field': key, 'target': line_data[key]})
             commands.append((0, 0, values))
         return commands
 
