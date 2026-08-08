@@ -24,7 +24,10 @@ class AtmExchangeLog(models.Model):
     created_count = fields.Integer(string='Created', readonly=True)
     updated_count = fields.Integer(string='Updated', readonly=True)
     skipped_count = fields.Integer(string='Skipped', readonly=True)
-    failed_count = fields.Integer(string='Failed', readonly=True)
+    # 'Failures', not 'Failed': this counts records, while state uses 'Failed'
+    # for the run itself. One word in English, two in most other languages --
+    # keeping the source strings apart lets both translate correctly.
+    failed_count = fields.Integer(string='Failures', readonly=True)
     message = fields.Text(string='Message', readonly=True)
 
     def _compute_display_name(self):

@@ -1,0 +1,550 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* atm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-08 10:37+0000\n"
+"PO-Revision-Date: 2026-08-08 10:37+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid ""
+"%(created)s created, %(updated)s updated, %(skipped)s skipped, %(failed)s "
+"failed."
+msgstr "Створено: %(created)s, оновлено: %(updated)s, пропущено: %(skipped)s, з помилками: %(failed)s."
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "%(total)s entity(ies) processed, %(failed)s failed."
+msgstr "Оброблено сутностей: %(total)s, з помилками: %(failed)s."
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid ""
+"%s does not exist yet. It will be created on the first export if the server "
+"may write there."
+msgstr "%s ще не існує. Теку буде створено при першому вивантаженні, якщо сервер має право туди писати."
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "%s record(s) written."
+msgstr "Записано %s запис(ів)."
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "Cannot resolve %(field)s: %(target)s was not imported yet."
+msgstr "Не вдалося визначити %(field)s: %(target)s ще не завантажено."
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "Cannot resolve line %(field)s: %(target)s was not imported yet."
+msgstr "Не вдалося визначити %(field)s рядка: %(target)s ще не завантажено."
+#. module: atm
+#: model:ir.model,name:atm.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: atm
+#: model:ir.ui.menu,name:atm.menu_atm_configuration
+msgid "Configuration"
+msgstr "Налаштування"
+#. module: atm
+#: model_terms:ir.actions.act_window,help:atm.action_atm_exchange_log
+msgid ""
+"Configure the exchange directory in Settings, then enable the\n"
+"               Data Exchange scheduled actions or trigger a run manually."
+msgstr ""
+"Вкажіть теку обміну в налаштуваннях, потім увімкніть регламентні\n"
+"               завдання обміну даними або запустіть обмін вручну."
+#. module: atm
+#: model:res.groups,comment:atm.group_atm_manager
+msgid "Configures the exchange and may trigger it manually."
+msgstr "Налаштовує обмін і може запускати його вручну."
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_auto_confirm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Confirm Imported Documents"
+msgstr "Проводити завантажені документи"
+#. module: atm
+#: model:ir.model,name:atm.model_res_partner
+msgid "Contact"
+msgstr "Контрагент"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_partner
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__partner
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Contacts"
+msgstr "Контрагенти"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__created_count
+msgid "Created"
+msgstr "Створено"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__create_uid
+#: model:ir.model.fields,field_description:atm.field_atm_orderlist__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__create_date
+#: model:ir.model.fields,field_description:atm.field_atm_orderlist__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_customer_refund
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__customer_refund
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Customer Credit Notes"
+msgstr "Повернення від клієнтів"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_customer_invoice
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__customer_invoice
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Customer Invoices"
+msgstr "Рахунки клієнтам"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_customer_payment
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__customer_payment
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Customer Payments"
+msgstr "Оплати від клієнтів"
+#. module: atm
+#: model:ir.ui.menu,name:atm.menu_atm_root
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Data Exchange"
+msgstr "Обмін даними"
+#. module: atm
+#: model:ir.model,name:atm.model_atm_exchange
+msgid "Data Exchange Engine"
+msgstr "Рушій обміну даними"
+#. module: atm
+#: model:ir.model,name:atm.model_atm_external_ref_mixin
+msgid "Data Exchange External Reference"
+msgstr "Зовнішній ідентифікатор"
+#. module: atm
+#: model:ir.model,name:atm.model_atm_exchange_log
+msgid "Data Exchange Log"
+msgstr "Журнал обміну"
+#. module: atm
+#: model:res.groups,name:atm.group_atm_manager
+msgid "Data Exchange Manager"
+msgstr "Менеджер обміну даними"
+#. module: atm
+#: model:ir.actions.act_window,name:atm.action_atm_settings
+msgid "Data Exchange Settings"
+msgstr "Налаштування обміну даними"
+#. module: atm
+#: model:ir.actions.server,name:atm.ir_cron_atm_export_ir_actions_server
+msgid "Data Exchange: export to external system"
+msgstr "Обмін даними: вивантаження у зовнішню систему"
+#. module: atm
+#: model:ir.actions.server,name:atm.ir_cron_atm_import_ir_actions_server
+msgid "Data Exchange: import from external system"
+msgstr "Обмін даними: завантаження із зовнішньої системи"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__direction
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_search
+msgid "Direction"
+msgstr "Напрям"
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "Directory not found"
+msgstr "Теку не знайдено"
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_export_dir
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Directory the JSON files are written to and read from. It must be reachable "
+"by the Odoo server process."
+msgstr "Тека, у яку записуються і з якої читаються файли JSON. Вона має бути доступна процесу сервера Odoo."
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_account_move__display_name
+#: model:ir.model.fields,field_description:atm.field_account_payment__display_name
+#: model:ir.model.fields,field_description:atm.field_atm_exchange__display_name
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__display_name
+#: model:ir.model.fields,field_description:atm.field_atm_external_ref_mixin__display_name
+#: model:ir.model.fields,field_description:atm.field_atm_orderlist__display_name
+#: model:ir.model.fields,field_description:atm.field_product_product__display_name
+#: model:ir.model.fields,field_description:atm.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:atm.field_res_partner__display_name
+#: model:ir.model.fields,field_description:atm.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Documents"
+msgstr "Документи"
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_date_from
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Documents dated before this day are never exported. Leave empty to export "
+"the whole history."
+msgstr "Документи, датовані раніше за цей день, не вивантажуються. Залиште порожнім, щоб вивантажити всю історію."
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__state__done
+msgid "Done"
+msgstr "Готово"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__entity
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_search
+msgid "Entity"
+msgstr "Сутність"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_export_dir
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange Directory"
+msgstr "Тека обміну"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_date_from
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange Documents Since"
+msgstr "Обмінювати документи з"
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange File"
+msgstr "Файл обміну"
+#. module: atm
+#: model:ir.actions.act_window,name:atm.action_atm_exchange_log
+#: model:ir.ui.menu,name:atm.menu_atm_exchange_log
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_form
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_list
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_search
+msgid "Exchange Log"
+msgstr "Журнал обміну"
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange confirmed purchase orders."
+msgstr "Обмінюватися підтвердженими замовленнями постачальникам."
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange confirmed sales orders."
+msgstr "Обмінюватися підтвердженими замовленнями клієнтів."
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange contacts."
+msgstr "Обмінюватися контрагентами."
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange customer payments."
+msgstr "Обмінюватися оплатами від клієнтів."
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "Exchange directory does not exist: %s"
+msgstr "Тека обміну не існує: %s"
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange_log.py:0
+msgid "Exchange file"
+msgstr "Файл обміну"
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange posted customer credit notes."
+msgstr "Обмінюватися проведеними поверненнями від клієнтів."
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange posted customer invoices."
+msgstr "Обмінюватися проведеними рахунками клієнтам."
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange posted vendor bills."
+msgstr "Обмінюватися проведеними рахунками постачальників."
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange posted vendor credit notes."
+msgstr "Обмінюватися проведеними поверненнями постачальникам."
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange products."
+msgstr "Обмінюватися номенклатурою."
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange vendor payments."
+msgstr "Обмінюватися оплатами постачальникам."
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__direction__export
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_search
+msgid "Export"
+msgstr "Вивантаження"
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Export Now"
+msgstr "Вивантажити зараз"
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "Export finished"
+msgstr "Вивантаження завершено"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_account_bank_statement_line__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_account_move__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_account_payment__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_atm_external_ref_mixin__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_product_product__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_purchase_order__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_res_partner__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_res_users__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_sale_order__atm_external_ref
+msgid "External Reference"
+msgstr "Зовнішній ідентифікатор"
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_external_ref.py:0
+msgid "External reference \"%(ref)s\" is already used by %(name)s."
+msgstr "Зовнішній ідентифікатор «%(ref)s» вже використовує %(name)s."
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__state__failed
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_search
+msgid "Failed"
+msgstr "Помилка"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__failed_count
+msgid "Failures"
+msgstr "Помилок"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__file_path
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_form
+msgid "File"
+msgstr "Файл"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_account_move__id
+#: model:ir.model.fields,field_description:atm.field_account_payment__id
+#: model:ir.model.fields,field_description:atm.field_atm_exchange__id
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__id
+#: model:ir.model.fields,field_description:atm.field_atm_external_ref_mixin__id
+#: model:ir.model.fields,field_description:atm.field_atm_orderlist__id
+#: model:ir.model.fields,field_description:atm.field_product_product__id
+#: model:ir.model.fields,field_description:atm.field_purchase_order__id
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__id
+#: model:ir.model.fields,field_description:atm.field_res_partner__id
+#: model:ir.model.fields,field_description:atm.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_account_bank_statement_line__atm_external_ref
+#: model:ir.model.fields,help:atm.field_account_move__atm_external_ref
+#: model:ir.model.fields,help:atm.field_account_payment__atm_external_ref
+#: model:ir.model.fields,help:atm.field_atm_external_ref_mixin__atm_external_ref
+#: model:ir.model.fields,help:atm.field_product_product__atm_external_ref
+#: model:ir.model.fields,help:atm.field_purchase_order__atm_external_ref
+#: model:ir.model.fields,help:atm.field_res_partner__atm_external_ref
+#: model:ir.model.fields,help:atm.field_res_users__atm_external_ref
+#: model:ir.model.fields,help:atm.field_sale_order__atm_external_ref
+msgid ""
+"Identifier of this record in the external system. Records are matched by "
+"this key during import, so it must stay stable."
+msgstr "Ідентифікатор цього запису у зовнішній системі. Під час завантаження записи зіставляються саме за цим ключем, тому він має лишатися сталим."
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__direction__import
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_search
+msgid "Import"
+msgstr "Завантаження"
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Import Now"
+msgstr "Завантажити зараз"
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "Import finished"
+msgstr "Завантаження завершено"
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_auto_confirm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Imported documents are always created as drafts. Enable this to confirm "
+"orders and post invoices and payments that were already confirmed or posted "
+"in the external system."
+msgstr "Завантажені документи завжди створюються як чернетки. Увімкніть, щоб підтверджувати замовлення та проводити рахунки й оплати, які вже були підтверджені або проведені у зовнішній системі."
+#. module: atm
+#: model:ir.model,name:atm.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__write_uid
+#: model:ir.model.fields,field_description:atm.field_atm_orderlist__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__write_date
+#: model:ir.model.fields,field_description:atm.field_atm_orderlist__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Manual Run"
+msgstr "Ручний запуск"
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Master Data"
+msgstr "Довідники"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__message
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_form
+msgid "Message"
+msgstr "Повідомлення"
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "No entity is enabled for exchange."
+msgstr "Жодну сутність не увімкнено для обміну."
+#. module: atm
+#: model_terms:ir.actions.act_window,help:atm.action_atm_exchange_log
+msgid "No exchange has run yet"
+msgstr "Обмін ще не виконувався"
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange_log.py:0
+msgid "No file"
+msgstr "Немає файлу"
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "No file to import: %s"
+msgstr "Немає файлу для завантаження: %s"
+#. module: atm
+#: model:ir.model,name:atm.model_atm_orderlist
+msgid "Order list (deprecated, use the exchange engine)"
+msgstr "Список замовлень (застаріле, використовуйте рушій обміну)"
+#. module: atm
+#: model:ir.model,name:atm.model_account_payment
+msgid "Payments"
+msgstr "Оплати"
+#. module: atm
+#: model:ir.model,name:atm.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_product
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__product
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Products"
+msgstr "Номенклатура"
+#. module: atm
+#: model:ir.model,name:atm.model_purchase_order
+msgid "Purchase Order"
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_purchase_order
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__purchase_order
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Purchase Orders"
+msgstr "Замовлення постачальникам"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__record_count
+msgid "Records"
+msgstr "Записів"
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Run Now"
+msgstr "Виконати зараз"
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_form
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_list
+msgid "Run at"
+msgstr "Виконано"
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__state__running
+msgid "Running"
+msgstr "Виконується"
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Runs the exchange immediately for every enabled entity, without waiting for "
+"the scheduled action."
+msgstr "Виконує обмін негайно для всіх увімкнених сутностей, не чекаючи на регламентне завдання."
+#. module: atm
+#: model:ir.model,name:atm.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_sale_order
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__sale_order
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Sales Orders"
+msgstr "Замовлення клієнтів"
+#. module: atm
+#: model:ir.ui.menu,name:atm.menu_atm_settings
+msgid "Settings"
+msgstr "Налаштування"
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_system_code
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Short identifier of this database. It prefixes the external references "
+"generated for records that do not have one yet."
+msgstr "Короткий ідентифікатор цієї бази. Він додається на початку зовнішніх ідентифікаторів, які створюються для записів, що їх ще не мають."
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__skipped_count
+msgid "Skipped"
+msgstr "Пропущено"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__state
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_search
+msgid "Status"
+msgstr "Стан"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_system_code
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "System Code"
+msgstr "Код системи"
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid ""
+"The exchange directory is not configured. Set it in Settings > Data "
+"Exchange."
+msgstr "Теку обміну не налаштовано. Вкажіть її в меню Налаштування > Обмін даними."
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__updated_count
+msgid "Updated"
+msgstr "Оновлено"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_vendor_bill
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__vendor_bill
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Vendor Bills"
+msgstr "Рахунки постачальників"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_vendor_refund
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__vendor_refund
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Vendor Credit Notes"
+msgstr "Повернення постачальникам"
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_vendor_payment
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__vendor_payment
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Vendor Payments"
+msgstr "Оплати постачальникам"
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "e.g. /var/lib/odoo/exchange"
+msgstr "напр. /var/lib/odoo/exchange"
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "odoo"
+msgstr ""
