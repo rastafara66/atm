@@ -1,4 +1,4 @@
-# ATM — Automated Transaction Mechanics
+# Data Exchange
 
 Odoo module for scheduled JSON exchange of contacts, products, orders,
 invoices and payments with an external accounting or ERP system.

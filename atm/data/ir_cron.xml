@@ -2,7 +2,7 @@
 <odoo>
     <data noupdate="1">
         <record id="ir_cron_atm_export" model="ir.cron">
-            <field name="name">ATM: export to external system</field>
+            <field name="name">Data Exchange: export to external system</field>
             <field name="model_id" ref="model_atm_exchange"/>
             <field name="state">code</field>
             <field name="code">model.export_all()</field>
@@ -13,7 +13,7 @@
         </record>
 
         <record id="ir_cron_atm_import" model="ir.cron">
-            <field name="name">ATM: import from external system</field>
+            <field name="name">Data Exchange: import from external system</field>
             <field name="model_id" ref="model_atm_exchange"/>
             <field name="state">code</field>
             <field name="code">model.import_all()</field>

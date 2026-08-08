@@ -78,7 +78,7 @@
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">No exchange has run yet</p>
             <p>Configure the exchange directory in Settings, then enable the
-               ATM scheduled actions or trigger a run manually.</p>
+               Data Exchange scheduled actions or trigger a run manually.</p>
         </field>
     </record>
 </odoo>

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""Registry of business entities ATM can exchange with an external system.
+"""Registry of business entities this module can exchange with an external
+system.
 
 Every entity is described declaratively so that the exchange engine stays
 generic: adding a document type means adding one :class:`EntitySpec`, not a new

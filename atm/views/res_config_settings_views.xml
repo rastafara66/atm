@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
-                <app string="ATM" name="atm" logo="/atm/static/description/icon.png">
+                <app string="Data Exchange" name="atm" logo="/atm/static/description/icon.png">
                     <block title="Exchange File" name="atm_file_setting_container">
                         <setting id="atm_export_dir_setting" string="Exchange Directory"
                                  help="Directory the JSON files are written to and read from. It must be reachable by the Odoo server process.">
