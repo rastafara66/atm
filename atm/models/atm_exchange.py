@@ -192,10 +192,15 @@ class AtmExchange(models.AbstractModel):
     def _export_record(self, spec, record):
         """Turn one record into its JSON representation."""
         data = {'external_ref': self._ensure_external_ref(record)}
+        # A spec is shared across Odoo versions, which do not all carry the
+        # same fields -- uom_po_id exists up to 18.0 and is gone in 19.0.
+        # Whatever this version does not have is simply not exported.
         for key, field_name in spec.fields.items():
-            data[key] = record[field_name]
+            if field_name in record._fields:
+                data[key] = record[field_name]
         for key, (field_name, entity_code) in spec.m2o_fields.items():
-            data[key] = self._export_m2o(record, field_name, entity_code)
+            if field_name in record._fields:
+                data[key] = self._export_m2o(record, field_name, entity_code)
 
         if spec.line_field:
             lines = []
@@ -204,9 +209,12 @@ class AtmExchange(models.AbstractModel):
                     continue
                 line_data = {}
                 for key, field_name in spec.line_fields.items():
-                    line_data[key] = line[field_name]
+                    if field_name in line._fields:
+                        line_data[key] = line[field_name]
                 for key, (field_name, entity_code) in spec.line_m2o_fields.items():
-                    line_data[key] = self._export_m2o(line, field_name, entity_code)
+                    if field_name in line._fields:
+                        line_data[key] = self._export_m2o(
+                            line, field_name, entity_code)
                 lines.append(line_data)
             data['lines'] = lines
         return data
@@ -292,6 +300,10 @@ class AtmExchange(models.AbstractModel):
             resolved = self._resolve_m2o(comodel, data[key], entity_code)
             if resolved:
                 values[field_name] = resolved
+            elif entity_code and data[key]:
+                raise ValueError(_(
+                    'Cannot resolve %(field)s: %(target)s was not imported yet.')
+                    % {'field': key, 'target': data[key]})
         return self._postprocess_values(spec, data, values)
 
     #: Models whose ``name`` is a legal sequence number owned by this database.
@@ -334,6 +346,14 @@ class AtmExchange(models.AbstractModel):
                 resolved = self._resolve_m2o(comodel, line_data[key], entity_code)
                 if resolved:
                     values[field_name] = resolved
+                elif entity_code and line_data[key]:
+                    # Silently dropping the product would leave a line the
+                    # document cannot be confirmed with. Fail the record and
+                    # let the log say why.
+                    raise ValueError(_(
+                        'Cannot resolve line %(field)s: %(target)s was not '
+                        'imported yet.')
+                        % {'field': key, 'target': line_data[key]})
             commands.append((0, 0, values))
         return commands
 

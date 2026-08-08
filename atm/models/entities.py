@@ -97,6 +97,9 @@ MASTER_DATA = [
         },
         m2o_fields={
             'uom': ('uom_id', None),
+            # Odoo requires the default and the purchase unit to belong to the
+            # same category, so the purchase one has to travel along.
+            'uom_po': ('uom_po_id', None),
             'category': ('categ_id', None),
         },
     ),
