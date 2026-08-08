@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_atm_exchange_log_tree" model="ir.ui.view">
-        <field name="name">atm.exchange.log.tree</field>
+    <record id="view_atm_exchange_log_list" model="ir.ui.view">
+        <field name="name">atm.exchange.log.list</field>
         <field name="model">atm.exchange.log</field>
         <field name="arch" type="xml">
-            <tree string="Exchange Log" create="false" decoration-danger="state == 'failed'" decoration-muted="state == 'running'">
+            <list string="Exchange Log" create="false" decoration-danger="state == 'failed'" decoration-muted="state == 'running'">
                 <field name="create_date" string="Run at"/>
                 <field name="direction"/>
                 <field name="entity"/>
                 <field name="record_count"/>
                 <field name="created_count" optional="show"/>
                 <field name="updated_count" optional="show"/>
-                <field name="skipped_count" optional="hide"/>
+                <field name="skipped_count" optional="show"/>
                 <field name="failed_count" optional="show"/>
                 <field name="state"/>
                 <field name="message" optional="hide"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -73,12 +73,12 @@
     <record id="action_atm_exchange_log" model="ir.actions.act_window">
         <field name="name">Exchange Log</field>
         <field name="res_model">atm.exchange.log</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="context">{'search_default_group_direction': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">No exchange has run yet</p>
             <p>Configure the exchange directory in Settings, then enable the
-               ATM scheduled actions or trigger a run manually.</p>
+               Data Exchange scheduled actions or trigger a run manually.</p>
         </field>
     </record>
 </odoo>
