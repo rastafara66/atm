@@ -1,0 +1,88 @@
+# Changelog
+
+All notable changes to ATM are recorded here. Versions follow the Odoo
+convention: `<odoo series>.<major>.<minor>.<patch>`.
+
+## 2.0.0 — 2026-08-08
+
+Rewritten from an exporter of sales orders into a general document exchange
+engine. Available for Odoo 16.0, 17.0, 18.0 and 19.0.
+
+### Added
+
+- **Ten exchangeable entities** instead of one: contacts, products, sales
+  orders, purchase orders, customer invoices, vendor bills, customer and vendor
+  credit notes, customer and vendor payments. Each lands in its own file and can
+  be switched on or off separately.
+- **External references.** Records are matched between systems by a stable key
+  held in `atm_external_ref`, so a file exported from one database can be
+  imported into another, and importing the same file twice creates nothing the
+  second time.
+- **Exchange log** (`ATM → Exchange Log`) recording every run: direction,
+  entity, file, and created / updated / skipped / failed counters.
+- **Settings screen** with the exchange directory, a date from which documents
+  are exchanged, a system code used to build references, per-entity switches,
+  and *Export Now* / *Import Now* buttons.
+- **Confirm Imported Documents** setting. Off by default: imported documents are
+  created as drafts, and confirming or posting them goes through Odoo's own
+  business methods rather than a write to `state`.
+- Two scheduled actions, one per direction, both disabled after installation.
+- An *ATM Exchange Manager* group guarding the configuration and the manual run.
+
+### Changed
+
+- Document numbers coming from the other system are stored in the reference
+  field instead of being forced onto the Odoo sequence, which used to collide
+  with numbers the local sequence had already issued.
+- A posted invoice or payment is never rewritten by a later import; it is
+  counted as skipped.
+- Each record is imported inside its own savepoint, so a record the database
+  rejects no longer aborts the whole run.
+- A reference to a business record that cannot be resolved fails that record
+  instead of silently producing a document line without a product.
+- The exchange skips fields the running Odoo version does not define, which
+  keeps one set of entity definitions valid across four series.
+
+### Fixed
+
+- Exports wrote database ids for partners and products. Those ids are local to
+  a database and pointed at unrelated records once the file was read anywhere
+  else.
+- The manifest referenced `static/src/components/export_dir_field.js`, while the
+  file on disk was named `ExportDirField.js`, so the module could not install.
+- A controller called into `atm.settings` and rendered `view_atm_settings_form`,
+  neither of which exists.
+- Invoice and order lines were dropped from the export: from Odoo 17 on, an
+  ordinary line carries `display_type = 'product'`, which the old filter read as
+  "this is a layout line".
+- Products travelled without their purchase unit of measure, which Odoo requires
+  to share a category with the default one; products were rejected on import,
+  and the orders using them failed in turn.
+- Values Odoo derives itself were decided by the `readonly` flag alone. Up to
+  Odoo 16 plain fields were readonly by document state, so vendor bills arrived
+  without an invoice date and could not be validated.
+
+### Compatibility
+
+`atm.orderlist` and its two methods are kept and now delegate to the exchange
+engine, so scheduled actions created by ATM 1.x keep working after the upgrade.
+They still cover sales orders only.
+
+### Verified
+
+Exported a demo database and imported it into an empty one of the same series,
+then imported a second time:
+
+| Odoo | Result |
+| ---- | ------ |
+| 19.0 | all entities matched the exported files, except the demo combo product, which Odoo itself refuses to create without a combo choice |
+| 18.0 | same |
+| 17.0 | full match, no failures |
+| 16.0 | full match (the target database needs a chart of accounts) |
+
+The second import created no records in any series.
+
+## 1.x — 2023–2024
+
+Exported confirmed sales orders to a single `order_list.json` and read them
+back. Published for Odoo 14.0, 15.0 and 16.0.
