@@ -1,6 +1,8 @@
 # Changelog
 
-All notable changes to ATM are recorded here. Versions follow the Odoo
+All notable changes to this module are recorded here.
+The technical name stays `atm`; earlier releases were published under the
+name "ATM - Automated Transaction Mechanics". Versions follow the Odoo
 convention: `<odoo series>.<major>.<minor>.<patch>`.
 
 ## 2.0.0 — 2026-08-08
@@ -65,7 +67,7 @@ engine. Available for Odoo 16.0, 17.0, 18.0 and 19.0.
 ### Compatibility
 
 `atm.orderlist` and its two methods are kept and now delegate to the exchange
-engine, so scheduled actions created by ATM 1.x keep working after the upgrade.
+engine, so scheduled actions created by version 1.x keep working after the upgrade.
 They still cover sales orders only.
 
 ### Verified

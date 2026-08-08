@@ -6,7 +6,7 @@ from odoo.exceptions import ValidationError
 
 class AtmExternalRefMixin(models.AbstractModel):
     _name = 'atm.external.ref.mixin'
-    _description = 'ATM External Reference'
+    _description = 'Data Exchange External Reference'
 
     atm_external_ref = fields.Char(
         string='External Reference',

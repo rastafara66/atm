@@ -6,6 +6,9 @@ import os
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
+from .atm_exchange import ATM_TRUE
+from .entities import ENTITIES
+
 _logger = logging.getLogger(__name__)
 
 
@@ -18,9 +21,12 @@ class ResConfigSettings(models.TransientModel):
         help='Directory the JSON files are written to and read from. '
              'It must be reachable by the Odoo server process.',
     )
+    # Deliberately not a ``config_parameter`` field: res.config.settings only
+    # accepts boolean, integer, float, char, selection, many2one and datetime
+    # there, and a Date makes the whole settings screen fail to open. The value
+    # is read and written by hand below instead.
     atm_date_from = fields.Date(
         string='Exchange Documents Since',
-        config_parameter='atm.date_from',
         help='Documents dated before this day are never exported. '
              'Leave empty to export the whole history.',
     )
@@ -39,38 +45,47 @@ class ResConfigSettings(models.TransientModel):
              'references generated for records that do not have one yet.',
     )
 
-    # One switch per registered entity. The config parameter names must stay
-    # in sync with ``EntitySpec.setting_param``.
-    atm_entity_partner = fields.Boolean(
-        string='Contacts', default=True,
-        config_parameter='atm.entity_partner')
-    atm_entity_product = fields.Boolean(
-        string='Products', default=True,
-        config_parameter='atm.entity_product')
-    atm_entity_sale_order = fields.Boolean(
-        string='Sales Orders', default=True,
-        config_parameter='atm.entity_sale_order')
+    # One switch per registered entity. These are not ``config_parameter``
+    # fields either: Odoo deletes the parameter when a boolean is saved as
+    # False, so "switched off by the user" and "never configured" would look
+    # exactly the same, and a disabled entity would come back on. The value is
+    # written explicitly as 'True' / 'False' below.
+    atm_entity_partner = fields.Boolean(string='Contacts', default=True)
+    atm_entity_product = fields.Boolean(string='Products', default=True)
+    atm_entity_sale_order = fields.Boolean(string='Sales Orders', default=True)
     atm_entity_purchase_order = fields.Boolean(
-        string='Purchase Orders', default=True,
-        config_parameter='atm.entity_purchase_order')
+        string='Purchase Orders', default=True)
     atm_entity_customer_invoice = fields.Boolean(
-        string='Customer Invoices', default=True,
-        config_parameter='atm.entity_customer_invoice')
+        string='Customer Invoices', default=True)
     atm_entity_vendor_bill = fields.Boolean(
-        string='Vendor Bills', default=True,
-        config_parameter='atm.entity_vendor_bill')
+        string='Vendor Bills', default=True)
     atm_entity_customer_refund = fields.Boolean(
-        string='Customer Credit Notes', default=True,
-        config_parameter='atm.entity_customer_refund')
+        string='Customer Credit Notes', default=True)
     atm_entity_vendor_refund = fields.Boolean(
-        string='Vendor Credit Notes', default=True,
-        config_parameter='atm.entity_vendor_refund')
+        string='Vendor Credit Notes', default=True)
     atm_entity_customer_payment = fields.Boolean(
-        string='Customer Payments', default=True,
-        config_parameter='atm.entity_customer_payment')
+        string='Customer Payments', default=True)
     atm_entity_vendor_payment = fields.Boolean(
-        string='Vendor Payments', default=True,
-        config_parameter='atm.entity_vendor_payment')
+        string='Vendor Payments', default=True)
+
+    @api.model
+    def get_values(self):
+        res = super().get_values()
+        param = self.env['ir.config_parameter'].sudo()
+        res['atm_date_from'] = param.get_param('atm.date_from') or False
+        for spec in ENTITIES:
+            res['atm_entity_%s' % spec.code] = param.get_param(
+                spec.setting_param, 'True') in ATM_TRUE
+        return res
+
+    def set_values(self):
+        super().set_values()
+        param = self.env['ir.config_parameter'].sudo()
+        param.set_param('atm.date_from', self.atm_date_from or '')
+        for spec in ENTITIES:
+            param.set_param(
+                spec.setting_param,
+                'True' if self['atm_entity_%s' % spec.code] else 'False')
 
     def action_atm_export_now(self):
         """Run a full export immediately and report what happened."""

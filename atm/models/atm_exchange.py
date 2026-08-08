@@ -20,6 +20,9 @@ _logger = logging.getLogger(__name__)
 #: Bumped when the on-disk JSON layout changes in a backwards incompatible way.
 FILE_FORMAT_VERSION = '1.0'
 
+#: Values a config parameter may hold for a switch that is on.
+ATM_TRUE = ('True', 'true', '1', True)
+
 
 class AtmJSONEncoder(json.JSONEncoder):
     """Serialise dates the way the importer expects to read them back."""
@@ -34,7 +37,7 @@ class AtmJSONEncoder(json.JSONEncoder):
 
 class AtmExchange(models.AbstractModel):
     _name = 'atm.exchange'
-    _description = 'ATM Exchange Engine'
+    _description = 'Data Exchange Engine'
 
     # ------------------------------------------------------------------
     # Configuration helpers
@@ -51,7 +54,7 @@ class AtmExchange(models.AbstractModel):
         if not path:
             raise UserError(_(
                 'The exchange directory is not configured. '
-                'Set it in Settings > ATM.'))
+                'Set it in Settings > Data Exchange.'))
         if not os.path.isdir(path):
             if not create:
                 raise UserError(_('Exchange directory does not exist: %s')
@@ -63,8 +66,7 @@ class AtmExchange(models.AbstractModel):
     def _get_enabled_entities(self):
         """Return the specs the user switched on, in registry order."""
         return [spec for spec in ENTITIES
-                if self._get_param(spec.setting_param, 'True') in
-                ('True', 'true', '1', True)]
+                if self._get_param(spec.setting_param, 'True') in ATM_TRUE]
 
     @api.model
     def _get_date_from(self):
@@ -253,11 +255,11 @@ class AtmExchange(models.AbstractModel):
                 'record_count': len(records),
                 'message': _('%s record(s) written.') % len(records),
             })
-            _logger.info('ATM exported %s record(s) of %s to %s',
+            _logger.info('Exported %s record(s) of %s to %s',
                          len(records), code, file_path)
         except Exception as error:  # noqa: BLE001 - reported through the log
             log.write({'state': 'failed', 'message': str(error)})
-            _logger.exception('ATM export of %s failed', code)
+            _logger.exception('Export of %s failed', code)
         return log
 
     @api.model
@@ -383,7 +385,7 @@ class AtmExchange(models.AbstractModel):
 
             with open(file_path, 'r', encoding='utf-8') as fh:
                 payload = json.load(fh)
-            # Files written by an older ATM had no envelope, just a list.
+            # Files written by version 1.x had no envelope, just a list.
             records = payload.get('records', []) if isinstance(payload, dict) \
                 else payload
 
@@ -422,7 +424,7 @@ class AtmExchange(models.AbstractModel):
                             created += 1
                 except Exception as error:  # noqa: BLE001 - counted, not fatal
                     failed += 1
-                    _logger.warning('ATM could not import %s %s: %s',
+                    _logger.warning('Could not import %s %s: %s',
                                     code, external_ref, error)
 
             log.write({
@@ -437,11 +439,11 @@ class AtmExchange(models.AbstractModel):
                     'created': created, 'updated': updated,
                     'skipped': skipped, 'failed': failed},
             })
-            _logger.info('ATM imported %s: %s created, %s updated, %s skipped, '
+            _logger.info('Imported %s: %s created, %s updated, %s skipped, '
                          '%s failed', code, created, updated, skipped, failed)
         except Exception as error:  # noqa: BLE001 - reported through the log
             log.write({'state': 'failed', 'message': str(error)})
-            _logger.exception('ATM import of %s failed', code)
+            _logger.exception('Import of %s failed', code)
         return log
 
     #: Business method that moves a freshly imported record to the state it
