@@ -287,10 +287,12 @@ class AtmExchange(models.AbstractModel):
                 # side effects that must go through its own business method.
                 # ``_apply_target_state`` replays the state afterwards.
                 continue
-            if model._fields[field_name].readonly:
-                # Document totals are derived from the lines. Being computed
-                # is not the criterion -- quantities and unit prices are
-                # computed too, yet perfectly writable.
+            field = model._fields[field_name]
+            if field.compute and field.readonly:
+                # Skip values Odoo derives itself, such as document totals.
+                # Neither flag alone is the criterion: quantities and unit
+                # prices are computed yet writable, and up to Odoo 16 plain
+                # fields like invoice_date were readonly by document state.
                 continue
             values[field_name] = data[key]
         for key, (field_name, entity_code) in spec.m2o_fields.items():
@@ -336,7 +338,8 @@ class AtmExchange(models.AbstractModel):
             values = {}
             for key, field_name in spec.line_fields.items():
                 if key in line_data and field_name in line_model._fields:
-                    if line_model._fields[field_name].readonly:
+                    line_field = line_model._fields[field_name]
+                    if line_field.compute and line_field.readonly:
                         continue
                     values[field_name] = line_data[key]
             for key, (field_name, entity_code) in spec.line_m2o_fields.items():
