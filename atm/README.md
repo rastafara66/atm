@@ -72,14 +72,15 @@ database.
 
 ## Setup
 
-1. *Settings → ATM*: set the exchange directory. The Odoo server process must
+1. *Settings → Data Exchange*: set the exchange directory. The Odoo server process must
    be able to read and write there.
 2. Choose which entities take part, and optionally the date from which
    documents are exchanged.
-3. Enable the scheduled actions *ATM: export to external system* and
-   *ATM: import from external system* (both are off after installation), or
+3. Enable the scheduled actions *Data Exchange: export to external system*
+   and *Data Exchange: import from external system* (both are off after
+   installation), or
    press *Export Now* / *Import Now*.
-4. Check the results under *ATM → Exchange Log*.
+4. Check the results under *Data Exchange → Exchange Log*.
 
 ## Upgrading from an earlier version
 
