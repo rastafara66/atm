@@ -1,6 +1,0 @@
-<odoo>
-  <data>
-    <!-- Top menu item -->
-    <menuitem name="ATM" id="atm.menu_root"/>
-  </data>
-</odoo>

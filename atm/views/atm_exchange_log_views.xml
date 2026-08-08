@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_atm_exchange_log_list" model="ir.ui.view">
+        <field name="name">atm.exchange.log.list</field>
+        <field name="model">atm.exchange.log</field>
+        <field name="arch" type="xml">
+            <list string="Exchange Log" create="false" decoration-danger="state == 'failed'" decoration-muted="state == 'running'">
+                <field name="create_date" string="Run at"/>
+                <field name="direction"/>
+                <field name="entity"/>
+                <field name="record_count"/>
+                <field name="created_count" optional="show"/>
+                <field name="updated_count" optional="show"/>
+                <field name="skipped_count" optional="hide"/>
+                <field name="failed_count" optional="show"/>
+                <field name="state"/>
+                <field name="message" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_atm_exchange_log_form" model="ir.ui.view">
+        <field name="name">atm.exchange.log.form</field>
+        <field name="model">atm.exchange.log</field>
+        <field name="arch" type="xml">
+            <form string="Exchange Log" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="direction"/>
+                            <field name="entity"/>
+                            <field name="state"/>
+                            <field name="create_date" string="Run at"/>
+                        </group>
+                        <group>
+                            <field name="record_count"/>
+                            <field name="created_count"/>
+                            <field name="updated_count"/>
+                            <field name="skipped_count"/>
+                            <field name="failed_count"/>
+                        </group>
+                    </group>
+                    <group string="File">
+                        <field name="file_path" nolabel="1"/>
+                    </group>
+                    <group string="Message">
+                        <field name="message" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_atm_exchange_log_search" model="ir.ui.view">
+        <field name="name">atm.exchange.log.search</field>
+        <field name="model">atm.exchange.log</field>
+        <field name="arch" type="xml">
+            <search string="Exchange Log">
+                <field name="entity"/>
+                <field name="file_path"/>
+                <filter name="filter_export" string="Export" domain="[('direction', '=', 'export')]"/>
+                <filter name="filter_import" string="Import" domain="[('direction', '=', 'import')]"/>
+                <separator/>
+                <filter name="filter_failed" string="Failed" domain="[('state', '=', 'failed')]"/>
+                <separator/>
+                <filter name="group_direction" string="Direction" context="{'group_by': 'direction'}"/>
+                <filter name="group_entity" string="Entity" context="{'group_by': 'entity'}"/>
+                <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_atm_exchange_log" model="ir.actions.act_window">
+        <field name="name">Exchange Log</field>
+        <field name="res_model">atm.exchange.log</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_direction': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No exchange has run yet</p>
+            <p>Configure the exchange directory in Settings, then enable the
+               ATM scheduled actions or trigger a run manually.</p>
+        </field>
+    </record>
+</odoo>

@@ -1,45 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="res_config_settings_view_form" model="ir.ui.view">
-            <field name="name">res.config.settings.view.form.inherit.atm</field>
-            <field name="model">res.config.settings</field>
-            <field name="priority" eval="90"/>
-            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//div[hasclass('settings')]" position="inside">
-                    <div class="app_settings_block" data-string="ATM" id="atm" string="ATM" data-key="atm" groups="base.group_user">
-                        <h2>ATM Settings</h2>
-                        <div class="row mt16 o_settings_container" id="end_contract_setting">
-                            <div class="col-12 col-lg-6 o_setting_box">
-                                <div class="o_setting_left_pane"/>
-                                <div class="o_setting_right_pane">
-                                    <span class="o_form_label">Directory for export/import files </span>
-                                    <div class="text-muted content-group mt16">
-                                        <span> Directory </span>
-                                        <field name="export_dir" class="text-center oe_inline" />
-                                    </div>
-                                </div>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.atm</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="90"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="ATM" name="atm" logo="/atm/static/description/icon.png">
+                    <block title="Exchange File" name="atm_file_setting_container">
+                        <setting id="atm_export_dir_setting" string="Exchange Directory"
+                                 help="Directory the JSON files are written to and read from. It must be reachable by the Odoo server process.">
+                            <field name="atm_export_dir" placeholder="e.g. /var/lib/odoo/exchange"/>
+                        </setting>
+                        <setting id="atm_date_from_setting" string="Exchange Documents Since"
+                                 help="Documents dated before this day are never exported. Leave empty to export the whole history.">
+                            <field name="atm_date_from"/>
+                        </setting>
+                        <setting id="atm_auto_confirm_setting" string="Confirm Imported Documents"
+                                 help="Imported documents are always created as drafts. Enable this to confirm orders and post invoices and payments that were already confirmed or posted in the external system.">
+                            <field name="atm_auto_confirm"/>
+                        </setting>
+                        <setting id="atm_system_code_setting" string="System Code"
+                                 help="Short identifier of this database. It prefixes the external references generated for records that do not have one yet.">
+                            <field name="atm_system_code" placeholder="odoo"/>
+                        </setting>
+                    </block>
+                    <block title="Master Data" name="atm_master_setting_container">
+                        <setting id="atm_partner_setting" string="Contacts" help="Exchange contacts.">
+                            <field name="atm_entity_partner"/>
+                        </setting>
+                        <setting id="atm_product_setting" string="Products" help="Exchange products.">
+                            <field name="atm_entity_product"/>
+                        </setting>
+                    </block>
+                    <block title="Documents" name="atm_documents_setting_container">
+                        <setting id="atm_sale_order_setting" string="Sales Orders" help="Exchange confirmed sales orders.">
+                            <field name="atm_entity_sale_order"/>
+                        </setting>
+                        <setting id="atm_purchase_order_setting" string="Purchase Orders" help="Exchange confirmed purchase orders.">
+                            <field name="atm_entity_purchase_order"/>
+                        </setting>
+                        <setting id="atm_customer_invoice_setting" string="Customer Invoices" help="Exchange posted customer invoices.">
+                            <field name="atm_entity_customer_invoice"/>
+                        </setting>
+                        <setting id="atm_vendor_bill_setting" string="Vendor Bills" help="Exchange posted vendor bills.">
+                            <field name="atm_entity_vendor_bill"/>
+                        </setting>
+                        <setting id="atm_customer_refund_setting" string="Customer Credit Notes" help="Exchange posted customer credit notes.">
+                            <field name="atm_entity_customer_refund"/>
+                        </setting>
+                        <setting id="atm_vendor_refund_setting" string="Vendor Credit Notes" help="Exchange posted vendor credit notes.">
+                            <field name="atm_entity_vendor_refund"/>
+                        </setting>
+                        <setting id="atm_customer_payment_setting" string="Customer Payments" help="Exchange customer payments.">
+                            <field name="atm_entity_customer_payment"/>
+                        </setting>
+                        <setting id="atm_vendor_payment_setting" string="Vendor Payments" help="Exchange vendor payments.">
+                            <field name="atm_entity_vendor_payment"/>
+                        </setting>
+                    </block>
+                    <block title="Run Now" name="atm_actions_setting_container">
+                        <setting id="atm_actions_setting" string="Manual Run"
+                                 help="Runs the exchange immediately for every enabled entity, without waiting for the scheduled action.">
+                            <div class="mt8">
+                                <button name="action_atm_export_now" type="object" string="Export Now" class="btn-primary"/>
+                                <button name="action_atm_import_now" type="object" string="Import Now" class="btn-secondary ms-2"/>
+                                <button name="action_atm_open_logs" type="object" string="Exchange Log" class="btn-link ms-2"/>
                             </div>
-                        </div>
-                    </div>
-                </xpath>
-            </field>
-        </record>
-
-        <record model="ir.actions.act_window" id="atm.action_window_config_settings">
-            <field name="name">ATM Settings</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">res.config.settings</field>
-            <field name="view_mode">form</field>
-            <field name="target">inline</field>
-            <field name="context">{'module' : 'atm'}</field>
-        </record> 
-
-        <!-- Menu Configuration -->
-        <menuitem name="Configuration" id="atm.configuration" parent="atm.menu_root" sequence="7"/>
-        <menuitem name="Settings" id="atm.settings" parent="atm.configuration"
-                action="atm.action_window_config_settings" sequence="71"/>              
-                
-    </data>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
 </odoo>

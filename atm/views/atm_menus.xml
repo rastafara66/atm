@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_atm_settings" model="ir.actions.act_window">
+        <field name="name">ATM Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="context">{'module': 'atm'}</field>
+    </record>
+
+    <menuitem id="menu_atm_root" name="ATM" sequence="95"
+              groups="atm.group_atm_manager"
+              web_icon="atm,static/description/icon.png"/>
+
+    <menuitem id="menu_atm_exchange_log" name="Exchange Log"
+              parent="menu_atm_root" sequence="10"
+              action="action_atm_exchange_log"/>
+
+    <menuitem id="menu_atm_configuration" name="Configuration"
+              parent="menu_atm_root" sequence="90"/>
+
+    <menuitem id="menu_atm_settings" name="Settings"
+              parent="menu_atm_configuration" sequence="10"
+              action="action_atm_settings"/>
+</odoo>

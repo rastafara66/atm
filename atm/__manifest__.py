@@ -1,36 +1,58 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "ATM - auto exim orders",
-    'summary': """Automatically creates a scheduled task to export/import orders to a json file""",
-    'description': """Automatically creates a scheduled task to export/import orders to a json file""",
-    'author': "chukhin",
-    'website': "https://github.com/rastafara66",
-    'category': 'Tools',
-    'version': '17.0.1.23.12',
-	'license': 'LGPL-3',
-	'images': [
-		'images/thumb.png',
-		'images/atm_settings.png',
-		'images/exp_sheduler.png',
-		'images/imp_sheduler.png',
-	],
-	'price': 00.00,
-	'currency': 'EUR',
-    'depends': ['base',
-                'account',
-                'sale',
-	],
+    'name': 'ATM - Automated Transaction Mechanics',
+    'summary': 'Scheduled JSON exchange of contacts, products, orders, '
+               'invoices and payments with an external accounting system',
+    'description': """
+ATM - Automated Transaction Mechanics
+=====================================
+
+Keeps Odoo and an external accounting or ERP system in step through plain JSON
+files in a shared directory - no open port, no middleware.
+
+Exchanged entities
+------------------
+
+* Contacts and products (master data)
+* Sales orders and purchase orders
+* Customer invoices and vendor bills
+* Customer and vendor credit notes
+* Customer and vendor payments
+
+How it works
+------------
+
+* Two scheduled actions, one per direction, both disabled by default.
+* Each entity lands in its own file, so the external side reads only what it needs.
+* Records are matched by an external reference, never by database id, which makes repeated imports idempotent.
+* Imported documents are created as drafts; confirming them is an explicit setting.
+* Posted documents are never rewritten by a later import.
+* Every run is written to an exchange log with created, updated, skipped and failed counters.
+""",
+    'author': 'chukhin',
+    'website': 'https://github.com/rastafara66/atm',
+    'category': 'Productivity',
+    'version': '19.0.2.0.0',
+    'license': 'LGPL-3',
+    'images': [
+        'static/description/icon.png',
+    ],
+    'price': 0.00,
+    'currency': 'EUR',
+    'depends': [
+        'base',
+        'sale_management',
+        'purchase',
+        'account',
+    ],
     'data': [
-		'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
-		'views/res_config_settings_views.xml',
-        'data/cron.xml',	
+        'security/atm_security.xml',
+        'security/ir.model.access.csv',
+        'views/atm_exchange_log_views.xml',
+        'views/res_config_settings_views.xml',
+        'views/atm_menus.xml',
+        'data/ir_cron.xml',
     ],
-    'demo': [
-        'data/product_demo.xml',
-    ],
-    #     'odoo.cron': [
-    #     '1 1 * * * atm.OrderList.export_order_list_to_json()',
-    # ],
+    'installable': True,
+    'application': False,
 }
