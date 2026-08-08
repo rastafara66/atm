@@ -11,7 +11,7 @@
                 <field name="record_count"/>
                 <field name="created_count" optional="show"/>
                 <field name="updated_count" optional="show"/>
-                <field name="skipped_count" optional="hide"/>
+                <field name="skipped_count" optional="show"/>
                 <field name="failed_count" optional="show"/>
                 <field name="state"/>
                 <field name="message" optional="hide"/>
@@ -78,7 +78,7 @@
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">No exchange has run yet</p>
             <p>Configure the exchange directory in Settings, then enable the
-               ATM scheduled actions or trigger a run manually.</p>
+               Data Exchange scheduled actions or trigger a run manually.</p>
         </field>
     </record>
 </odoo>

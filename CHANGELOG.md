@@ -74,6 +74,11 @@ engine. Available for Odoo 16.0, 17.0, 18.0 and 19.0.
   "never configured"; the switches now store `True` / `False` explicitly.
 - Payments kept their source number in a field that does not exist:
   `account.payment` has `memo` from Odoo 18 on and `ref` before that.
+- The exchange log read as if nothing had happened when documents were
+  skipped: *Records* counted only created and updated rows, and the
+  *Skipped* column was hidden by default. Importing a file back into the
+  database it came from showed zeros everywhere. *Records* is now what the
+  file held, and created + updated + skipped + failed accounts for all of it.
 
 ### Compatibility
 
