@@ -28,6 +28,9 @@ engine. Available for Odoo 16.0, 17.0, 18.0 and 19.0.
 - **Confirm Imported Documents** setting. Off by default: imported documents are
   created as drafts, and confirming or posting them goes through Odoo's own
   business methods rather than a write to `state`.
+- **New icon and store banner**, showing two documents exchanged in both
+  directions. The previous icon carried the ATM lettering. Both are drawn
+  from code by `tools/make_icons.py` and can be regenerated.
 - Two scheduled actions, one per direction, both disabled after installation.
 - A *Data Exchange Manager* group guarding the configuration and the manual run.
 
