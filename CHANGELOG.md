@@ -5,6 +5,13 @@ The technical name stays `atm`; earlier releases were published under the
 name "ATM - Automated Transaction Mechanics". Versions follow the Odoo
 convention: `<odoo series>.<major>.<minor>.<patch>`.
 
+## 2.0.4 — 2026-08-16
+### Changed
+- Store description now points to **Контрагенти з ЄДР**, a free module by the same
+  author: fill a partner record from its Ukrainian registry code. It is the natural
+  next step right after an import from 1C/BAS, when the counterparties exist but
+  every field is empty.
+
 ## 2.0.3 — 2026-08-08
 
 - The listing showed a hand-written JSON sample where the screenshot of a real
