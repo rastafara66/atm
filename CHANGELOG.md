@@ -41,6 +41,12 @@ convention: `<odoo series>.<major>.<minor>.<patch>`.
   every field is empty. This reached the 19.0 series as 2.0.4 and arrives here
   together with the VAT breakdown.
 
+### Fixed
+
+- The module could not be installed at all on this series: the exchange log view
+  was written with `<list>`, the element Odoo uses from 18.0 on, where this
+  series knows only `<tree>`. Loading the view aborted the installation.
+
 ## 2.0.3 — 2026-08-08
 
 - The listing showed a hand-written JSON sample where the screenshot of a real
