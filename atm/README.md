@@ -37,12 +37,34 @@ Each entity can be switched on or off separately in the settings.
       "invoice_date": "2026-08-08",
       "partner": { "external_ref": "odoo/res.partner/13", "name": "LightsUp" },
       "currency": { "name": "USD", "xmlid": "base.USD" },
+      "amount_untaxed": 750.0,
+      "amount_tax": 150.0,
+      "amount_total": 900.0,
+      "tax_summary": [
+        {
+          "name": "20%",
+          "rate": 20.0,
+          "base": 750.0,
+          "amount": 150.0,
+          "total": 900.0,
+          "taxes": [
+            { "name": "20%", "rate": 20.0, "amount_type": "percent",
+              "type_tax_use": "sale", "xmlid": "l10n_ua.tax_20" }
+          ]
+        }
+      ],
       "lines": [
         {
           "name": "Office Lamp",
           "quantity": 15.0,
           "price_unit": 50.0,
-          "product": { "external_ref": "odoo/product.product/6", "name": "Office Lamp" }
+          "price_subtotal": 750.0,
+          "price_total": 900.0,
+          "product": { "external_ref": "odoo/product.product/6", "name": "Office Lamp" },
+          "taxes": [
+            { "name": "20%", "rate": 20.0, "amount_type": "percent",
+              "type_tax_use": "sale", "xmlid": "l10n_ua.tax_20" }
+          ]
         }
       ]
     }
@@ -51,10 +73,35 @@ Each entity can be switched on or off separately in the settings.
 ```
 
 References between records are never database ids. Business records carry an
-`external_ref`; reference data (currencies, units of measure, accounts) is
-described by name, code and XML id, and resolved against the local database on
-import. That is what allows the same file to be loaded into a different
+`external_ref`; reference data (currencies, units of measure, accounts, taxes)
+is described by name, code and XML id, and resolved against the local database
+on import. That is what allows the same file to be loaded into a different
 database.
+
+## Taxes
+
+`amount_tax` is a single figure, which is enough to reconcile a total but not to
+raise a tax invoice. Orders, invoices, bills and credit notes therefore also
+carry `tax_summary`: one entry per rate, with the taxable base (`base`), the tax
+(`amount`) and the gross (`total`).
+
+* Lines are grouped by their **whole set of taxes**. A line carrying two taxes
+  forms its own entry rather than being split between them; that entry lists
+  both in `taxes` and has no `rate`.
+* Lines with no tax at all form an entry with an empty `name` and an empty
+  `taxes` list — the untaxed base, which a tax invoice has to state too.
+* The entries are an aggregation of `price_subtotal` and `price_total`, the
+  amounts Odoo already computed. Nothing is recomputed, so the figures are in
+  the document currency and `base` and `amount` add up to `amount_untaxed` and
+  `amount_tax` exactly.
+
+On import, the taxes of a line are matched in this order: XML id, then name
+within the same `type_tax_use`, then the rate itself — so a tax renamed on the
+other side is still recognised. If any tax on a line cannot be matched, the
+field is left alone for Odoo to fill from the product and the partner: applying
+only the ones that did resolve would quietly change the document's totals.
+`tax_summary` itself is informational and is ignored on import; Odoo derives the
+totals from the lines.
 
 ## Behaviour on import
 
