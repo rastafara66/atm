@@ -22,11 +22,21 @@ class EntitySpec:
     :param date_field: field used by the "export documents since" filter.
         ``None`` means the entity is not time-filtered (master data).
     :param fields: mapping ``json key -> Odoo field name`` for scalar values.
+        A field name may also be a tuple of alternatives, tried in order: the
+        same entity is described once for every Odoo series, and series do not
+        agree on every name (the tax field on a sales line is ``tax_id`` up to
+        18.0 and ``tax_ids`` in 19.0).
     :param m2o_fields: mapping ``json key -> (Odoo field, related entity code)``.
         Exported as the target's ``external_ref``, resolved back on import.
     :param line_field: one2many field holding document lines, if any.
     :param line_fields: scalar line fields, same shape as ``fields``.
     :param line_m2o_fields: relational line fields, same shape as ``m2o_fields``.
+    :param line_m2m_fields: mapping ``json key -> Odoo field name`` for
+        many2many line fields. Exported as a list of descriptors; the target is
+        always reference data, never an exchanged entity.
+    :param tax_summary: export the tax base and tax amount per rate alongside
+        the document totals. Needed by anything that has to report VAT rate by
+        rate rather than as a single figure.
     :param defaults: values forced on every record created by the import.
     :param group: UI grouping used on the settings screen.
     """
@@ -34,6 +44,7 @@ class EntitySpec:
     def __init__(self, code, model, label, filename, domain=None,
                  date_field=None, fields=None, m2o_fields=None,
                  line_field=None, line_fields=None, line_m2o_fields=None,
+                 line_m2m_fields=None, tax_summary=False,
                  defaults=None, group='documents'):
         self.code = code
         self.model = model
@@ -46,6 +57,8 @@ class EntitySpec:
         self.line_field = line_field
         self.line_fields = line_fields or {}
         self.line_m2o_fields = line_m2o_fields or {}
+        self.line_m2m_fields = line_m2m_fields or {}
+        self.tax_summary = tax_summary
         self.defaults = defaults or {}
         self.group = group
 
@@ -57,6 +70,12 @@ class EntitySpec:
     def __repr__(self):
         return '<EntitySpec %s -> %s>' % (self.code, self.model)
 
+
+#: The many2many holding the taxes of a document line, under every name the
+#: supported Odoo series give it. Sales lines call it ``tax_id`` up to 18.0 and
+#: ``tax_ids`` in 19.0; purchase lines call it ``taxes_id`` up to 18.0; journal
+#: items have always called it ``tax_ids``.
+LINE_TAX_FIELD = ('tax_ids', 'tax_id', 'taxes_id')
 
 #: Master data. Exported first and imported first: documents refer to it.
 MASTER_DATA = [
@@ -127,6 +146,7 @@ DOCUMENTS = [
             'partner': ('partner_id', 'partner'),
             'currency': ('currency_id', None),
         },
+        tax_summary=True,
         line_field='order_line',
         line_fields={
             'name': 'name',
@@ -134,10 +154,14 @@ DOCUMENTS = [
             'price_unit': 'price_unit',
             'discount': 'discount',
             'price_subtotal': 'price_subtotal',
+            'price_total': 'price_total',
         },
         line_m2o_fields={
             'product': ('product_id', 'product'),
             'uom': ('product_uom', None),
+        },
+        line_m2m_fields={
+            'taxes': LINE_TAX_FIELD,
         },
     ),
     EntitySpec(
@@ -160,16 +184,21 @@ DOCUMENTS = [
             'partner': ('partner_id', 'partner'),
             'currency': ('currency_id', None),
         },
+        tax_summary=True,
         line_field='order_line',
         line_fields={
             'name': 'name',
             'quantity': 'product_qty',
             'price_unit': 'price_unit',
             'price_subtotal': 'price_subtotal',
+            'price_total': 'price_total',
         },
         line_m2o_fields={
             'product': ('product_id', 'product'),
             'uom': ('product_uom', None),
+        },
+        line_m2m_fields={
+            'taxes': LINE_TAX_FIELD,
         },
     ),
 ]
@@ -199,6 +228,7 @@ def _move_spec(code, label, filename, move_type):
             'partner': ('partner_id', 'partner'),
             'currency': ('currency_id', None),
         },
+        tax_summary=True,
         line_field='invoice_line_ids',
         line_fields={
             'name': 'name',
@@ -206,11 +236,15 @@ def _move_spec(code, label, filename, move_type):
             'price_unit': 'price_unit',
             'discount': 'discount',
             'price_subtotal': 'price_subtotal',
+            'price_total': 'price_total',
         },
         line_m2o_fields={
             'product': ('product_id', 'product'),
             'uom': ('product_uom_id', None),
             'account': ('account_id', None),
+        },
+        line_m2m_fields={
+            'taxes': LINE_TAX_FIELD,
         },
     )
 
