@@ -114,6 +114,25 @@
     </div>
   </div>
   <div class="oe_row oe_spaced">
+    <div class="oe_span6">
+      <h4 class="oe_slogan" style="margin-bottom:8px;">VAT rate by rate</h4>
+      <p class="oe_mt16">
+        Orders, invoices, bills and credit notes carry the taxable base and the
+        tax amount of every rate separately, not just one total, along with the
+        taxes of each line. A total is enough to reconcile a document; a tax
+        invoice needs the split.
+      </p>
+    </div>
+    <div class="oe_span6">
+      <h4 class="oe_slogan" style="margin-bottom:8px;">The figures are Odoo's own</h4>
+      <p class="oe_mt16">
+        The breakdown adds up the amounts Odoo already computed rather than
+        recomputing them, so it stays in the document currency and matches the
+        untaxed and tax totals to the cent.
+      </p>
+    </div>
+  </div>
+  <div class="oe_row oe_spaced">
     <div class="oe_span12">
       <img src="screenshot_log.png" alt="Exchange log"
            style="width:100%;max-width:900px;display:block;margin:8px auto 0;
@@ -165,6 +184,21 @@
       <div style="max-width:760px;margin:0 auto;text-align:left;">
 
         <div style="background:#f6f9fd;border-left:4px solid #00A09D;border-radius:6px;padding:14px 16px;margin-bottom:12px;">
+          <p style="margin:0 0 6px;font-size:15px;"><b>2.1.0</b> &mdash; 2026-08-18</p>
+          <p style="margin:0;font-size:14px;line-height:1.7;">
+            <b>VAT is now exchanged rate by rate</b>, not as a single figure. Every
+            order, invoice, bill and credit note carries the taxable base, the tax
+            amount and the rate for each of its rates, plus a group for the lines
+            that carry no tax. Document lines list their own taxes, and an incoming
+            line gets them applied back &mdash; matched by external id, by name, or
+            by the rate itself, so a tax renamed on the other side is still
+            recognised. A single total is enough to reconcile a document; a tax
+            invoice needs the split.<br/>
+            <i>&#1055;&#1044;&#1042; &#1090;&#1077;&#1087;&#1077;&#1088; &#1087;&#1077;&#1088;&#1077;&#1076;&#1072;&#1108;&#1090;&#1100;&#1089;&#1103; &#1079;&#1072; &#1089;&#1090;&#1072;&#1074;&#1082;&#1072;&#1084;&#1080;, &#1072; &#1085;&#1077; &#1086;&#1076;&#1085;&#1110;&#1108;&#1102; &#1089;&#1091;&#1084;&#1086;&#1102;: &#1076;&#1083;&#1103; &#1082;&#1086;&#1078;&#1085;&#1086;&#1111; &#1089;&#1090;&#1072;&#1074;&#1082;&#1080; &mdash; &#1073;&#1072;&#1079;&#1072; &#1086;&#1087;&#1086;&#1076;&#1072;&#1090;&#1082;&#1091;&#1074;&#1072;&#1085;&#1085;&#1103;, &#1089;&#1091;&#1084;&#1072; &#1087;&#1086;&#1076;&#1072;&#1090;&#1082;&#1091; &#1110; &#1089;&#1072;&#1084;&#1072; &#1089;&#1090;&#1072;&#1074;&#1082;&#1072;. &#1057;&#1072;&#1084;&#1077; &#1094;&#1100;&#1086;&#1075;&#1086; &#1073;&#1088;&#1072;&#1082;&#1091;&#1074;&#1072;&#1083;&#1086; &#1076;&#1083;&#1103; &#1087;&#1086;&#1076;&#1072;&#1090;&#1082;&#1086;&#1074;&#1086;&#1111; &#1085;&#1072;&#1082;&#1083;&#1072;&#1076;&#1085;&#1086;&#1111;.</i>
+          </p>
+        </div>
+
+        <div style="background:#f6f9fd;border-left:4px solid #cfd9e8;border-radius:6px;padding:14px 16px;margin-bottom:12px;">
           <p style="margin:0 0 6px;font-size:15px;"><b>2.0.1</b> &mdash; 2026-08-08</p>
           <p style="margin:0;font-size:14px;line-height:1.7;">
             Ukrainian interface (<b>uk.po</b>), a Ukrainian section on this page, and a

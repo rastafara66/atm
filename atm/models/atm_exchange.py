@@ -104,6 +104,45 @@ class AtmExchange(models.AbstractModel):
         return ref
 
     @api.model
+    def _pick_field(self, record, field_name):
+        """Return the first of ``field_name``'s alternatives this model has.
+
+        A spec is written once for every supported Odoo series, and the series
+        do not agree on every field name. ``None`` means this version carries
+        none of them, and the value is simply left out of the exchange.
+        """
+        names = field_name if isinstance(field_name, (tuple, list)) \
+            else (field_name,)
+        for name in names:
+            if name in record._fields:
+                return name
+        return None
+
+    @api.model
+    def _reference_descriptor(self, target):
+        """Describe a reference record by values that survive the trip.
+
+        Reference data (countries, units, journals, accounts, taxes) is not
+        exchanged as records of its own, so it carries no external reference.
+        It is matched on the other side by whatever is stable across databases.
+        """
+        descriptor = {'name': target.display_name}
+        for key in ('code', 'login'):
+            if key in target._fields:
+                descriptor[key] = target[key]
+        xmlid = target.get_external_id().get(target.id)
+        if xmlid:
+            descriptor['xmlid'] = xmlid
+        if target._name == 'account.tax':
+            # display_name may carry the company suffix, which is local noise.
+            descriptor['name'] = target.name
+            descriptor['amount_type'] = target.amount_type
+            descriptor['type_tax_use'] = target.type_tax_use
+            if target.amount_type == 'percent':
+                descriptor['rate'] = target.amount
+        return descriptor
+
+    @api.model
     def _export_m2o(self, record, field_name, entity_code):
         """Serialise a many2one as a resolvable descriptor, not as an id."""
         target = record[field_name]
@@ -114,16 +153,15 @@ class AtmExchange(models.AbstractModel):
                 'external_ref': self._ensure_external_ref(target),
                 'name': target.display_name,
             }
-        # Reference data (countries, units, journals, accounts): matched by the
-        # values that are stable across databases.
-        descriptor = {'name': target.display_name}
-        for key in ('code', 'login'):
-            if key in target._fields:
-                descriptor[key] = target[key]
-        xmlid = target.get_external_id().get(target.id)
-        if xmlid:
-            descriptor['xmlid'] = xmlid
-        return descriptor
+        return self._reference_descriptor(target)
+
+    @api.model
+    def _export_m2m(self, record, field_name):
+        """Serialise a many2many of reference data as a list of descriptors."""
+        name = self._pick_field(record, field_name)
+        if name is None:
+            return None
+        return [self._reference_descriptor(target) for target in record[name]]
 
     @api.model
     def _resolve_m2o(self, model_name, descriptor, entity_code):
@@ -168,6 +206,66 @@ class AtmExchange(models.AbstractModel):
             _logger.debug('Unresolved %s reference: %s', model_name, descriptor)
         return False
 
+    @api.model
+    def _resolve_tax(self, descriptor):
+        """Find the local tax a serialised tax descriptor points at.
+
+        Tax names repeat across directions -- a database usually holds both a
+        sale and a purchase "20%" -- so the direction is part of the match.
+        """
+        model = self.env['account.tax']
+        xmlid = descriptor.get('xmlid')
+        if xmlid:
+            found = self.env.ref(xmlid, raise_if_not_found=False)
+            if found and found._name == 'account.tax':
+                return found.id
+
+        domain = []
+        type_tax_use = descriptor.get('type_tax_use')
+        if type_tax_use:
+            domain.append(('type_tax_use', '=', type_tax_use))
+
+        name = descriptor.get('name')
+        if name:
+            found = model.search(domain + [('name', '=', name)], limit=1)
+            if found:
+                return found.id
+        # Last resort: the rate itself. A tax renamed on one side is still the
+        # same tax, and for percentage taxes the rate identifies it.
+        rate = descriptor.get('rate')
+        if rate is not None:
+            found = model.search(domain + [
+                ('amount', '=', rate),
+                ('amount_type', '=', descriptor.get('amount_type', 'percent')),
+            ], limit=1)
+            if found:
+                return found.id
+        return False
+
+    @api.model
+    def _resolve_m2m(self, model_name, descriptors):
+        """Resolve a list of descriptors into local ids.
+
+        Returns ``None`` when any one of them is unknown here. Writing the
+        subset that did resolve would quietly change the document's totals,
+        which is worse than leaving the field alone and letting Odoo apply its
+        own default.
+        """
+        if not descriptors:
+            return []
+        ids = []
+        for descriptor in descriptors:
+            if model_name == 'account.tax':
+                found = self._resolve_tax(descriptor)
+            else:
+                found = self._resolve_m2o(model_name, descriptor, None)
+            if not found:
+                _logger.warning('Unresolved %s reference, leaving the field to '
+                                'Odoo: %s', model_name, descriptor)
+                return None
+            ids.append(found)
+        return ids
+
     # ------------------------------------------------------------------
     # Export
     # ------------------------------------------------------------------
@@ -191,6 +289,63 @@ class AtmExchange(models.AbstractModel):
         return display_type in self.LAYOUT_DISPLAY_TYPES
 
     @api.model
+    def _round(self, record, amount):
+        """Round a money amount the way the document's currency does."""
+        currency = 'currency_id' in record._fields and record.currency_id
+        return currency.round(amount) if currency else round(amount, 2)
+
+    @api.model
+    def _export_tax_summary(self, spec, record, lines):
+        """Break the document's tax down by rate, for VAT reporting.
+
+        A single ``amount_tax`` figure is enough to reconcile a total but not
+        to raise a tax invoice, which has to state the base and the tax of
+        every rate separately.
+
+        The split is an aggregation of the lines Odoo already computed, never a
+        recomputation: summing ``price_subtotal`` and ``price_total`` keeps the
+        result in the document currency and consistent with ``amount_untaxed``
+        and ``amount_tax`` down to the last cent. Lines are grouped by their
+        whole set of taxes, so a line carrying two taxes forms a group of its
+        own rather than being split between them. A group with no taxes at all
+        is the untaxed base, and is reported too.
+        """
+        tax_key = spec.line_m2m_fields.get('taxes')
+        groups = {}
+        for line in lines:
+            if 'price_subtotal' not in line._fields:
+                continue
+            tax_field = tax_key and self._pick_field(line, tax_key)
+            taxes = line[tax_field] if tax_field else self.env['account.tax']
+            key = tuple(sorted(taxes.ids))
+            group = groups.setdefault(key, {
+                'taxes': [self._reference_descriptor(tax) for tax in taxes],
+                'base': 0.0,
+                'total': 0.0,
+            })
+            group['base'] += line.price_subtotal
+            group['total'] += line.price_total if 'price_total' in line._fields \
+                else line.price_subtotal
+
+        summary = []
+        for group in groups.values():
+            base = self._round(record, group['base'])
+            total = self._round(record, group['total'])
+            entry = {
+                # Empty name and empty tax list mark the untaxed base.
+                'name': ' + '.join(tax['name'] for tax in group['taxes']),
+                'base': base,
+                'amount': self._round(record, total - base),
+                'total': total,
+                'taxes': group['taxes'],
+            }
+            # A rate only means something when the group is one percentage tax.
+            if len(group['taxes']) == 1 and 'rate' in group['taxes'][0]:
+                entry['rate'] = group['taxes'][0]['rate']
+            summary.append(entry)
+        return summary
+
+    @api.model
     def _export_record(self, spec, record):
         """Turn one record into its JSON representation."""
         data = {'external_ref': self._ensure_external_ref(record)}
@@ -198,27 +353,38 @@ class AtmExchange(models.AbstractModel):
         # same fields -- uom_po_id exists up to 18.0 and is gone in 19.0.
         # Whatever this version does not have is simply not exported.
         for key, field_name in spec.fields.items():
-            if field_name in record._fields:
-                data[key] = record[field_name]
+            name = self._pick_field(record, field_name)
+            if name:
+                data[key] = record[name]
         for key, (field_name, entity_code) in spec.m2o_fields.items():
-            if field_name in record._fields:
-                data[key] = self._export_m2o(record, field_name, entity_code)
+            name = self._pick_field(record, field_name)
+            if name:
+                data[key] = self._export_m2o(record, name, entity_code)
 
         if spec.line_field:
             lines = []
-            for line in record[spec.line_field]:
-                if self._is_layout_line(line):
-                    continue
+            content_lines = record[spec.line_field].filtered(
+                lambda line: not self._is_layout_line(line))
+            for line in content_lines:
                 line_data = {}
                 for key, field_name in spec.line_fields.items():
-                    if field_name in line._fields:
-                        line_data[key] = line[field_name]
+                    name = self._pick_field(line, field_name)
+                    if name:
+                        line_data[key] = line[name]
                 for key, (field_name, entity_code) in spec.line_m2o_fields.items():
-                    if field_name in line._fields:
+                    name = self._pick_field(line, field_name)
+                    if name:
                         line_data[key] = self._export_m2o(
-                            line, field_name, entity_code)
+                            line, name, entity_code)
+                for key, field_name in spec.line_m2m_fields.items():
+                    values = self._export_m2m(line, field_name)
+                    if values is not None:
+                        line_data[key] = values
                 lines.append(line_data)
             data['lines'] = lines
+            if spec.tax_summary:
+                data['tax_summary'] = self._export_tax_summary(
+                    spec, record, content_lines)
         return data
 
     @api.model
@@ -281,7 +447,8 @@ class AtmExchange(models.AbstractModel):
         for key, field_name in spec.fields.items():
             if key not in data:
                 continue
-            if field_name not in model._fields:
+            field_name = self._pick_field(model, field_name)
+            if field_name is None:
                 continue
             if field_name == 'state':
                 # Documents are always created as drafts: Odoo refuses to
@@ -298,7 +465,10 @@ class AtmExchange(models.AbstractModel):
                 continue
             values[field_name] = data[key]
         for key, (field_name, entity_code) in spec.m2o_fields.items():
-            if key not in data or field_name not in model._fields:
+            if key not in data:
+                continue
+            field_name = self._pick_field(model, field_name)
+            if field_name is None:
                 continue
             comodel = model._fields[field_name].comodel_name
             resolved = self._resolve_m2o(comodel, data[key], entity_code)
@@ -339,13 +509,30 @@ class AtmExchange(models.AbstractModel):
         for line_data in data.get('lines') or []:
             values = {}
             for key, field_name in spec.line_fields.items():
-                if key in line_data and field_name in line_model._fields:
-                    line_field = line_model._fields[field_name]
-                    if line_field.compute and line_field.readonly:
-                        continue
-                    values[field_name] = line_data[key]
+                if key not in line_data:
+                    continue
+                field_name = self._pick_field(line_model, field_name)
+                if field_name is None:
+                    continue
+                line_field = line_model._fields[field_name]
+                if line_field.compute and line_field.readonly:
+                    continue
+                values[field_name] = line_data[key]
+            for key, field_name in spec.line_m2m_fields.items():
+                if key not in line_data:
+                    continue
+                field_name = self._pick_field(line_model, field_name)
+                if field_name is None:
+                    continue
+                comodel = line_model._fields[field_name].comodel_name
+                resolved = self._resolve_m2m(comodel, line_data[key])
+                if resolved is not None:
+                    values[field_name] = [(6, 0, resolved)]
             for key, (field_name, entity_code) in spec.line_m2o_fields.items():
-                if key not in line_data or field_name not in line_model._fields:
+                if key not in line_data:
+                    continue
+                field_name = self._pick_field(line_model, field_name)
+                if field_name is None:
                     continue
                 comodel = line_model._fields[field_name].comodel_name
                 resolved = self._resolve_m2o(comodel, line_data[key], entity_code)

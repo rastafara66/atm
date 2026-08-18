@@ -5,6 +5,37 @@ The technical name stays `atm`; earlier releases were published under the
 name "ATM - Automated Transaction Mechanics". Versions follow the Odoo
 convention: `<odoo series>.<major>.<minor>.<patch>`.
 
+## 2.1.0 — 2026-08-18
+
+### Added
+
+- **VAT broken down by rate.** Documents used to carry a single `amount_tax`
+  figure, which is enough to reconcile a total but not to raise a tax invoice:
+  that needs the base and the tax of every rate stated separately. Sales orders,
+  purchase orders, invoices, bills and credit notes now also carry a
+  `tax_summary` block with `base`, `amount`, `total` and `rate` per rate, and an
+  untaxed group for lines that carry no tax at all. The figures are an
+  aggregation of the amounts Odoo already computed, never a recomputation, so
+  they stay in the document currency and add up to `amount_untaxed` and
+  `amount_tax` exactly.
+- **Taxes on document lines.** Each line lists its taxes, and an incoming line
+  gets them applied back. A tax is matched by external id, then by name within
+  the same direction, then by its rate -- so a tax renamed on the other side is
+  still recognised. Lines are grouped by their whole set of taxes, so a line
+  carrying two of them forms a group of its own instead of being split between
+  them.
+- Lines also carry `price_total`, the amount including tax.
+
+### Changed
+
+- An entity definition may now name several alternatives for one field, tried in
+  order. The taxes of a line are `tax_id` on a sales line and `taxes_id` on a
+  purchase line up to 18.0, and `tax_ids` for both in 19.0; one definition now
+  covers all four series.
+- A tax the importing database does not know leaves the field untouched for Odoo
+  to fill from its own defaults, rather than applying the subset that did
+  resolve: a partially applied tax set would quietly change the document totals.
+
 ## 2.0.4 — 2026-08-16
 ### Changed
 - Store description now points to **Контрагенти з ЄДР**, a free module by the same
