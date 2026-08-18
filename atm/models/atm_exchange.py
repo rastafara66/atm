@@ -362,9 +362,14 @@ class AtmExchange(models.AbstractModel):
                 data[key] = self._export_m2o(record, name, entity_code)
 
         if spec.line_field:
-            lines = []
             content_lines = record[spec.line_field].filtered(
                 lambda line: not self._is_layout_line(line))
+            # Written before the lines: the breakdown belongs with the totals it
+            # explains, not in the tail of the record behind a long line list.
+            if spec.tax_summary:
+                data['tax_summary'] = self._export_tax_summary(
+                    spec, record, content_lines)
+            lines = []
             for line in content_lines:
                 line_data = {}
                 for key, field_name in spec.line_fields.items():
@@ -382,9 +387,6 @@ class AtmExchange(models.AbstractModel):
                         line_data[key] = values
                 lines.append(line_data)
             data['lines'] = lines
-            if spec.tax_summary:
-                data['tax_summary'] = self._export_tax_summary(
-                    spec, record, content_lines)
         return data
 
     @api.model
