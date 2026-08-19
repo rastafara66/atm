@@ -5,6 +5,40 @@ The technical name stays `atm`; earlier releases were published under the
 name "ATM - Automated Transaction Mechanics". Versions follow the Odoo
 convention: `<odoo series>.<major>.<minor>.<patch>`.
 
+## 2.2.0 — 2026-08-19
+
+### Added
+
+- **Automatic error reports**, off unless switched on in the settings. The
+  exchange runs unattended, so a failure is usually noticed by nobody until
+  someone wonders why the files stopped arriving. An unexpected failure now
+  queues itself and is sent by a scheduled action, never at the moment it
+  happens.
+- The text of the error is **never sent**. Only the exception class, the lines
+  of code it passed through with paths cut back to the module root, the
+  versions, an HTTP status if there was one, a random per-database id, and
+  whatever the user types into the comment box. This module handles contacts,
+  invoices and payments, so an error message here plausibly contains a customer
+  name or a sum, and filtering such a text with patterns is a losing game — a
+  name has no pattern. Nothing identifying can leak through a field that only
+  ever holds `KeyError`.
+- **Error Reports** list and form under the *Data Exchange* menu. The *What
+  gets sent* tab shows the request body itself, not a description of it, so
+  "what do you send about me?" has a literal answer. Reports can be commented,
+  sent by hand or deleted.
+- Failures that are not defects are never reported: the module talking to the
+  user, and incoming data this database cannot resolve. The latter is a new
+  `AtmDataError`, raised where a document refers to something never imported —
+  these arrive by the fileful, are already counted as *failed* in the exchange
+  log, and would bury a real defect.
+- The same failure is queued once and counted rather than queued again, with a
+  ceiling per day, so a bug inside a loop cannot flood anything.
+- First tests in this module: twelve of them, covering consent (including that
+  "never asked" counts as no), what is and is not a defect, deduplication, and
+  path shortening. The load-bearing one raises an error stuffed with a customer
+  name, a document number, an address and a sum, and requires that none of it
+  reaches the outgoing JSON.
+
 ## 2.1.1 — 2026-08-19
 
 ### Changed

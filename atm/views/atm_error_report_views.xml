@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_atm_error_report_list" model="ir.ui.view">
+        <field name="name">atm.error.report.list</field>
+        <field name="model">atm.error.report</field>
+        <field name="arch" type="xml">
+            <tree string="Error Reports" create="false"
+                  decoration-muted="state == 'sent'"
+                  decoration-danger="state == 'failed'">
+                <field name="create_date" string="First seen"/>
+                <field name="error_type"/>
+                <field name="operation"/>
+                <field name="occurrences"/>
+                <field name="state"/>
+                <field name="sent_date" optional="hide"/>
+                <field name="module" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_atm_error_report_form" model="ir.ui.view">
+        <field name="name">atm.error.report.form</field>
+        <field name="model">atm.error.report</field>
+        <field name="arch" type="xml">
+            <form string="Error Report" create="false">
+                <header>
+                    <button name="action_send_now" type="object"
+                            string="Send Now" class="btn-primary"
+                            attrs="{'invisible': [('state', '=', 'sent')]}"/>
+                    <button name="action_discard" type="object"
+                            string="Discard"
+                            confirm="Delete this report? It will not be sent."/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="pending,sent"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="error_type" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="operation" readonly="1"/>
+                            <field name="occurrences" readonly="1"/>
+                            <field name="module" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="create_date" string="First seen" readonly="1"/>
+                            <field name="sent_date" readonly="1"/>
+                            <field name="attempts" readonly="1"/>
+                            <field name="http_status" readonly="1"
+                                   attrs="{'invisible': [('http_status', '=', 0)]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="What gets sent">
+                            <div class="alert alert-info" role="alert">
+                                This is the request itself, not a summary of it.
+                                The text of the error is never included: only the
+                                class of the exception and the lines of code it
+                                passed through. Nothing else leaves this database.
+                            </div>
+                            <field name="payload" widget="ace" options="{'mode': 'json'}"
+                                   readonly="1" nolabel="1"/>
+                        </page>
+                        <page string="Add a comment">
+                            <field name="comment" nolabel="1"
+                                   placeholder="What were you doing when this happened? Written here, it is sent as typed -- please do not paste customer names, document numbers or amounts."/>
+                        </page>
+                        <page string="Where it failed">
+                            <field name="frames" readonly="1" nolabel="1"/>
+                            <field name="fingerprint" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_atm_error_report" model="ir.actions.act_window">
+        <field name="name">Error Reports</field>
+        <field name="res_model">atm.error.report</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Nothing has gone wrong</p>
+            <p>
+                Unexpected failures are queued here, so you can read exactly what
+                would be sent before anything leaves this database. Automatic
+                reporting is off until you turn it on in the settings.
+            </p>
+        </field>
+    </record>
+</odoo>

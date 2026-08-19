@@ -6,178 +6,86 @@
         <field name="priority" eval="90"/>
         <field name="inherit_id" ref="base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('settings')]" position="inside">
-                <div class="app_settings_block" data-string="ATM" string="ATM"
-                     data-key="atm" groups="atm.group_atm_manager">
-                    <h2>Exchange File</h2>
-                    <div class="row mt16 o_settings_container" id="atm_file_setting_container">
-                        <div class="col-12 col-lg-6 o_setting_box" id="atm_export_dir_setting">
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Exchange Directory</span>
-                                <div class="text-muted">
-                                    Directory the JSON files are written to and read from.
-                                    It must be reachable by the Odoo server process.
-                                </div>
-                                <div class="content-group mt16">
-                                    <field name="atm_export_dir" placeholder="e.g. /var/lib/odoo/exchange"/>
-                                </div>
+            <xpath expr="//form" position="inside">
+                <app string="Data Exchange" name="atm" logo="/atm/static/description/icon.png">
+                    <block title="Exchange File" name="atm_file_setting_container">
+                        <setting id="atm_export_dir_setting" string="Exchange Directory"
+                                 help="Directory the JSON files are written to and read from. It must be reachable by the Odoo server process.">
+                            <field name="atm_export_dir" placeholder="e.g. /var/lib/odoo/exchange"/>
+                        </setting>
+                        <setting id="atm_date_from_setting" string="Exchange Documents Since"
+                                 help="Documents dated before this day are never exported. Leave empty to export the whole history.">
+                            <field name="atm_date_from"/>
+                        </setting>
+                        <setting id="atm_auto_confirm_setting" string="Confirm Imported Documents"
+                                 help="Imported documents are always created as drafts. Enable this to confirm orders and post invoices and payments that were already confirmed or posted in the external system.">
+                            <field name="atm_auto_confirm"/>
+                        </setting>
+                        <setting id="atm_system_code_setting" string="System Code"
+                                 help="Short identifier of this database. It prefixes the external references generated for records that do not have one yet.">
+                            <field name="atm_system_code" placeholder="odoo"/>
+                        </setting>
+                    </block>
+                    <block title="Master Data" name="atm_master_setting_container">
+                        <setting id="atm_partner_setting" string="Contacts" help="Exchange contacts.">
+                            <field name="atm_entity_partner"/>
+                        </setting>
+                        <setting id="atm_product_setting" string="Products" help="Exchange products.">
+                            <field name="atm_entity_product"/>
+                        </setting>
+                    </block>
+                    <block title="Documents" name="atm_documents_setting_container">
+                        <setting id="atm_sale_order_setting" string="Sales Orders" help="Exchange confirmed sales orders.">
+                            <field name="atm_entity_sale_order"/>
+                        </setting>
+                        <setting id="atm_purchase_order_setting" string="Purchase Orders" help="Exchange confirmed purchase orders.">
+                            <field name="atm_entity_purchase_order"/>
+                        </setting>
+                        <setting id="atm_customer_invoice_setting" string="Customer Invoices" help="Exchange posted customer invoices.">
+                            <field name="atm_entity_customer_invoice"/>
+                        </setting>
+                        <setting id="atm_vendor_bill_setting" string="Vendor Bills" help="Exchange posted vendor bills.">
+                            <field name="atm_entity_vendor_bill"/>
+                        </setting>
+                        <setting id="atm_customer_refund_setting" string="Customer Credit Notes" help="Exchange posted customer credit notes.">
+                            <field name="atm_entity_customer_refund"/>
+                        </setting>
+                        <setting id="atm_vendor_refund_setting" string="Vendor Credit Notes" help="Exchange posted vendor credit notes.">
+                            <field name="atm_entity_vendor_refund"/>
+                        </setting>
+                        <setting id="atm_customer_payment_setting" string="Customer Payments" help="Exchange customer payments.">
+                            <field name="atm_entity_customer_payment"/>
+                        </setting>
+                        <setting id="atm_vendor_payment_setting" string="Vendor Payments" help="Exchange vendor payments.">
+                            <field name="atm_entity_vendor_payment"/>
+                        </setting>
+                    </block>
+                    <block title="Error Reports" name="atm_error_report_setting_container">
+                        <setting id="atm_error_reports_setting" string="Automatic Error Reports"
+                                 help="Off unless you turn it on. Unexpected failures are reported as the exception class and the lines of code it passed through -- never the text of the error, which is where names, document numbers and amounts live.">
+                            <field name="atm_error_reports" widget="radio"/>
+                            <div class="mt8">
+                                <button name="action_atm_open_error_reports" type="object"
+                                        string="Review the queue" class="btn-link ps-0"/>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-6 o_setting_box" id="atm_date_from_setting">
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Exchange Documents Since</span>
-                                <div class="text-muted">
-                                    Documents dated before this day are never exported.
-                                    Leave empty to export the whole history.
-                                </div>
-                                <div class="content-group mt16">
-                                    <field name="atm_date_from"/>
-                                </div>
+                        </setting>
+                        <setting id="atm_report_url_setting" string="Reporting Endpoint"
+                                 help="Where reports are sent. Point it at your own collector if your policy forbids outbound calls."
+                                 attrs="{'invisible': [('atm_error_reports', '!=', 'on')]}">
+                            <field name="atm_report_url"/>
+                        </setting>
+                    </block>
+                    <block title="Run Now" name="atm_actions_setting_container">
+                        <setting id="atm_actions_setting" string="Manual Run"
+                                 help="Runs the exchange immediately for every enabled entity, without waiting for the scheduled action.">
+                            <div class="mt8">
+                                <button name="action_atm_export_now" type="object" string="Export Now" class="btn-primary"/>
+                                <button name="action_atm_import_now" type="object" string="Import Now" class="btn-secondary ms-2"/>
+                                <button name="action_atm_open_logs" type="object" string="Exchange Log" class="btn-link ms-2"/>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-6 o_setting_box" id="atm_auto_confirm_setting">
-                            <div class="o_setting_left_pane">
-                                <field name="atm_auto_confirm"/>
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Confirm Imported Documents</span>
-                                <div class="text-muted">
-                                    Imported documents are always created as drafts. Enable this
-                                    to confirm orders and post invoices and payments that were
-                                    already confirmed or posted in the external system.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6 o_setting_box" id="atm_system_code_setting">
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">System Code</span>
-                                <div class="text-muted">
-                                    Short identifier of this database. It prefixes the external
-                                    references generated for records that do not have one yet.
-                                </div>
-                                <div class="content-group mt16">
-                                    <field name="atm_system_code" placeholder="odoo"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h2>Master Data</h2>
-                    <div class="row mt16 o_settings_container" id="atm_master_setting_container">
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane">
-                                <field name="atm_entity_partner"/>
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Contacts</span>
-                                <div class="text-muted">Exchange contacts.</div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane">
-                                <field name="atm_entity_product"/>
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Products</span>
-                                <div class="text-muted">Exchange products.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h2>Documents</h2>
-                    <div class="row mt16 o_settings_container" id="atm_documents_setting_container">
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane">
-                                <field name="atm_entity_sale_order"/>
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Sales Orders</span>
-                                <div class="text-muted">Exchange confirmed sales orders.</div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane">
-                                <field name="atm_entity_purchase_order"/>
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Purchase Orders</span>
-                                <div class="text-muted">Exchange confirmed purchase orders.</div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane">
-                                <field name="atm_entity_customer_invoice"/>
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Customer Invoices</span>
-                                <div class="text-muted">Exchange posted customer invoices.</div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane">
-                                <field name="atm_entity_vendor_bill"/>
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Vendor Bills</span>
-                                <div class="text-muted">Exchange posted vendor bills.</div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane">
-                                <field name="atm_entity_customer_refund"/>
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Customer Credit Notes</span>
-                                <div class="text-muted">Exchange posted customer credit notes.</div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane">
-                                <field name="atm_entity_vendor_refund"/>
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Vendor Credit Notes</span>
-                                <div class="text-muted">Exchange posted vendor credit notes.</div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane">
-                                <field name="atm_entity_customer_payment"/>
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Customer Payments</span>
-                                <div class="text-muted">Exchange customer payments.</div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6 o_setting_box">
-                            <div class="o_setting_left_pane">
-                                <field name="atm_entity_vendor_payment"/>
-                            </div>
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Vendor Payments</span>
-                                <div class="text-muted">Exchange vendor payments.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h2>Run Now</h2>
-                    <div class="row mt16 o_settings_container" id="atm_actions_setting_container">
-                        <div class="col-12 o_setting_box">
-                            <div class="o_setting_right_pane">
-                                <span class="o_form_label">Manual Run</span>
-                                <div class="text-muted">
-                                    Runs the exchange immediately for every enabled entity,
-                                    without waiting for the scheduled action.
-                                </div>
-                                <div class="mt8">
-                                    <button name="action_atm_export_now" type="object" string="Export Now" class="btn-primary"/>
-                                    <button name="action_atm_import_now" type="object" string="Import Now" class="btn-secondary ms-2"/>
-                                    <button name="action_atm_open_logs" type="object" string="Exchange Log" class="btn-link ms-2"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        </setting>
+                    </block>
+                </app>
             </xpath>
         </field>
     </record>
