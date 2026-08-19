@@ -40,14 +40,16 @@ side. The user interface is available in Ukrainian.
     'author': 'chukhin',
     'website': 'https://github.com/rastafara66/atm',
     'category': 'Productivity',
-    'version': '16.0.2.1.0',
+    'version': '16.0.2.1.1',
     'license': 'LGPL-3',
-    # The first image is the card picture in the App Store listing.
+    # The first image is the card picture in the App Store listing; the rest
+    # form the gallery, in English, with the VAT split leading.
     'images': [
         'static/description/banner.png',
-        'static/description/screenshot_settings.png',
-        'static/description/screenshot_log.png',
-        'static/description/screenshot_json.png',
+        'static/description/screenshot_invoice_en.png',
+        'static/description/screenshot_json_en.png',
+        'static/description/screenshot_settings_en.png',
+        'static/description/screenshot_log_en.png',
     ],
     'price': 0.00,
     'currency': 'EUR',

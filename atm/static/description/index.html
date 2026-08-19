@@ -68,9 +68,44 @@
         Every entity can be switched on or off separately, so the other side
         receives only what it actually consumes.
       </p>
-      <img src="screenshot_settings.png" alt="Data Exchange settings"
+      <img src="screenshot_settings_en.png" alt="Data Exchange settings"
            style="width:100%;max-width:900px;display:block;margin:24px auto 0;
                   border:1px solid #d8dde3;border-radius:6px;"/>
+      <p style="text-align:center;margin:8px 0 0;font-size:13px;color:#7d8791;">
+        The settings screen in English
+      </p>
+      <img src="screenshot_settings_uk.png" alt="Data Exchange settings in Ukrainian"
+           style="width:100%;max-width:900px;display:block;margin:24px auto 0;
+                  border:1px solid #d8dde3;border-radius:6px;"/>
+      <p style="text-align:center;margin:8px 0 0;font-size:13px;color:#7d8791;">
+        &#1058;&#1086;&#1081; &#1089;&#1072;&#1084;&#1080;&#1081; &#1077;&#1082;&#1088;&#1072;&#1085; &#1091;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1086;&#1102;
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="oe_container">
+  <div class="oe_row oe_spaced">
+    <h3 class="oe_slogan">VAT rate by rate, on the document and in the file</h3>
+    <div class="oe_span12">
+      <p style="max-width:760px;margin:0 auto 24px;text-align:center;">
+        The same invoice, seen from both sides. Odoo splits the total per rate;
+        the exported file carries that split as <b>tax_summary</b>, right under
+        the totals it explains, with the taxable base and the tax of every rate
+        &mdash; and a group for the lines that carry no tax at all.
+      </p>
+      <img src="screenshot_invoice_uk.png" alt="An invoice carrying two VAT rates"
+           style="width:100%;max-width:900px;display:block;margin:0 auto;
+                  border:1px solid #d8dde3;border-radius:6px;"/>
+      <p style="text-align:center;margin:8px 0 0;font-size:13px;color:#7d8791;">
+        &#1044;&#1074;&#1110; &#1089;&#1090;&#1072;&#1074;&#1082;&#1080; &#1074; &#1086;&#1076;&#1085;&#1086;&#1084;&#1091; &#1088;&#1072;&#1093;&#1091;&#1085;&#1082;&#1091;: &#1055;&#1044;&#1042; 20% &#1110; &#1055;&#1044;&#1042; 7% &#1086;&#1082;&#1088;&#1077;&#1084;&#1080;&#1084;&#1080; &#1088;&#1103;&#1076;&#1082;&#1072;&#1084;&#1080;
+      </p>
+      <img src="screenshot_invoice_en.png" alt="The same invoice in English"
+           style="width:100%;max-width:900px;display:block;margin:24px auto 0;
+                  border:1px solid #d8dde3;border-radius:6px;"/>
+      <p style="text-align:center;margin:8px 0 0;font-size:13px;color:#7d8791;">
+        The same invoice in English
+      </p>
     </div>
   </div>
 </section>
@@ -134,13 +169,19 @@
   </div>
   <div class="oe_row oe_spaced">
     <div class="oe_span12">
-      <img src="screenshot_log.png" alt="Exchange log"
+      <img src="screenshot_log_en.png" alt="Exchange log"
            style="width:100%;max-width:900px;display:block;margin:8px auto 0;
                   border:1px solid #d8dde3;border-radius:6px;"/>
       <p class="oe_mt16" style="text-align:center;">
         Here the same database was imported back into itself: every document was
         read and then skipped, because posted documents are never rewritten.
         The counters account for all of it.
+      </p>
+      <img src="screenshot_log_uk.png" alt="Exchange log in Ukrainian"
+           style="width:100%;max-width:900px;display:block;margin:24px auto 0;
+                  border:1px solid #d8dde3;border-radius:6px;"/>
+      <p style="text-align:center;margin:8px 0 0;font-size:13px;color:#7d8791;">
+        &#1046;&#1091;&#1088;&#1085;&#1072;&#1083; &#1086;&#1073;&#1084;&#1110;&#1085;&#1091; &#1091;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1086;&#1102;
       </p>
     </div>
   </div>
@@ -150,14 +191,24 @@
   <div class="oe_row oe_spaced">
     <h3 class="oe_slogan">What a file looks like</h3>
     <div class="oe_span12">
-<img src="screenshot_json.png" alt="An exported customer invoice file"
+<img src="screenshot_json_en.png" alt="An exported customer invoice file"
            style="width:100%;max-width:820px;display:block;margin:0 auto;
                   border:1px solid #d8dde3;border-radius:6px;"/>
       <p class="oe_mt32" style="text-align:center;">
-        Reference data such as currencies, units of measure and accounts travels
-        as a description &mdash; name, code and XML id &mdash; and is resolved
-        against the target database. That is what lets the same file be read by
-        a system that knows nothing about Odoo's ids.
+        The envelope says which entity the file holds and where it came from.
+        Each record carries its totals, then <b>tax_summary</b> &mdash; the base,
+        the tax and the rate of every rate in the document.
+      </p>
+      <img src="screenshot_json_lines_en.png" alt="Document lines with their taxes"
+           style="width:100%;max-width:820px;display:block;margin:32px auto 0;
+                  border:1px solid #d8dde3;border-radius:6px;"/>
+      <p class="oe_mt32" style="text-align:center;">
+        Further down, every line lists the taxes applied to it, and an incoming
+        line gets them applied back. Reference data such as currencies, units of
+        measure, accounts and taxes travels as a description &mdash; name, code
+        and XML id &mdash; and is resolved against the target database. That is
+        what lets the same file be read by a system that knows nothing about
+        Odoo's ids.
       </p>
     </div>
   </div>
@@ -173,6 +224,18 @@
         <li class="oe_mt16">Enable the two scheduled actions &mdash; both are off after installation &mdash; or press <b>Export Now</b> / <b>Import Now</b>.</li>
         <li class="oe_mt16">Watch the results under <b>Data Exchange &rarr; Exchange Log</b>.</li>
       </ol>
+      <img src="screenshot_entities_en.png" alt="Entity switches and the manual run"
+           style="width:100%;max-width:900px;display:block;margin:28px auto 0;
+                  border:1px solid #d8dde3;border-radius:6px;"/>
+      <p style="text-align:center;margin:8px 0 0;font-size:13px;color:#7d8791;">
+        The entity switches, and the two buttons that run an exchange by hand
+      </p>
+      <img src="screenshot_entities_uk.png" alt="Entity switches in Ukrainian"
+           style="width:100%;max-width:900px;display:block;margin:24px auto 0;
+                  border:1px solid #d8dde3;border-radius:6px;"/>
+      <p style="text-align:center;margin:8px 0 0;font-size:13px;color:#7d8791;">
+        &#1055;&#1077;&#1088;&#1077;&#1084;&#1080;&#1082;&#1072;&#1095;&#1110; &#1089;&#1091;&#1090;&#1085;&#1086;&#1089;&#1090;&#1077;&#1081; &#1110; &#1088;&#1091;&#1095;&#1085;&#1080;&#1081; &#1079;&#1072;&#1087;&#1091;&#1089;&#1082; &#1091;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1086;&#1102;
+      </p>
     </div>
   </div>
 </section>
@@ -184,6 +247,18 @@
       <div style="max-width:760px;margin:0 auto;text-align:left;">
 
         <div style="background:#f6f9fd;border-left:4px solid #00A09D;border-radius:6px;padding:14px 16px;margin-bottom:12px;">
+          <p style="margin:0 0 6px;font-size:15px;"><b>2.1.1</b> &mdash; 2026-08-19</p>
+          <p style="margin:0;font-size:14px;line-height:1.7;">
+            Screenshots of the real screens, in <b>both languages</b>: the settings,
+            the entity switches, the exchange log, an invoice carrying two VAT rates,
+            and the exported file with its <b>tax_summary</b> block. The invoice and
+            the file are shown side by side &mdash; the same split, once as Odoo
+            draws it and once as it travels.<br/>
+            <i>&#1057;&#1082;&#1088;&#1110;&#1085;&#1096;&#1086;&#1090;&#1080; &#1076;&#1074;&#1086;&#1084;&#1072; &#1084;&#1086;&#1074;&#1072;&#1084;&#1080;, &#1079;&#1086;&#1082;&#1088;&#1077;&#1084;&#1072; &#1088;&#1086;&#1079;&#1082;&#1083;&#1072;&#1076;&#1082;&#1072; &#1055;&#1044;&#1042; &#1085;&#1072; &#1088;&#1072;&#1093;&#1091;&#1085;&#1082;&#1091; &#1090;&#1072; &#1074; &#1092;&#1072;&#1081;&#1083;&#1110;.</i>
+          </p>
+        </div>
+
+        <div style="background:#f6f9fd;border-left:4px solid #cfd9e8;border-radius:6px;padding:14px 16px;margin-bottom:12px;">
           <p style="margin:0 0 6px;font-size:15px;"><b>2.1.0</b> &mdash; 2026-08-18</p>
           <p style="margin:0;font-size:14px;line-height:1.7;">
             <b>VAT is now exchanged rate by rate</b>, not as a single figure. Every
