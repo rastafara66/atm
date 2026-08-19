@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
-                <app string="ATM" name="atm" logo="/atm/static/description/icon.png">
+                <app string="Data Exchange" name="atm" logo="/atm/static/description/icon.png">
                     <block title="Exchange File" name="atm_file_setting_container">
                         <setting id="atm_export_dir_setting" string="Exchange Directory"
                                  help="Directory the JSON files are written to and read from. It must be reachable by the Odoo server process.">
@@ -58,6 +58,21 @@
                         </setting>
                         <setting id="atm_vendor_payment_setting" string="Vendor Payments" help="Exchange vendor payments.">
                             <field name="atm_entity_vendor_payment"/>
+                        </setting>
+                    </block>
+                    <block title="Error Reports" name="atm_error_report_setting_container">
+                        <setting id="atm_error_reports_setting" string="Automatic Error Reports"
+                                 help="Off unless you turn it on. Unexpected failures are reported as the exception class and the lines of code it passed through -- never the text of the error, which is where names, document numbers and amounts live.">
+                            <field name="atm_error_reports" widget="radio"/>
+                            <div class="mt8">
+                                <button name="action_atm_open_error_reports" type="object"
+                                        string="Review the queue" class="btn-link ps-0"/>
+                            </div>
+                        </setting>
+                        <setting id="atm_report_url_setting" string="Reporting Endpoint"
+                                 help="Where reports are sent. Point it at your own collector if your policy forbids outbound calls."
+                                 invisible="atm_error_reports != 'on'">
+                            <field name="atm_report_url"/>
                         </setting>
                     </block>
                     <block title="Run Now" name="atm_actions_setting_container">

@@ -40,7 +40,7 @@ side. The user interface is available in Ukrainian.
     'author': 'chukhin',
     'website': 'https://github.com/rastafara66/atm',
     'category': 'Productivity',
-    'version': '17.0.2.1.1',
+    'version': '17.0.2.2.0',
     'license': 'LGPL-3',
     # The first image is the card picture in the App Store listing; the rest
     # form the gallery, in English, with the VAT split leading.
@@ -63,6 +63,7 @@ side. The user interface is available in Ukrainian.
         'security/atm_security.xml',
         'security/ir.model.access.csv',
         'views/atm_exchange_log_views.xml',
+        'views/atm_error_report_views.xml',
         'views/res_config_settings_views.xml',
         'views/atm_menus.xml',
         'data/ir_cron.xml',

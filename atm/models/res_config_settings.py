@@ -6,6 +6,7 @@ import os
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
+from .atm_error_report import DEFAULT_URL, PARAM_CONSENT, PARAM_URL
 from .atm_exchange import ATM_TRUE
 from .entities import ENTITIES
 
@@ -68,6 +69,25 @@ class ResConfigSettings(models.TransientModel):
     atm_entity_vendor_payment = fields.Boolean(
         string='Vendor Payments', default=True)
 
+    # Three states on purpose, not a boolean: "never asked" has to count as
+    # "no", and a boolean cannot tell it from a deliberate "off". Nothing is
+    # ever sent until someone explicitly chooses "on".
+    atm_error_reports = fields.Selection(
+        [('on', 'Send automatic error reports'),
+         ('off', 'Do not send error reports')],
+        string='Error Reports',
+        config_parameter=PARAM_CONSENT,
+        help='Off unless you turn it on. When on, unexpected failures are '
+             'queued as the exception class and the line of code that failed '
+             '-- never the error text, which is where names and amounts live. '
+             'Every queued report can be read in full before it is sent.')
+    atm_report_url = fields.Char(
+        string='Reporting Endpoint',
+        config_parameter=PARAM_URL,
+        default=DEFAULT_URL,
+        help='Where error reports are sent. Point it at your own collector if '
+             'your policy forbids outbound calls.')
+
     @api.model
     def get_values(self):
         res = super().get_values()
@@ -103,6 +123,11 @@ class ResConfigSettings(models.TransientModel):
         self.ensure_one()
         return self.env['ir.actions.act_window']._for_xml_id(
             'atm.action_atm_exchange_log')
+
+    def action_atm_open_error_reports(self):
+        self.ensure_one()
+        return self.env['ir.actions.act_window']._for_xml_id(
+            'atm.action_atm_error_report')
 
     def _atm_notify(self, logs, title):
         if not logs:
