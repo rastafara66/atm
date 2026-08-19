@@ -548,3 +548,145 @@ msgstr "напр. /var/lib/odoo/exchange"
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
 msgid "odoo"
 msgstr ""
+
+#. module: atm
+#: model:ir.ui.menu,name:atm.menu_atm_error_report
+#: model:ir.actions.act_window,name:atm.action_atm_error_report
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_error_reports
+msgid "Error Reports"
+msgstr "Звіти про помилки"
+
+#. module: atm
+#: model:ir.model,name:atm.model_atm_error_report
+msgid "Data Exchange Error Report"
+msgstr "Звіт про помилку обміну даними"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Automatic Error Reports"
+msgstr "Автоматичні звіти про помилки"
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__res_config_settings__atm_error_reports__on
+msgid "Send automatic error reports"
+msgstr "Надсилати звіти про помилки"
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__res_config_settings__atm_error_reports__off
+msgid "Do not send error reports"
+msgstr "Не надсилати звіти про помилки"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_report_url
+msgid "Reporting Endpoint"
+msgstr "Адреса приймача звітів"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Review the queue"
+msgstr "Переглянути чергу"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__comment
+msgid "Your comment"
+msgstr "Ваш коментар"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__error_type
+msgid "Error Type"
+msgstr "Тип помилки"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__occurrences
+msgid "Occurrences"
+msgstr "Повторень"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__operation
+msgid "Operation"
+msgstr "Операція"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__payload
+msgid "Payload"
+msgstr "Вміст запиту"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__frames
+msgid "Frames"
+msgstr "Місце в коді"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__sent_date
+msgid "Sent Date"
+msgstr "Надіслано"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__attempts
+msgid "Attempts"
+msgstr "Спроб"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__fingerprint
+msgid "Fingerprint"
+msgstr "Відбиток"
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_error_report__state__pending
+msgid "To send"
+msgstr "До надсилання"
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_error_report__state__sent
+msgid "Sent"
+msgstr "Надіслано"
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_error_report__state__failed
+msgid "Could not send"
+msgstr "Не вдалося надіслати"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "Send Now"
+msgstr "Надіслати зараз"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "Discard"
+msgstr "Відхилити"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "What gets sent"
+msgstr "Що саме надсилається"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "Add a comment"
+msgstr "Додати коментар"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "Where it failed"
+msgstr "Де саме впало"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_list
+msgid "First seen"
+msgstr "Уперше"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "Delete this report? It will not be sent."
+msgstr "Видалити цей звіт? Його не буде надіслано."
+
+#. module: atm
+#: model_terms:ir.actions.act_window,help:atm.action_atm_error_report
+msgid "Nothing has gone wrong"
+msgstr "Поки що нічого не зламалося"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "This is the request itself, not a summary of it.\n                                The text of the error is never included: only the\n                                class of the exception and the lines of code it\n                                passed through. Nothing else leaves this database."
+msgstr "Це сам запит, а не переказ його змісту. Текст помилки не передається ніколи — лише клас винятку і рядки коду, через які він пройшов. Більше нічого цю базу не полишає."

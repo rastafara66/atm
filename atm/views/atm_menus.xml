@@ -15,6 +15,10 @@
               parent="menu_atm_root" sequence="10"
               action="action_atm_exchange_log"/>
 
+    <menuitem id="menu_atm_error_report" name="Error Reports"
+              parent="menu_atm_root" sequence="20"
+              action="action_atm_error_report"/>
+
     <menuitem id="menu_atm_configuration" name="Configuration"
               parent="menu_atm_root" sequence="90"/>
 
