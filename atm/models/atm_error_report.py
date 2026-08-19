@@ -162,16 +162,15 @@ class AtmErrorReport(models.Model):
         compute='_compute_payload',
         help='Exactly what leaves this database. Nothing else is transmitted.')
 
-    # Declared the old way on purpose. ``models.Constraint`` exists only in
-    # 19.0, while this form works in every series the module supports -- and
-    # one definition across all four branches is worth more here than the
-    # newer spelling: version drift between copies is exactly what has bitten
-    # this module before.
-    _sql_constraints = [
-        ('fingerprint_company_uniq',
-         'UNIQUE(fingerprint, company_id)',
-         'The same failure is only queued once per company.'),
-    ]
+    # 19.0 dropped ``_sql_constraints``: the attribute is still accepted, but
+    # it is only warned about and no constraint reaches the database. Verified
+    # by looking at pg_constraint after an install, not by reading the source --
+    # the method that used to apply them is still there, which is what made the
+    # old spelling look safe. Older series have no ``models.Constraint``, so
+    # this is one of the few places the branches genuinely differ.
+    _fingerprint_company_uniq = models.Constraint(
+        'UNIQUE(fingerprint, company_id)',
+        'The same failure is only queued once per company.')
 
     @api.depends('fingerprint', 'error_type', 'operation', 'http_status',
                  'frames', 'occurrences', 'comment')

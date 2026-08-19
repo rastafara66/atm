@@ -5,6 +5,21 @@ The technical name stays `atm`; earlier releases were published under the
 name "ATM - Automated Transaction Mechanics". Versions follow the Odoo
 convention: `<odoo series>.<major>.<minor>.<patch>`.
 
+## 2.2.1 — 2026-08-19
+
+### Fixed
+
+- The unique constraint behind error report deduplication was never created on
+  Odoo 19: `_sql_constraints` is no longer applied there, only warned about.
+  It was declared that way deliberately, because the method that used to apply
+  it still exists in 19.0 and the older spelling therefore looked safe on all
+  four series. It is not: checking `pg_constraint` after an install showed no
+  constraint at all. 19.0 now uses `models.Constraint`; 16.0 to 18.0 keep
+  `_sql_constraints`, where it does work, verified the same way.
+
+  Deduplication itself was unaffected -- a report is looked up before being
+  queued -- so this closed a race, not a visible fault.
+
 ## 2.2.0 — 2026-08-19
 
 ### Added
