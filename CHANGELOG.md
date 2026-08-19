@@ -5,6 +5,16 @@ The technical name stays `atm`; earlier releases were published under the
 name "ATM - Automated Transaction Mechanics". Versions follow the Odoo
 convention: `<odoo series>.<major>.<minor>.<patch>`.
 
+## 2.1.1 — 2026-08-19
+
+### Changed
+
+- Screenshots of the real screens, in both languages: the settings screen, the
+  entity switches, the exchange log, an invoice carrying two VAT rates, and the
+  exported file showing the `tax_summary` block and the taxes on each line. The
+  store gallery is the English set, led by the invoice; the listing page shows
+  both languages. The three older screenshots are replaced.
+
 ## 2.1.0 — 2026-08-18
 
 ### Added
