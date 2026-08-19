@@ -13,6 +13,7 @@ from datetime import date, datetime
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
+from .atm_exceptions import AtmDataError
 from .entities import ENTITIES, ENTITIES_BY_CODE
 
 _logger = logging.getLogger(__name__)
@@ -79,6 +80,23 @@ class AtmExchange(models.AbstractModel):
         except (ValueError, TypeError):
             _logger.warning('Invalid atm.date_from parameter: %s', value)
             return False
+
+    @api.model
+    def _report_crash(self, operation):
+        """Offer the exception being handled to the crash reporter.
+
+        Called from inside the ``except`` blocks below rather than through a
+        decorator: this engine catches its own failures and writes them to the
+        exchange log, so nothing escapes for a decorator to wrap.
+
+        Never raises. The exchange log has already recorded the real failure,
+        and a reporter that broke a run would be worse than no reporter.
+        """
+        try:
+            self.env['atm.error.report']._capture(operation)
+        except Exception:  # noqa: BLE001 - reporting must never mask the failure
+            _logger.exception('Could not queue a Data Exchange error report')
+        return False
 
     # ------------------------------------------------------------------
     # External reference handling
@@ -428,6 +446,7 @@ class AtmExchange(models.AbstractModel):
         except Exception as error:  # noqa: BLE001 - reported through the log
             log.write({'state': 'failed', 'message': str(error)})
             _logger.exception('Export of %s failed', code)
+            self._report_crash('export:%s' % code)
         return log
 
     @api.model
@@ -477,7 +496,7 @@ class AtmExchange(models.AbstractModel):
             if resolved:
                 values[field_name] = resolved
             elif entity_code and data[key]:
-                raise ValueError(_(
+                raise AtmDataError(_(
                     'Cannot resolve %(field)s: %(target)s was not imported yet.')
                     % {'field': key, 'target': data[key]})
         return self._postprocess_values(spec, data, values)
@@ -544,7 +563,7 @@ class AtmExchange(models.AbstractModel):
                     # Silently dropping the product would leave a line the
                     # document cannot be confirmed with. Fail the record and
                     # let the log say why.
-                    raise ValueError(_(
+                    raise AtmDataError(_(
                         'Cannot resolve line %(field)s: %(target)s was not '
                         'imported yet.')
                         % {'field': key, 'target': line_data[key]})
@@ -615,6 +634,11 @@ class AtmExchange(models.AbstractModel):
                     failed += 1
                     _logger.warning('Could not import %s %s: %s',
                                     code, external_ref, error)
+                    # Data the other side sent that this database cannot use is
+                    # an AtmDataError and is filtered out by the reporter. What
+                    # reaches the collector from here is a genuine defect, and
+                    # a file full of them still yields one report with a count.
+                    self._report_crash('import:%s' % code)
 
             log.write({
                 'state': 'failed' if failed and not (created or updated) else 'done',
@@ -635,6 +659,7 @@ class AtmExchange(models.AbstractModel):
         except Exception as error:  # noqa: BLE001 - reported through the log
             log.write({'state': 'failed', 'message': str(error)})
             _logger.exception('Import of %s failed', code)
+            self._report_crash('import:%s' % code)
         return log
 
     #: Business method that moves a freshly imported record to the state it

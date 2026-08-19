@@ -22,5 +22,20 @@
             <field name="interval_type">hours</field>
             <field name="active" eval="False"/>
         </record>
+
+        <!-- Reports are sent from here, never at the moment of the failure: a
+             collector that is down must not turn a failed exchange into a
+             hung run. Active, but it does nothing at all until someone
+             switches error reports on in the settings. -->
+        <record id="ir_cron_atm_send_error_reports" model="ir.cron">
+            <field name="name">Data Exchange: send error reports</field>
+            <field name="model_id" ref="model_atm_error_report"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_send_reports()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">6</field>
+            <field name="interval_type">hours</field>
+            <field name="active" eval="True"/>
+        </record>
     </data>
 </odoo>

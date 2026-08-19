@@ -60,6 +60,21 @@
                             <field name="atm_entity_vendor_payment"/>
                         </setting>
                     </block>
+                    <block title="Error Reports" name="atm_error_report_setting_container">
+                        <setting id="atm_error_reports_setting" string="Automatic Error Reports"
+                                 help="Off unless you turn it on. Unexpected failures are reported as the exception class and the lines of code it passed through -- never the text of the error, which is where names, document numbers and amounts live.">
+                            <field name="atm_error_reports" widget="radio"/>
+                            <div class="mt8">
+                                <button name="action_atm_open_error_reports" type="object"
+                                        string="Review the queue" class="btn-link ps-0"/>
+                            </div>
+                        </setting>
+                        <setting id="atm_report_url_setting" string="Reporting Endpoint"
+                                 help="Where reports are sent. Point it at your own collector if your policy forbids outbound calls."
+                                 invisible="atm_error_reports != 'on'">
+                            <field name="atm_report_url"/>
+                        </setting>
+                    </block>
                     <block title="Run Now" name="atm_actions_setting_container">
                         <setting id="atm_actions_setting" string="Manual Run"
                                  help="Runs the exchange immediately for every enabled entity, without waiting for the scheduled action.">

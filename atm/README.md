@@ -117,6 +117,46 @@ totals from the lines.
 * Each record is imported inside its own savepoint, so one rejected record
   cannot take the rest of the file down with it.
 
+## Error reports
+
+Off unless you turn them on, in *Settings → Data Exchange → Error Reports*.
+
+The exchange runs unattended, so a failure is usually noticed by nobody until
+someone wonders why the files stopped arriving. When reporting is on, an
+unexpected failure queues itself and is sent later by a scheduled action —
+never at the moment it happens, so a collector that is down cannot hold up a
+run.
+
+**The text of the error is never sent.** This module handles contacts, invoices
+and payments, so an error message here plausibly contains a customer name, a
+document number or a sum, and scrubbing such a text with patterns is a losing
+game — a name has no pattern. What travels is only:
+
+* the exception **class** (`KeyError`), never its message;
+* the **lines of code** it passed through, with paths cut back to the module
+  root (`atm/models/atm_exchange.py:88`), so a developer's home directory does
+  not travel either;
+* the Odoo and module versions, and an HTTP status code if there was one;
+* a random per-database id, which separates "one install failing fifty times"
+  from "fifty installs failing once" and says nothing about whose database it is;
+* whatever you choose to type into the comment box.
+
+Every queued report is visible under *Data Exchange → Error Reports*, and the
+**What gets sent** tab shows the request body itself, not a description of it.
+You can add a comment, send it by hand, or delete it.
+
+Two kinds of failure are never reported, because they are not defects:
+
+* the module talking to you — `UserError` and its relatives, such as the
+  exchange directory not being configured;
+* incoming data this database cannot resolve — a document referring to a
+  product that was never imported. These arrive by the fileful, are already
+  counted as *failed* in the exchange log, and would bury a real defect.
+
+The same failure is queued once and counted, not queued again, and there is a
+ceiling per day. Reports go to a configurable endpoint — point it at your own
+collector if your policy forbids outbound calls, or simply leave reporting off.
+
 ## Setup
 
 1. *Settings → Data Exchange*: set the exchange directory. The Odoo server process must
