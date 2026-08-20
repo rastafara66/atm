@@ -5,6 +5,15 @@ The technical name stays `atm`; earlier releases were published under the
 name "ATM - Automated Transaction Mechanics". Versions follow the Odoo
 convention: `<odoo series>.<major>.<minor>.<patch>`.
 
+## 2.2.2 — 2026-08-19
+
+### Fixed
+
+- The 2.2.1 entry reached the changelog file but not the listing page, so the
+  store refreshed a page that read exactly as before. The store renders the
+  page from the manifest version, and 2.2.1 had already been scanned by then —
+  hence this version, which carries the same fix and the page to go with it.
+
 ## 2.2.1 — 2026-08-19
 
 ### Fixed
