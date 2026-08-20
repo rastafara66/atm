@@ -267,6 +267,18 @@
       <div style="max-width:760px;margin:0 auto;text-align:left;">
 
         <div style="background:#f6f9fd;border-left:4px solid #00A09D;border-radius:6px;padding:14px 16px;margin-bottom:12px;">
+          <p style="margin:0 0 6px;font-size:15px;"><b>2.2.1</b> &mdash; 2026-08-19</p>
+          <p style="margin:0;font-size:14px;line-height:1.7;">
+            The unique constraint that keeps one bug from being queued twice was
+            never created on Odoo 19, where the older way of declaring it is no
+            longer applied. Deduplication itself was unaffected &mdash; a report
+            is looked up before being queued &mdash; so this closes a race rather
+            than a visible fault.<br/>
+            <i>&#1042;&#1080;&#1087;&#1088;&#1072;&#1074;&#1083;&#1077;&#1085;&#1086; &#1086;&#1073;&#1084;&#1077;&#1078;&#1077;&#1085;&#1085;&#1103; &#1091;&#1085;&#1110;&#1082;&#1072;&#1083;&#1100;&#1085;&#1086;&#1089;&#1090;&#1110; &#1079;&#1074;&#1110;&#1090;&#1110;&#1074; &#1087;&#1088;&#1086; &#1087;&#1086;&#1084;&#1080;&#1083;&#1082;&#1080; &#1074; Odoo 19.</i>
+          </p>
+        </div>
+
+        <div style="background:#f6f9fd;border-left:4px solid #cfd9e8;border-radius:6px;padding:14px 16px;margin-bottom:12px;">
           <p style="margin:0 0 6px;font-size:15px;"><b>2.2.0</b> &mdash; 2026-08-19</p>
           <p style="margin:0;font-size:14px;line-height:1.7;">
             <b>Automatic error reports</b>, off unless you switch them on. The
