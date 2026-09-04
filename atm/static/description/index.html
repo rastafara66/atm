@@ -1,384 +1,109 @@
 <section class="oe_container">
   <div class="oe_row oe_spaced">
-    <h2 class="oe_slogan" style="color:#875A7B;">Data Exchange</h2>
-    <h3 class="oe_slogan">Keep Odoo and your accounting system in step, through plain JSON files</h3>
+    <img src="banner.png" style="max-width:100%;border-radius:10px;"
+         alt="Data Exchange &#8212; JSON sync with your accounting system"/>
+  </div>
+
+  <div class="oe_row oe_spaced">
+    <h2 class="oe_slogan" style="color:#128a7a;">Keep Odoo and your accounting system in step</h2>
+    <h3 class="oe_slogan">Through plain JSON files &mdash; no open port, no middleware, no API keys</h3>
+    <p class="oe_mt32" style="text-align:center;color:#888;">Version 19.0.2.2.3 &middot; LGPL-3 &middot; free &middot; Odoo 19</p>
+  </div>
+
+  <div class="oe_row oe_spaced">
     <div class="oe_span12">
-      <p class="oe_mt32" style="text-align:center;">
-        No open port. No middleware. No API keys. Odoo writes the documents into a
-        shared directory and reads back whatever the other system puts there.
-      </p>
-      <p style="text-align:center;color:#666;">
-        Built for keeping Odoo alongside another accounting system &mdash; including
-        1C and BAS, which exchange through files the same way.
-      </p>
+      <h3 class="oe_slogan" style="text-align:left;">How it works / &#1071;&#1082; &#1094;&#1077; &#1087;&#1088;&#1072;&#1094;&#1102;&#1108;</h3>
+      <p>Odoo writes the documents into a shared directory and reads back whatever the other system puts there. Built for keeping Odoo alongside another accounting system &mdash; including <b>1C</b> and <b>BAS</b>, which exchange through files the same way, so the bridge needs no rework on that side. &mdash; Odoo &#1089;&#1082;&#1083;&#1072;&#1076;&#1072;&#1108; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1080; &#1091; &#1089;&#1087;&#1110;&#1083;&#1100;&#1085;&#1091; &#1090;&#1077;&#1082;&#1091; &#1081; &#1095;&#1080;&#1090;&#1072;&#1108; &#1079;&#1074;&#1110;&#1076;&#1090;&#1080; &#1090;&#1077;, &#1097;&#1086; &#1087;&#1086;&#1082;&#1083;&#1072;&#1083;&#1072; &#1110;&#1085;&#1096;&#1072; &#1089;&#1080;&#1089;&#1090;&#1077;&#1084;&#1072;. &#1058;&#1072;&#1082; &#1089;&#1072;&#1084;&#1086; &#1086;&#1073;&#1084;&#1110;&#1085;&#1102;&#1102;&#1090;&#1100;&#1089;&#1103; <b>1&#1057;</b> &#1110; <b>BAS</b>, &#1090;&#1086;&#1084;&#1091; &#1084;&#1110;&#1089;&#1090; &#1073;&#1091;&#1076;&#1091;&#1108;&#1090;&#1100;&#1089;&#1103; &#1073;&#1077;&#1079; &#1087;&#1077;&#1088;&#1077;&#1088;&#1086;&#1073;&#1082;&#1080; &#1090;&#1086;&#1075;&#1086; &#1073;&#1086;&#1082;&#1091;.</p>
     </div>
   </div>
-</section>
 
-<section class="oe_container oe_dark">
   <div class="oe_row oe_spaced">
-    <h2 class="oe_slogan" style="color:#875A7B;">&#1054;&#1073;&#1084;&#1110;&#1085; &#1076;&#1072;&#1085;&#1080;&#1084;&#1080;</h2>
-    <h3 class="oe_slogan">Odoo &#1110; &#1074;&#1072;&#1096;&#1072; &#1086;&#1073;&#1083;&#1110;&#1082;&#1086;&#1074;&#1072; &#1089;&#1080;&#1089;&#1090;&#1077;&#1084;&#1072; &#1074; &#1086;&#1076;&#1085;&#1086;&#1084;&#1091; &#1088;&#1080;&#1090;&#1084;&#1110; &mdash; &#1095;&#1077;&#1088;&#1077;&#1079; &#1079;&#1074;&#1080;&#1095;&#1072;&#1081;&#1085;&#1110; &#1092;&#1072;&#1081;&#1083;&#1080;</h3>
-    <div class="oe_span12">
-      <p class="oe_mt32" style="text-align:center;max-width:720px;margin-left:auto;margin-right:auto;">
-        &#1041;&#1077;&#1079; &#1074;&#1110;&#1076;&#1082;&#1088;&#1080;&#1090;&#1080;&#1093; &#1087;&#1086;&#1088;&#1090;&#1110;&#1074;, &#1087;&#1088;&#1086;&#1084;&#1110;&#1078;&#1085;&#1080;&#1093; &#1089;&#1077;&#1088;&#1074;&#1110;&#1089;&#1110;&#1074; &#1110; &#1082;&#1083;&#1102;&#1095;&#1110;&#1074; API. Odoo &#1089;&#1082;&#1083;&#1072;&#1076;&#1072;&#1108; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1080;
-        &#1091; &#1089;&#1087;&#1110;&#1083;&#1100;&#1085;&#1091; &#1090;&#1077;&#1082;&#1091; &#1081; &#1095;&#1080;&#1090;&#1072;&#1108; &#1079;&#1074;&#1110;&#1076;&#1090;&#1080; &#1090;&#1077;, &#1097;&#1086; &#1087;&#1086;&#1082;&#1083;&#1072;&#1083;&#1072; &#1110;&#1085;&#1096;&#1072; &#1089;&#1080;&#1089;&#1090;&#1077;&#1084;&#1072;. &#1058;&#1072;&#1082; &#1089;&#1072;&#1084;&#1086;, &#1103;&#1082;
-        &#1086;&#1073;&#1084;&#1110;&#1085;&#1102;&#1102;&#1090;&#1100;&#1089;&#1103; <b>1&#1057;</b> &#1110; <b>BAS</b>, &#1090;&#1086;&#1084;&#1091; &#1084;&#1110;&#1089;&#1090; &#1073;&#1091;&#1076;&#1091;&#1108;&#1090;&#1100;&#1089;&#1103; &#1073;&#1077;&#1079; &#1087;&#1077;&#1088;&#1077;&#1088;&#1086;&#1073;&#1082;&#1080; &#1090;&#1086;&#1075;&#1086; &#1073;&#1086;&#1082;&#1091;.
-      </p>
-      <p style="text-align:center;max-width:720px;margin-left:auto;margin-right:auto;">
-        &#1054;&#1073;&#1084;&#1110;&#1085;&#1102;&#1102;&#1090;&#1100;&#1089;&#1103; &#1076;&#1077;&#1089;&#1103;&#1090;&#1100; &#1089;&#1091;&#1090;&#1085;&#1086;&#1089;&#1090;&#1077;&#1081;: <b>&#1082;&#1086;&#1085;&#1090;&#1088;&#1072;&#1075;&#1077;&#1085;&#1090;&#1080;, &#1085;&#1086;&#1084;&#1077;&#1085;&#1082;&#1083;&#1072;&#1090;&#1091;&#1088;&#1072;, &#1079;&#1072;&#1084;&#1086;&#1074;&#1083;&#1077;&#1085;&#1085;&#1103;
-        &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1110;&#1074; &#1110; &#1087;&#1086;&#1089;&#1090;&#1072;&#1095;&#1072;&#1083;&#1100;&#1085;&#1080;&#1082;&#1072;&#1084;, &#1088;&#1072;&#1093;&#1091;&#1085;&#1082;&#1080; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1072;&#1084; &#1110; &#1087;&#1086;&#1089;&#1090;&#1072;&#1095;&#1072;&#1083;&#1100;&#1085;&#1080;&#1082;&#1110;&#1074;, &#1087;&#1086;&#1074;&#1077;&#1088;&#1085;&#1077;&#1085;&#1085;&#1103;
-        &#1074; &#1086;&#1073;&#1080;&#1076;&#1074;&#1072; &#1073;&#1086;&#1082;&#1080;, &#1086;&#1087;&#1083;&#1072;&#1090;&#1080; &#1074;&#1110;&#1076; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1110;&#1074; &#1110; &#1087;&#1086;&#1089;&#1090;&#1072;&#1095;&#1072;&#1083;&#1100;&#1085;&#1080;&#1082;&#1072;&#1084;</b>. &#1050;&#1086;&#1078;&#1085;&#1091; &#1084;&#1086;&#1078;&#1085;&#1072;
-        &#1091;&#1074;&#1110;&#1084;&#1082;&#1085;&#1091;&#1090;&#1080; &#1072;&#1073;&#1086; &#1074;&#1080;&#1084;&#1082;&#1085;&#1091;&#1090;&#1080; &#1086;&#1082;&#1088;&#1077;&#1084;&#1086;.
-      </p>
-      <p style="text-align:center;max-width:720px;margin-left:auto;margin-right:auto;">
-        &#1047;&#1072;&#1087;&#1080;&#1089;&#1080; &#1079;&#1110;&#1089;&#1090;&#1072;&#1074;&#1083;&#1103;&#1102;&#1090;&#1100;&#1089;&#1103; &#1079;&#1072; &#1079;&#1086;&#1074;&#1085;&#1110;&#1096;&#1085;&#1110;&#1084; &#1110;&#1076;&#1077;&#1085;&#1090;&#1080;&#1092;&#1110;&#1082;&#1072;&#1090;&#1086;&#1088;&#1086;&#1084;, &#1072; &#1085;&#1077; &#1079;&#1072; &#1085;&#1086;&#1084;&#1077;&#1088;&#1086;&#1084; &#1091; &#1073;&#1072;&#1079;&#1110;,
-        &#1090;&#1086;&#1084;&#1091; &#1087;&#1086;&#1074;&#1090;&#1086;&#1088;&#1085;&#1077; &#1079;&#1072;&#1074;&#1072;&#1085;&#1090;&#1072;&#1078;&#1077;&#1085;&#1085;&#1103; &#1090;&#1086;&#1075;&#1086; &#1089;&#1072;&#1084;&#1086;&#1075;&#1086; &#1092;&#1072;&#1081;&#1083;&#1091; &#1085;&#1110;&#1095;&#1086;&#1075;&#1086; &#1085;&#1077; &#1079;&#1072;&#1076;&#1074;&#1086;&#1102;&#1108;. &#1047;&#1072;&#1074;&#1072;&#1085;&#1090;&#1072;&#1078;&#1077;&#1085;&#1110;
-        &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1080; &#1089;&#1090;&#1074;&#1086;&#1088;&#1102;&#1102;&#1090;&#1100;&#1089;&#1103; &#1095;&#1077;&#1088;&#1085;&#1077;&#1090;&#1082;&#1072;&#1084;&#1080;; &#1087;&#1088;&#1086;&#1074;&#1077;&#1076;&#1077;&#1085;&#1110; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1080; &#1085;&#1110;&#1082;&#1086;&#1083;&#1080; &#1085;&#1077; &#1087;&#1077;&#1088;&#1077;&#1087;&#1080;&#1089;&#1091;&#1102;&#1090;&#1100;&#1089;&#1103;.
-      </p>
-      <p style="text-align:center;">
-        <b>&#1030;&#1085;&#1090;&#1077;&#1088;&#1092;&#1077;&#1081;&#1089; &#1110; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1072;&#1094;&#1110;&#1103; &#1076;&#1086;&#1089;&#1090;&#1091;&#1087;&#1085;&#1110; &#1091;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1086;&#1102;.</b>
-      </p>
+    <div class="oe_span6">
+      <h3 class="oe_slogan" style="text-align:left;">Why files</h3>
+      <ul>
+        <li><b>No open port</b>, no middleware, no API keys &mdash; nothing to expose</li>
+        <li><b>Matched by external id</b>, not by database number, so re-importing the same file never duplicates anything</li>
+        <li><b>Imported documents are created as drafts</b>; posted documents are never overwritten</li>
+      </ul>
+    </div>
+    <div class="oe_span6">
+      <h3 class="oe_slogan" style="text-align:left;">&#1063;&#1086;&#1084;&#1091; &#1092;&#1072;&#1081;&#1083;&#1080;</h3>
+      <ul>
+        <li><b>&#1041;&#1077;&#1079; &#1074;&#1110;&#1076;&#1082;&#1088;&#1080;&#1090;&#1080;&#1093; &#1087;&#1086;&#1088;&#1090;&#1110;&#1074;</b>, &#1087;&#1088;&#1086;&#1084;&#1110;&#1078;&#1085;&#1080;&#1093; &#1089;&#1077;&#1088;&#1074;&#1110;&#1089;&#1110;&#1074; &#1110; &#1082;&#1083;&#1102;&#1095;&#1110;&#1074; API</li>
+        <li><b>&#1047;&#1110;&#1089;&#1090;&#1072;&#1074;&#1083;&#1077;&#1085;&#1085;&#1103; &#1079;&#1072; &#1079;&#1086;&#1074;&#1085;&#1110;&#1096;&#1085;&#1110;&#1084; &#1110;&#1076;&#1077;&#1085;&#1090;&#1080;&#1092;&#1110;&#1082;&#1072;&#1090;&#1086;&#1088;&#1086;&#1084;</b>, &#1072; &#1085;&#1077; &#1079;&#1072; &#1085;&#1086;&#1084;&#1077;&#1088;&#1086;&#1084; &#1091; &#1073;&#1072;&#1079;&#1110; &#8212; &#1087;&#1086;&#1074;&#1090;&#1086;&#1088;&#1085;&#1077; &#1079;&#1072;&#1074;&#1072;&#1085;&#1090;&#1072;&#1078;&#1077;&#1085;&#1085;&#1103; &#1090;&#1086;&#1075;&#1086; &#1089;&#1072;&#1084;&#1086;&#1075;&#1086; &#1092;&#1072;&#1081;&#1083;&#1091; &#1085;&#1110;&#1095;&#1086;&#1075;&#1086; &#1085;&#1077; &#1079;&#1072;&#1076;&#1074;&#1086;&#1102;&#1108;</li>
+        <li><b>&#1047;&#1072;&#1074;&#1072;&#1085;&#1090;&#1072;&#1078;&#1077;&#1085;&#1110; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1080; &#8212; &#1095;&#1077;&#1088;&#1085;&#1077;&#1090;&#1082;&#1080;</b>; &#1087;&#1088;&#1086;&#1074;&#1077;&#1076;&#1077;&#1085;&#1110; &#1085;&#1110;&#1082;&#1086;&#1083;&#1080; &#1085;&#1077; &#1087;&#1077;&#1088;&#1077;&#1087;&#1080;&#1089;&#1091;&#1102;&#1090;&#1100;&#1089;&#1103;</li>
+        <li>&#1030;&#1085;&#1090;&#1077;&#1088;&#1092;&#1077;&#1081;&#1089; &#1110; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1072;&#1094;&#1110;&#1103; &#1076;&#1086;&#1089;&#1090;&#1091;&#1087;&#1085;&#1110; &#1091;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1086;&#1102;</li>
+      </ul>
     </div>
   </div>
-</section>
 
-<section class="oe_container oe_dark">
   <div class="oe_row oe_spaced">
-    <h3 class="oe_slogan">Ten entities, each in its own file</h3>
     <div class="oe_span12">
-      <table class="table table-striped" style="max-width:760px;margin:0 auto;">
-        <thead>
-          <tr><th>Entity</th><th>Odoo model</th><th>File</th></tr>
-        </thead>
+      <h3 class="oe_slogan" style="text-align:left;">Ten entities, each in its own file / &#1044;&#1077;&#1089;&#1103;&#1090;&#1100; &#1089;&#1091;&#1090;&#1085;&#1086;&#1089;&#1090;&#1077;&#1081;, &#1082;&#1086;&#1078;&#1085;&#1072; &#1089;&#1074;&#1086;&#1111;&#1084; &#1092;&#1072;&#1081;&#1083;&#1086;&#1084;</h3>
+      <table class="table table-sm" style="width:100%;">
+        <thead><tr><th>Entity / &#1057;&#1091;&#1090;&#1085;&#1110;&#1089;&#1090;&#1100;</th><th>Odoo model</th><th>File</th></tr></thead>
         <tbody>
-          <tr><td>Contacts</td><td>res.partner</td><td>partners.json</td></tr>
-          <tr><td>Products</td><td>product.product</td><td>products.json</td></tr>
-          <tr><td>Sales Orders</td><td>sale.order</td><td>sale_orders.json</td></tr>
-          <tr><td>Purchase Orders</td><td>purchase.order</td><td>purchase_orders.json</td></tr>
-          <tr><td>Customer Invoices</td><td>account.move</td><td>customer_invoices.json</td></tr>
-          <tr><td>Vendor Bills</td><td>account.move</td><td>vendor_bills.json</td></tr>
-          <tr><td>Customer Credit Notes</td><td>account.move</td><td>customer_refunds.json</td></tr>
-          <tr><td>Vendor Credit Notes</td><td>account.move</td><td>vendor_refunds.json</td></tr>
-          <tr><td>Customer Payments</td><td>account.payment</td><td>customer_payments.json</td></tr>
-          <tr><td>Vendor Payments</td><td>account.payment</td><td>vendor_payments.json</td></tr>
+          <tr><td>Contacts / &#1050;&#1086;&#1085;&#1090;&#1088;&#1072;&#1075;&#1077;&#1085;&#1090;&#1080;</td><td><code>res.partner</code></td><td><code>partners.json</code></td></tr>
+          <tr><td>Products / &#1053;&#1086;&#1084;&#1077;&#1085;&#1082;&#1083;&#1072;&#1090;&#1091;&#1088;&#1072;</td><td><code>product.product</code></td><td><code>products.json</code></td></tr>
+          <tr><td>Sales Orders / &#1047;&#1072;&#1084;&#1086;&#1074;&#1083;&#1077;&#1085;&#1085;&#1103; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1110;&#1074;</td><td><code>sale.order</code></td><td><code>sale_orders.json</code></td></tr>
+          <tr><td>Purchase Orders / &#1047;&#1072;&#1084;&#1086;&#1074;&#1083;&#1077;&#1085;&#1085;&#1103; &#1087;&#1086;&#1089;&#1090;&#1072;&#1095;&#1072;&#1083;&#1100;&#1085;&#1080;&#1082;&#1072;&#1084;</td><td><code>purchase.order</code></td><td><code>purchase_orders.json</code></td></tr>
+          <tr><td>Customer Invoices / &#1056;&#1072;&#1093;&#1091;&#1085;&#1082;&#1080; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1072;&#1084;</td><td><code>account.move</code></td><td><code>customer_invoices.json</code></td></tr>
+          <tr><td>Vendor Bills / &#1056;&#1072;&#1093;&#1091;&#1085;&#1082;&#1080; &#1087;&#1086;&#1089;&#1090;&#1072;&#1095;&#1072;&#1083;&#1100;&#1085;&#1080;&#1082;&#1110;&#1074;</td><td><code>account.move</code></td><td><code>vendor_bills.json</code></td></tr>
+          <tr><td>Customer Credit Notes / &#1055;&#1086;&#1074;&#1077;&#1088;&#1085;&#1077;&#1085;&#1085;&#1103; &#1074;&#1110;&#1076; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1110;&#1074;</td><td><code>account.move</code></td><td><code>customer_refunds.json</code></td></tr>
+          <tr><td>Vendor Credit Notes / &#1055;&#1086;&#1074;&#1077;&#1088;&#1085;&#1077;&#1085;&#1085;&#1103; &#1087;&#1086;&#1089;&#1090;&#1072;&#1095;&#1072;&#1083;&#1100;&#1085;&#1080;&#1082;&#1072;&#1084;</td><td><code>account.move</code></td><td><code>vendor_refunds.json</code></td></tr>
+          <tr><td>Customer Payments / &#1054;&#1087;&#1083;&#1072;&#1090;&#1080; &#1074;&#1110;&#1076; &#1082;&#1083;&#1110;&#1108;&#1085;&#1090;&#1110;&#1074;</td><td><code>account.payment</code></td><td><code>customer_payments.json</code></td></tr>
+          <tr><td>Vendor Payments / &#1054;&#1087;&#1083;&#1072;&#1090;&#1080; &#1087;&#1086;&#1089;&#1090;&#1072;&#1095;&#1072;&#1083;&#1100;&#1085;&#1080;&#1082;&#1072;&#1084;</td><td><code>account.payment</code></td><td><code>vendor_payments.json</code></td></tr>
         </tbody>
       </table>
-      <p class="oe_mt32" style="text-align:center;">
-        Every entity can be switched on or off separately, so the other side
-        receives only what it actually consumes.
-      </p>
-      <img src="screenshot_settings_en.png" alt="Data Exchange settings"
-           style="width:100%;max-width:900px;display:block;margin:24px auto 0;
-                  border:1px solid #d8dde3;border-radius:6px;"/>
-      <p style="text-align:center;margin:8px 0 0;font-size:13px;color:#7d8791;">
-        The settings screen in English
-      </p>
-      <img src="screenshot_settings_uk.png" alt="Data Exchange settings in Ukrainian"
-           style="width:100%;max-width:900px;display:block;margin:24px auto 0;
-                  border:1px solid #d8dde3;border-radius:6px;"/>
-      <p style="text-align:center;margin:8px 0 0;font-size:13px;color:#7d8791;">
-        &#1058;&#1086;&#1081; &#1089;&#1072;&#1084;&#1080;&#1081; &#1077;&#1082;&#1088;&#1072;&#1085; &#1091;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1086;&#1102;
-      </p>
+      <p>Every entity can be switched on or off separately, so the other side receives
+      only what it actually consumes. &mdash; &#1050;&#1086;&#1078;&#1085;&#1091; &#1089;&#1091;&#1090;&#1085;&#1110;&#1089;&#1090;&#1100; &#1084;&#1086;&#1078;&#1085;&#1072; &#1091;&#1074;&#1110;&#1084;&#1082;&#1085;&#1091;&#1090;&#1080; &#1072;&#1073;&#1086;
+      &#1074;&#1080;&#1084;&#1082;&#1085;&#1091;&#1090;&#1080; &#1086;&#1082;&#1088;&#1077;&#1084;&#1086;, &#1090;&#1086;&#1078; &#1110;&#1085;&#1096;&#1072; &#1089;&#1080;&#1089;&#1090;&#1077;&#1084;&#1072; &#1086;&#1090;&#1088;&#1080;&#1084;&#1091;&#1108; &#1083;&#1080;&#1096;&#1077; &#1090;&#1077;, &#1097;&#1086; &#1089;&#1087;&#1088;&#1072;&#1074;&#1076;&#1110; &#1089;&#1087;&#1086;&#1078;&#1080;&#1074;&#1072;&#1108;.</p>
     </div>
   </div>
-</section>
 
-<section class="oe_container">
-  <div class="oe_row oe_spaced">
-    <h3 class="oe_slogan">VAT rate by rate, on the document and in the file</h3>
-    <div class="oe_span12">
-      <p style="max-width:760px;margin:0 auto 24px;text-align:center;">
-        The same invoice, seen from both sides. Odoo splits the total per rate;
-        the exported file carries that split as <b>tax_summary</b>, right under
-        the totals it explains, with the taxable base and the tax of every rate
-        &mdash; and a group for the lines that carry no tax at all.
-      </p>
-      <img src="screenshot_invoice_uk.png" alt="An invoice carrying two VAT rates"
-           style="width:100%;max-width:900px;display:block;margin:0 auto;
-                  border:1px solid #d8dde3;border-radius:6px;"/>
-      <p style="text-align:center;margin:8px 0 0;font-size:13px;color:#7d8791;">
-        &#1044;&#1074;&#1110; &#1089;&#1090;&#1072;&#1074;&#1082;&#1080; &#1074; &#1086;&#1076;&#1085;&#1086;&#1084;&#1091; &#1088;&#1072;&#1093;&#1091;&#1085;&#1082;&#1091;: &#1055;&#1044;&#1042; 20% &#1110; &#1055;&#1044;&#1042; 7% &#1086;&#1082;&#1088;&#1077;&#1084;&#1080;&#1084;&#1080; &#1088;&#1103;&#1076;&#1082;&#1072;&#1084;&#1080;
-      </p>
-      <img src="screenshot_invoice_en.png" alt="The same invoice in English"
-           style="width:100%;max-width:900px;display:block;margin:24px auto 0;
-                  border:1px solid #d8dde3;border-radius:6px;"/>
-      <p style="text-align:center;margin:8px 0 0;font-size:13px;color:#7d8791;">
-        The same invoice in English
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="oe_container">
-  <div class="oe_row oe_spaced">
-    <h3 class="oe_slogan">Safe by design</h3>
-    <div class="oe_span6">
-      <h4 class="oe_slogan" style="margin-bottom:8px;">Nothing gets duplicated</h4>
-      <p class="oe_mt16">
-        Records are matched by an external reference, never by database id.
-        Importing the same file twice creates nothing the second time, and a
-        file exported from one database loads correctly into another.
-      </p>
-    </div>
-    <div class="oe_span6">
-      <h4 class="oe_slogan" style="margin-bottom:8px;">Your accounting stays yours</h4>
-      <p class="oe_mt16">
-        Imported documents are created as drafts. Confirming orders and posting
-        invoices is an explicit setting, and it goes through Odoo's own business
-        methods. A posted document is never rewritten by a later import.
-      </p>
-    </div>
-  </div>
-  <div class="oe_row oe_spaced">
-    <div class="oe_span6">
-      <h4 class="oe_slogan" style="margin-bottom:8px;">One bad record cannot spoil the run</h4>
-      <p class="oe_mt16">
-        Each record is imported inside its own savepoint. A document your
-        database rejects is counted and reported; the rest of the file still
-        goes through.
-      </p>
-    </div>
-    <div class="oe_span6">
-      <h4 class="oe_slogan" style="margin-bottom:8px;">You always know what happened</h4>
-      <p class="oe_mt16">
-        Every run is written to an exchange log with created, updated, skipped
-        and failed counters, the file it touched, and the reason when something
-        did not go through.
-      </p>
-    </div>
-  </div>
-  <div class="oe_row oe_spaced">
-    <div class="oe_span6">
-      <h4 class="oe_slogan" style="margin-bottom:8px;">VAT rate by rate</h4>
-      <p class="oe_mt16">
-        Orders, invoices, bills and credit notes carry the taxable base and the
-        tax amount of every rate separately, not just one total, along with the
-        taxes of each line. A total is enough to reconcile a document; a tax
-        invoice needs the split.
-      </p>
-    </div>
-    <div class="oe_span6">
-      <h4 class="oe_slogan" style="margin-bottom:8px;">The figures are Odoo's own</h4>
-      <p class="oe_mt16">
-        The breakdown adds up the amounts Odoo already computed rather than
-        recomputing them, so it stays in the document currency and matches the
-        untaxed and tax totals to the cent.
-      </p>
-    </div>
-  </div>
-  <div class="oe_row oe_spaced">
-    <div class="oe_span6">
-      <h4 class="oe_slogan" style="margin-bottom:8px;">It tells the author when it breaks</h4>
-      <p class="oe_mt16">
-        Optional, and off until you switch it on. The exchange runs unattended,
-        so a failure is otherwise noticed by nobody until someone wonders why
-        the files stopped arriving. Unexpected failures queue themselves and are
-        sent by a scheduled action, never at the moment they happen.
-      </p>
-    </div>
-    <div class="oe_span6">
-      <h4 class="oe_slogan" style="margin-bottom:8px;">A report cannot carry your data</h4>
-      <p class="oe_mt16">
-        The text of the error is never sent &mdash; only the exception class and
-        the lines of code it passed through. Nothing identifying can travel
-        through a field that only ever holds <b>KeyError</b>. Every queued report
-        shows the request body itself, so you can read it before it goes.
-      </p>
-    </div>
-  </div>
   <div class="oe_row oe_spaced">
     <div class="oe_span12">
-      <img src="screenshot_log_en.png" alt="Exchange log"
-           style="width:100%;max-width:900px;display:block;margin:8px auto 0;
-                  border:1px solid #d8dde3;border-radius:6px;"/>
-      <p class="oe_mt16" style="text-align:center;">
-        Here the same database was imported back into itself: every document was
-        read and then skipped, because posted documents are never rewritten.
-        The counters account for all of it.
-      </p>
-      <img src="screenshot_log_uk.png" alt="Exchange log in Ukrainian"
-           style="width:100%;max-width:900px;display:block;margin:24px auto 0;
-                  border:1px solid #d8dde3;border-radius:6px;"/>
-      <p style="text-align:center;margin:8px 0 0;font-size:13px;color:#7d8791;">
-        &#1046;&#1091;&#1088;&#1085;&#1072;&#1083; &#1086;&#1073;&#1084;&#1110;&#1085;&#1091; &#1091;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1086;&#1102;
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="oe_container oe_dark">
-  <div class="oe_row oe_spaced">
-    <h3 class="oe_slogan">What a file looks like</h3>
-    <div class="oe_span12">
-<img src="screenshot_json_en.png" alt="An exported customer invoice file"
-           style="width:100%;max-width:820px;display:block;margin:0 auto;
-                  border:1px solid #d8dde3;border-radius:6px;"/>
-      <p class="oe_mt32" style="text-align:center;">
-        The envelope says which entity the file holds and where it came from.
-        Each record carries its totals, then <b>tax_summary</b> &mdash; the base,
-        the tax and the rate of every rate in the document.
-      </p>
-      <img src="screenshot_json_lines_en.png" alt="Document lines with their taxes"
-           style="width:100%;max-width:820px;display:block;margin:32px auto 0;
-                  border:1px solid #d8dde3;border-radius:6px;"/>
-      <p class="oe_mt32" style="text-align:center;">
-        Further down, every line lists the taxes applied to it, and an incoming
-        line gets them applied back. Reference data such as currencies, units of
-        measure, accounts and taxes travels as a description &mdash; name, code
-        and XML id &mdash; and is resolved against the target database. That is
-        what lets the same file be read by a system that knows nothing about
-        Odoo's ids.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="oe_container">
-  <div class="oe_row oe_spaced">
-    <h3 class="oe_slogan">Setting it up takes a minute</h3>
-    <div class="oe_span12">
-      <ol style="max-width:640px;margin:0 auto;text-align:left;">
-        <li class="oe_mt16"><b>Settings &rarr; Data Exchange</b>: point the exchange directory at a folder the Odoo server can read and write.</li>
-        <li class="oe_mt16">Pick the entities that take part, and optionally the date from which documents are exchanged.</li>
-        <li class="oe_mt16">Enable the two scheduled actions &mdash; both are off after installation &mdash; or press <b>Export Now</b> / <b>Import Now</b>.</li>
-        <li class="oe_mt16">Watch the results under <b>Data Exchange &rarr; Exchange Log</b>.</li>
-      </ol>
-      <img src="screenshot_entities_en.png" alt="Entity switches and the manual run"
-           style="width:100%;max-width:900px;display:block;margin:28px auto 0;
-                  border:1px solid #d8dde3;border-radius:6px;"/>
-      <p style="text-align:center;margin:8px 0 0;font-size:13px;color:#7d8791;">
-        The entity switches, and the two buttons that run an exchange by hand
-      </p>
-      <img src="screenshot_entities_uk.png" alt="Entity switches in Ukrainian"
-           style="width:100%;max-width:900px;display:block;margin:24px auto 0;
-                  border:1px solid #d8dde3;border-radius:6px;"/>
-      <p style="text-align:center;margin:8px 0 0;font-size:13px;color:#7d8791;">
-        &#1055;&#1077;&#1088;&#1077;&#1084;&#1080;&#1082;&#1072;&#1095;&#1110; &#1089;&#1091;&#1090;&#1085;&#1086;&#1089;&#1090;&#1077;&#1081; &#1110; &#1088;&#1091;&#1095;&#1085;&#1080;&#1081; &#1079;&#1072;&#1087;&#1091;&#1089;&#1082; &#1091;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1086;&#1102;
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="oe_container">
-  <div class="oe_row oe_spaced">
-    <h3 class="oe_slogan">Changelog / &#1065;&#1086; &#1085;&#1086;&#1074;&#1086;&#1075;&#1086;</h3>
-    <div class="oe_span12">
-      <div style="max-width:760px;margin:0 auto;text-align:left;">
-
-        <div style="background:#f6f9fd;border-left:4px solid #00A09D;border-radius:6px;padding:14px 16px;margin-bottom:12px;">
-          <p style="margin:0 0 6px;font-size:15px;"><b>2.2.2</b> &mdash; 2026-08-19</p>
-          <p style="margin:0;font-size:14px;line-height:1.7;">
-            The unique constraint that keeps one bug from being queued twice was
-            never created on Odoo 19, where the older way of declaring it is no
-            longer applied. Deduplication itself was unaffected &mdash; a report
-            is looked up before being queued &mdash; so this closes a race rather
-            than a visible fault.<br/>
-            <i>&#1042;&#1080;&#1087;&#1088;&#1072;&#1074;&#1083;&#1077;&#1085;&#1086; &#1086;&#1073;&#1084;&#1077;&#1078;&#1077;&#1085;&#1085;&#1103; &#1091;&#1085;&#1110;&#1082;&#1072;&#1083;&#1100;&#1085;&#1086;&#1089;&#1090;&#1110; &#1079;&#1074;&#1110;&#1090;&#1110;&#1074; &#1087;&#1088;&#1086; &#1087;&#1086;&#1084;&#1080;&#1083;&#1082;&#1080; &#1074; Odoo 19.</i>
-          </p>
-        </div>
-
-        <div style="background:#f6f9fd;border-left:4px solid #cfd9e8;border-radius:6px;padding:14px 16px;margin-bottom:12px;">
-          <p style="margin:0 0 6px;font-size:15px;"><b>2.2.0</b> &mdash; 2026-08-19</p>
-          <p style="margin:0;font-size:14px;line-height:1.7;">
-            <b>Automatic error reports</b>, off unless you switch them on. The
-            exchange runs unattended, so a failure is usually noticed by nobody
-            until someone wonders why the files stopped arriving. The text of the
-            error is <b>never sent</b> &mdash; only the exception class and the
-            lines of code it passed through, so nothing identifying can travel.
-            Every queued report shows the request body itself before it is sent.<br/>
-            <i>&#1040;&#1074;&#1090;&#1086;&#1084;&#1072;&#1090;&#1080;&#1095;&#1085;&#1110; &#1079;&#1074;&#1110;&#1090;&#1080; &#1087;&#1088;&#1086; &#1087;&#1086;&#1084;&#1080;&#1083;&#1082;&#1080;, &#1090;&#1080;&#1087;&#1086;&#1074;&#1086; &#1074;&#1080;&#1084;&#1082;&#1085;&#1077;&#1085;&#1110;. &#1058;&#1077;&#1082;&#1089;&#1090; &#1087;&#1086;&#1084;&#1080;&#1083;&#1082;&#1080; &#1085;&#1077; &#1087;&#1077;&#1088;&#1077;&#1076;&#1072;&#1108;&#1090;&#1100;&#1089;&#1103; &#1085;&#1110;&#1082;&#1086;&#1083;&#1080;.</i>
-          </p>
-        </div>
-
-        <div style="background:#f6f9fd;border-left:4px solid #cfd9e8;border-radius:6px;padding:14px 16px;margin-bottom:12px;">
-          <p style="margin:0 0 6px;font-size:15px;"><b>2.1.1</b> &mdash; 2026-08-19</p>
-          <p style="margin:0;font-size:14px;line-height:1.7;">
-            Screenshots of the real screens, in <b>both languages</b>: the settings,
-            the entity switches, the exchange log, an invoice carrying two VAT rates,
-            and the exported file with its <b>tax_summary</b> block. The invoice and
-            the file are shown side by side &mdash; the same split, once as Odoo
-            draws it and once as it travels.<br/>
-            <i>&#1057;&#1082;&#1088;&#1110;&#1085;&#1096;&#1086;&#1090;&#1080; &#1076;&#1074;&#1086;&#1084;&#1072; &#1084;&#1086;&#1074;&#1072;&#1084;&#1080;, &#1079;&#1086;&#1082;&#1088;&#1077;&#1084;&#1072; &#1088;&#1086;&#1079;&#1082;&#1083;&#1072;&#1076;&#1082;&#1072; &#1055;&#1044;&#1042; &#1085;&#1072; &#1088;&#1072;&#1093;&#1091;&#1085;&#1082;&#1091; &#1090;&#1072; &#1074; &#1092;&#1072;&#1081;&#1083;&#1110;.</i>
-          </p>
-        </div>
-
-        <div style="background:#f6f9fd;border-left:4px solid #cfd9e8;border-radius:6px;padding:14px 16px;margin-bottom:12px;">
-          <p style="margin:0 0 6px;font-size:15px;"><b>2.1.0</b> &mdash; 2026-08-18</p>
-          <p style="margin:0;font-size:14px;line-height:1.7;">
-            <b>VAT is now exchanged rate by rate</b>, not as a single figure. Every
-            order, invoice, bill and credit note carries the taxable base, the tax
-            amount and the rate for each of its rates, plus a group for the lines
-            that carry no tax. Document lines list their own taxes, and an incoming
-            line gets them applied back &mdash; matched by external id, by name, or
-            by the rate itself, so a tax renamed on the other side is still
-            recognised. A single total is enough to reconcile a document; a tax
-            invoice needs the split.<br/>
-            <i>&#1055;&#1044;&#1042; &#1090;&#1077;&#1087;&#1077;&#1088; &#1087;&#1077;&#1088;&#1077;&#1076;&#1072;&#1108;&#1090;&#1100;&#1089;&#1103; &#1079;&#1072; &#1089;&#1090;&#1072;&#1074;&#1082;&#1072;&#1084;&#1080;, &#1072; &#1085;&#1077; &#1086;&#1076;&#1085;&#1110;&#1108;&#1102; &#1089;&#1091;&#1084;&#1086;&#1102;: &#1076;&#1083;&#1103; &#1082;&#1086;&#1078;&#1085;&#1086;&#1111; &#1089;&#1090;&#1072;&#1074;&#1082;&#1080; &mdash; &#1073;&#1072;&#1079;&#1072; &#1086;&#1087;&#1086;&#1076;&#1072;&#1090;&#1082;&#1091;&#1074;&#1072;&#1085;&#1085;&#1103;, &#1089;&#1091;&#1084;&#1072; &#1087;&#1086;&#1076;&#1072;&#1090;&#1082;&#1091; &#1110; &#1089;&#1072;&#1084;&#1072; &#1089;&#1090;&#1072;&#1074;&#1082;&#1072;. &#1057;&#1072;&#1084;&#1077; &#1094;&#1100;&#1086;&#1075;&#1086; &#1073;&#1088;&#1072;&#1082;&#1091;&#1074;&#1072;&#1083;&#1086; &#1076;&#1083;&#1103; &#1087;&#1086;&#1076;&#1072;&#1090;&#1082;&#1086;&#1074;&#1086;&#1111; &#1085;&#1072;&#1082;&#1083;&#1072;&#1076;&#1085;&#1086;&#1111;.</i>
-          </p>
-        </div>
-
-        <div style="background:#f6f9fd;border-left:4px solid #cfd9e8;border-radius:6px;padding:14px 16px;margin-bottom:12px;">
-          <p style="margin:0 0 6px;font-size:15px;"><b>2.0.1</b> &mdash; 2026-08-08</p>
-          <p style="margin:0;font-size:14px;line-height:1.7;">
-            Ukrainian interface (<b>uk.po</b>), a Ukrainian section on this page, and a
-            new icon. The exchange log now counts every record the file held, and shows
-            the <b>Skipped</b> column, so a run that skipped everything no longer reads
-            as a run that did nothing.<br/>
-            <i>&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1080;&#1081; &#1110;&#1085;&#1090;&#1077;&#1088;&#1092;&#1077;&#1081;&#1089;, &#1085;&#1086;&#1074;&#1072; &#1110;&#1082;&#1086;&#1085;&#1082;&#1072;, &#1074;&#1080;&#1087;&#1088;&#1072;&#1074;&#1083;&#1077;&#1085;&#1110; &#1083;&#1110;&#1095;&#1080;&#1083;&#1100;&#1085;&#1080;&#1082;&#1080; &#1074; &#1078;&#1091;&#1088;&#1085;&#1072;&#1083;&#1110; &#1086;&#1073;&#1084;&#1110;&#1085;&#1091;.</i>
-          </p>
-        </div>
-
-        <div style="background:#f6f9fd;border-left:4px solid #cfd9e8;border-radius:6px;padding:14px 16px;margin-bottom:12px;">
-          <p style="margin:0 0 6px;font-size:15px;"><b>2.0.0</b> &mdash; 2026-08-08</p>
-          <p style="margin:0;font-size:14px;line-height:1.7;">
-            Rewritten from an exporter of sales orders into a general document exchange
-            engine: <b>ten entities</b> instead of one, matching by external reference so
-            repeated imports create nothing twice, an exchange log, per-entity switches,
-            and imported documents created as drafts. Available for Odoo 16.0 &ndash; 19.0.<br/>
-            <i>&#1055;&#1077;&#1088;&#1077;&#1087;&#1080;&#1089;&#1072;&#1085;&#1086; &#1079; &#1077;&#1082;&#1089;&#1087;&#1086;&#1088;&#1090;&#1077;&#1088;&#1072; &#1079;&#1072;&#1084;&#1086;&#1074;&#1083;&#1077;&#1085;&#1100; &#1085;&#1072; &#1087;&#1086;&#1074;&#1085;&#1086;&#1094;&#1110;&#1085;&#1085;&#1080;&#1081; &#1086;&#1073;&#1084;&#1110;&#1085; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;&#1072;&#1084;&#1080;: &#1076;&#1077;&#1089;&#1103;&#1090;&#1100; &#1089;&#1091;&#1090;&#1085;&#1086;&#1089;&#1090;&#1077;&#1081; &#1079;&#1072;&#1084;&#1110;&#1089;&#1090;&#1100; &#1086;&#1076;&#1085;&#1110;&#1108;&#1111;.</i>
-          </p>
-        </div>
-
-        <div style="background:#f6f9fd;border-left:4px solid #cfd9e8;border-radius:6px;padding:14px 16px;">
-          <p style="margin:0 0 6px;font-size:15px;"><b>1.x</b> &mdash; 2023&ndash;2024</p>
-          <p style="margin:0;font-size:14px;line-height:1.7;">
-            Exported confirmed sales orders to a single <b>order_list.json</b> and read
-            them back. Published for Odoo 14.0, 15.0 and 16.0 under the name
-            &laquo;ATM&raquo;.
-          </p>
-        </div>
-
+      <h3 class="oe_slogan" style="text-align:left;">The settings screen / &#1045;&#1082;&#1088;&#1072;&#1085; &#1085;&#1072;&#1083;&#1072;&#1096;&#1090;&#1091;&#1074;&#1072;&#1085;&#1100;</h3>
+      <div class="oe_row">
+        <div class="oe_span6"><img src="screenshot_settings_en.png" style="max-width:100%;border-radius:8px;" alt="Settings"/></div>
+        <div class="oe_span6"><img src="screenshot_settings_uk.png" style="max-width:100%;border-radius:8px;" alt="&#1053;&#1072;&#1083;&#1072;&#1096;&#1090;&#1091;&#1074;&#1072;&#1085;&#1085;&#1103;"/></div>
+      </div>
+      <div class="oe_row">
+        <div class="oe_span6"><img src="screenshot_entities_en.png" style="max-width:100%;border-radius:8px;" alt="Entities"/></div>
+        <div class="oe_span6"><img src="screenshot_log_en.png" style="max-width:100%;border-radius:8px;" alt="Exchange log"/></div>
       </div>
     </div>
   </div>
-</section>
 
-<section class="oe_container">
   <div class="oe_row oe_spaced">
     <div class="oe_span12">
-      <h3 class="oe_slogan">Also by this author</h3>
-      <p class="oe_mt16" style="text-align:center;max-width:680px;margin:0 auto;">
-        <b>&#1050;&#1086;&#1085;&#1090;&#1088;&#1072;&#1075;&#1077;&#1085;&#1090;&#1080; &#1079; &#1028;&#1044;&#1056;</b> &#8212; type an
-        <b>&#1028;&#1044;&#1056;&#1055;&#1054;&#1059;</b> code and the partner record fills itself: legal name,
-        address, phone, e-mail, &#1050;&#1042;&#1045;&#1044;. Handy right after an import from
-        1&#1057;/BAS, when the counterparties are in but empty &#8212; hundreds can be filled
-        in one pass. Free.
+      <h3 class="oe_slogan" style="text-align:left;">VAT / &#1055;&#1044;&#1042;</h3>
+      <p>The same invoice, seen from both sides: Odoo splits the total per rate, and the exported file carries that split. &mdash; &#1058;&#1086;&#1081; &#1089;&#1072;&#1084;&#1080;&#1081; &#1088;&#1072;&#1093;&#1091;&#1085;&#1086;&#1082; &#1079; &#1086;&#1073;&#1086;&#1093; &#1073;&#1086;&#1082;&#1110;&#1074;: Odoo &#1088;&#1086;&#1079;&#1082;&#1083;&#1072;&#1076;&#1072;&#1108; &#1089;&#1091;&#1084;&#1091; &#1079;&#1072; &#1089;&#1090;&#1072;&#1074;&#1082;&#1072;&#1084;&#1080;, &#1110; &#1092;&#1072;&#1081;&#1083; &#1085;&#1077;&#1089;&#1077; &#1094;&#1102; &#1088;&#1086;&#1079;&#1082;&#1083;&#1072;&#1076;&#1082;&#1091;.</p>
+    </div>
+  </div>
+
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12">
+      <h3 class="oe_slogan" style="text-align:left;">What's new / &#1065;&#1086; &#1085;&#1086;&#1074;&#1086;&#1075;&#1086;</h3>
+      <div style="border:2px solid #ffd367;border-radius:8px;padding:12px 16px;margin-bottom:10px;">
+        <b>19.0.2.2</b> &mdash; September 2026<br/>
+        Store description rebuilt on the shared layout of the line. &mdash; &#1054;&#1087;&#1080;&#1089; &#1087;&#1077;&#1088;&#1077;&#1073;&#1091;&#1076;&#1086;&#1074;&#1072;&#1085;&#1086; &#1085;&#1072; &#1089;&#1087;&#1110;&#1083;&#1100;&#1085;&#1080;&#1081; &#1082;&#1110;&#1089;&#1090;&#1103;&#1082; &#1083;&#1110;&#1085;&#1110;&#1081;&#1082;&#1080;.
+      </div>
+
+      <div style="border:1px solid #cfd9e8;border-radius:8px;padding:12px 16px;margin-bottom:10px;">
+        <b>19.0.2.0</b> &mdash; August 2026<br/>
+        Ten entities with per-entity switches, external-id matching, drafts on import, VAT split per rate, and the exchange log. &mdash; &#1044;&#1077;&#1089;&#1103;&#1090;&#1100; &#1089;&#1091;&#1090;&#1085;&#1086;&#1089;&#1090;&#1077;&#1081; &#1110;&#1079; &#1087;&#1077;&#1088;&#1077;&#1084;&#1080;&#1082;&#1072;&#1095;&#1072;&#1084;&#1080;, &#1079;&#1110;&#1089;&#1090;&#1072;&#1074;&#1083;&#1077;&#1085;&#1085;&#1103; &#1079;&#1072; &#1079;&#1086;&#1074;&#1085;&#1110;&#1096;&#1085;&#1110;&#1084; &#1082;&#1083;&#1102;&#1095;&#1077;&#1084;, &#1095;&#1077;&#1088;&#1085;&#1077;&#1090;&#1082;&#1080; &#1087;&#1088;&#1080; &#1110;&#1084;&#1087;&#1086;&#1088;&#1090;&#1110;, &#1088;&#1086;&#1079;&#1082;&#1083;&#1072;&#1076;&#1082;&#1072; &#1055;&#1044;&#1042; &#1079;&#1072; &#1089;&#1090;&#1072;&#1074;&#1082;&#1072;&#1084;&#1080; &#1110; &#1078;&#1091;&#1088;&#1085;&#1072;&#1083; &#1086;&#1073;&#1084;&#1110;&#1085;&#1091;.
+      </div>
+
+    </div>
+  </div>
+
+  <div class="oe_row oe_spaced">
+    <div class="oe_span12">
+      <p style="text-align:center;color:#999;font-size:12px;">
+        data exchange &middot; JSON &middot; file sync &middot; accounting integration &middot; 1C &middot; BAS &middot; import &middot; export &middot; &#1086;&#1073;&#1084;&#1110;&#1085; &#1076;&#1072;&#1085;&#1080;&#1084;&#1080; &middot; &#1110;&#1085;&#1090;&#1077;&#1075;&#1088;&#1072;&#1094;&#1110;&#1103; &#1079; 1&#1057; &middot; Odoo 19
       </p>
     </div>
   </div>
-</section>
 
-<section class="oe_container oe_dark">
-  <div class="oe_row oe_spaced">
-    <div class="oe_span12">
-      <h3 class="oe_slogan">Upgrading from an earlier version</h3>
-      <p class="oe_mt16" style="text-align:center;max-width:640px;margin:0 auto;">
-        Scheduled actions created by earlier versions keep working: the old
-        model still answers and hands the work to the new engine. It only covers
-        sales orders, so switch to the new scheduled actions to exchange
-        everything else.
-      </p>
-    </div>
-  </div>
 </section>

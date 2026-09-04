@@ -1,0 +1,31 @@
+# Changelog — Data Exchange (`atm`)
+
+JSON file exchange between Odoo and another accounting system. Newest on top.
+Обмін файлами між Odoo та іншою обліковою системою. Найновіше — зверху.
+
+## 19.0.2.2.3 — 2026-09-04
+
+### Changed
+
+- **Store description rebuilt on the shared layout** used across the whole line
+  (Odoo's own `oe_container` / `oe_row` / `oe_span6` classes) instead of hand-rolled
+  inline styles — in the catalogue the modules looked like products by different
+  authors. Generated from `3A/tools/store/specs/atm.py`, so the layout cannot drift.
+- Changelog on the page grouped into meaningful entries; the version comes straight
+  from `__manifest__.py`, so page and manifest cannot disagree (invariant 93).
+
+### Added
+
+- **This CHANGELOG.md.** The module never had one, although the line requires a
+  per-module changelog — the store page carried the history, the repository did not.
+
+
+## 19.0.2.2.0 — 2026-08
+
+- Ten entities with per-entity switches, external-id matching (re-import never duplicates), drafts on import, VAT split per rate, exchange log.
+  Десять сутностей із перемикачами, зіставлення за зовнішнім ключем, чернетки при імпорті, розкладка ПДВ за ставками, журнал обміну.
+
+## 19.0.2.0.0 — 2026-07
+
+- Ukrainian interface and documentation.
+  Український інтерфейс і документація.
