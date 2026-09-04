@@ -3,6 +3,16 @@
 JSON file exchange between Odoo and another accounting system. Newest on top.
 Обмін файлами між Odoo та іншою обліковою системою. Найновіше — зверху.
 
+## 19.0.2.2.4 — 2026-09-04
+
+### Fixed
+
+- 🔴 **The support address is back on the store page.** Moving the
+  descriptions onto the shared generator dropped it from EVERY page in one
+  command: pages still built, nothing failed, and a buyer simply had nowhere
+  to write. The support block is now emitted by the generator itself, from
+  the manifest's `support` key, and the build fails if it is missing.
+
 ## 19.0.2.2.3 — 2026-09-04
 
 ### Changed
