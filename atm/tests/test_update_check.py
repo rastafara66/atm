@@ -255,10 +255,19 @@ class TestUpdateBannerIsVisible(TransactionCase):
         Every other test here reads fields directly, so a typo in the view --
         or a field the arch names and the model does not -- would pass them all
         and fail only in the browser.
+
+        The assembled view, not our own arch: an xpath that lands nowhere still
+        leaves our file exactly as written. `get_view` is the 17+ spelling and
+        `fields_view_get` the older one -- this module ships on four series
+        from one source, so the test asks rather than assumes.
         """
-        view = self.env['res.config.settings'].get_view(view_type='form')
-        self.assertIn('atm_update_summary', view['arch'])
-        self.assertIn('action_atm_check_update', view['arch'])
+        settings = self.env['res.config.settings']
+        if hasattr(settings, 'get_view'):
+            arch = settings.get_view(view_type='form')['arch']
+        else:  # Odoo 16 and earlier
+            arch = settings.fields_view_get(view_type='form')['arch']
+        self.assertIn('atm_update_summary', arch)
+        self.assertIn('action_atm_check_update', arch)
 
 
 @tagged('post_install', '-at_install')
