@@ -37,5 +37,20 @@
             <field name="interval_type">hours</field>
             <field name="active" eval="True"/>
         </record>
+
+        <!-- Once a day, never during a page load. The request carries no
+             identifier at all (see atm_update.py), so unlike error reports
+             there is nothing here to ask permission for, and a check nobody
+             knows to switch on would never run. -->
+        <record id="ir_cron_atm_update_check" model="ir.cron">
+            <field name="name">Data Exchange: check for a newer version</field>
+            <field name="model_id" ref="model_atm_update"/>
+            <field name="state">code</field>
+            <field name="code">model._cron_check()</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="active" eval="True"/>
+        </record>
     </data>
 </odoo>
