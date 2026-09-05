@@ -75,6 +75,37 @@
                             <field name="atm_report_url"/>
                         </setting>
                     </block>
+                    <block title="Updates" name="atm_update_setting_container">
+                        <setting id="atm_update_setting" string="Check for New Versions"
+                                 help="Once a day this asks which version is current. The request carries no identifier: no database name, no install id, not even the version you are running -- it is the same bare question any visitor to the store page asks. Nothing is ever downloaded or installed automatically.">
+                            <field name="atm_update_check" widget="radio"/>
+                            <!-- Поле, вжите в умові видимості, мусить бути
+                                 присутнє у вигляді. -->
+                            <field name="atm_update_available" invisible="1"/>
+                            <!-- One field, one sentence, built in Python. Text
+                                 interleaved with fields looks the same on
+                                 screen but reaches the translator as scraps
+                                 ("Installed", ", latest known") that cannot be
+                                 turned into a Ukrainian sentence at all. -->
+                            <div class="alert alert-warning mt8" role="status"
+                                 attrs="{'invisible': [('atm_update_available', '=', False)]}">
+                                <field name="atm_update_summary" readonly="1" nolabel="1"/>
+                            </div>
+                            <div class="mt8 text-muted"
+                                 attrs="{'invisible': [('atm_update_available', '=', True)]}">
+                                <field name="atm_update_summary" readonly="1" nolabel="1"/>
+                            </div>
+                            <div class="mt8">
+                                <button name="action_atm_check_update" type="object"
+                                        string="Check now" class="btn-link ps-0"/>
+                            </div>
+                        </setting>
+                        <setting id="atm_update_url_setting" string="Version Endpoint"
+                                 help="Where the current version number is read from. Point it elsewhere if your policy forbids outbound calls; leave it empty to switch the check off entirely."
+                                 attrs="{'invisible': [('atm_update_check', '!=', 'on')]}">
+                            <field name="atm_update_url"/>
+                        </setting>
+                    </block>
                     <block title="Run Now" name="atm_actions_setting_container">
                         <setting id="atm_actions_setting" string="Manual Run"
                                  help="Runs the exchange immediately for every enabled entity, without waiting for the scheduled action.">

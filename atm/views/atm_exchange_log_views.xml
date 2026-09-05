@@ -25,6 +25,19 @@
         <field name="arch" type="xml">
             <form string="Exchange Log" create="false" edit="false">
                 <sheet>
+                    <!-- A newer version is worth saying here, on the screen
+                         somebody opens when the exchange needs attention.
+                         Settings would only show it to whoever already went
+                         looking for updates. -->
+                    <div class="alert alert-info" role="status"
+                         attrs="{'invisible': [('update_message', '=', False)]}">
+                        <!-- Not <a t-att-href>: Odoo 19 rejects owl directives
+                             in arch ("Forbidden owl directive"). The link is a
+                             field with widget="url" instead. -->
+                        <field name="update_message" readonly="1" nolabel="1"/>
+                        <field name="update_url" widget="url" readonly="1"
+                               nolabel="1" attrs="{'invisible': [('update_url', '=', False)]}"/>
+                    </div>
                     <group>
                         <group>
                             <field name="direction"/>

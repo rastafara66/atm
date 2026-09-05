@@ -690,3 +690,303 @@ msgstr "Поки що нічого не зламалося"
 #: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
 msgid "This is the request itself, not a summary of it.\n                                The text of the error is never included: only the\n                                class of the exception and the lines of code it\n                                passed through. Nothing else leaves this database."
 msgstr "Це сам запит, а не переказ його змісту. Текст помилки не передається ніколи — лише клас винятку і рядки коду, через які він пройшов. Більше нічого цю базу не полишає."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_update.py:0
+msgid "%(url)s knows of no %(series)s version of these modules."
+msgstr "%(url)s не знає версії %(series)s для цих модулів."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_update.py:0
+msgid "%s answered with something that is not a version list."
+msgstr "%s відповів не переліком версій."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_update.py:0
+#: code:addons/atm/models/res_config_settings.py:0
+msgid ""
+"A newer version of %(module)s is available: %(latest)s (you have "
+"%(installed)s)."
+msgstr "Вийшла новіша версія %(module)s: %(latest)s (у вас %(installed)s)."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Check for New Versions"
+msgstr "Перевірка нових версій"
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__res_config_settings__atm_update_check__on
+msgid "Check for new versions once a day"
+msgstr "Раз на добу перевіряти нові версії"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Check now"
+msgstr "Перевірити зараз"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__company_id
+msgid "Company"
+msgstr "Компанія"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_update.py:0
+msgid "Could not reach %(url)s: %(error)s"
+msgstr "Не вдалося звернутись до %(url)s: %(error)s"
+
+#. module: atm
+#: model:ir.model,name:atm.model_atm_update
+msgid "Data Exchange Update Check"
+msgstr "Обмін даними: перевірка версії"
+
+#. module: atm
+#: model:ir.actions.server,name:atm.ir_cron_atm_update_check_ir_actions_server
+msgid "Data Exchange: check for a newer version"
+msgstr "Обмін даними: перевірити, чи вийшла новіша версія"
+
+#. module: atm
+#: model:ir.actions.server,name:atm.ir_cron_atm_send_error_reports_ir_actions_server
+msgid "Data Exchange: send error reports"
+msgstr "Обмін даними: надіслати звіти про помилки"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "Error Report"
+msgstr "Звіт про помилку"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__payload
+msgid "Exactly what leaves this database. Nothing else is transmitted."
+msgstr "Рівно те, що залишає цю базу. Більше нічого не передається."
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__http_status
+msgid "Http Status"
+msgstr "HTTP-статус"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__fingerprint
+msgid "Identifies the same bug across occurrences, so it is reported once."
+msgstr "Позначає ту саму помилку в різних випадках, щоб звіт пішов один раз."
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_version_installed
+msgid "Installed Version"
+msgstr "Встановлена версія"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_version_checked
+msgid "Last Checked"
+msgstr "Востаннє перевірено"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_version_latest
+msgid "Latest Version"
+msgstr "Найновіша версія"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__module
+msgid "Module"
+msgstr "Модуль"
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__res_config_settings__atm_update_check__off
+msgid "Never check"
+msgstr "Не перевіряти"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_update.py:0
+msgid "No address is configured for the version check."
+msgstr "Адресу перевірки версій не задано."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_update_check
+msgid ""
+"Odoo never asks the store whether a third-party module has been updated, so "
+"without this a fixed bug would stay in place until you happened to revisit "
+"the store page."
+msgstr "Odoo ніколи не питає магазин, чи оновився сторонній модуль. Без цієї перевірки виправлена помилка лишалась би у вас доти, доки ви випадково не зайшли б на сторінку додатка."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Off unless you turn it on. Unexpected failures are reported as the exception"
+" class and the lines of code it passed through -- never the text of the "
+"error, which is where names, document numbers and amounts live."
+msgstr "Вимкнено, доки не ввімкнете. Несподівані збої повідомляються як клас винятку і рядки коду, через які він пройшов, — ніколи як текст помилки, бо саме там живуть імена, номери документів і суми."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_error_reports
+msgid ""
+"Off unless you turn it on. When on, unexpected failures are queued as the "
+"exception class and the line of code that failed -- never the error text, "
+"which is where names and amounts live. Every queued report can be read in "
+"full before it is sent."
+msgstr "Вимкнено, доки не ввімкнете. Коли ввімкнено, несподівані збої стають у чергу як клас винятку і рядок коду, що впав, — ніколи як текст помилки, бо саме там живуть імена й суми. Кожен звіт із черги можна прочитати повністю до відправлення."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Once a day this asks which version is current. The request carries no "
+"identifier: no database name, no install id, not even the version you are "
+"running -- it is the same bare question any visitor to the store page asks. "
+"Nothing is ever downloaded or installed automatically."
+msgstr "Раз на добу питає, яка версія поточна. Запит не несе жодного ідентифікатора: ні назви бази, ні коду інсталяції, ні навіть вашої версії — це те саме запитання, яке ставить будь-хто, хто відкрив сторінку додатка. Нічого не завантажується і не встановлюється автоматично."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__comment
+msgid ""
+"Optional. Anything typed here is sent as written -- do not paste customer "
+"names, document numbers or amounts."
+msgstr "Необовʼязково. Усе написане тут іде як є — не вставляйте імена клієнтів, номери документів чи суми."
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__state
+msgid "State"
+msgstr "Стан"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__error_type
+msgid "The exception class, never its text."
+msgstr "Клас винятку, ніколи не його текст."
+
+#. module: atm
+#: model:ir.model.constraint,message:atm.constraint_atm_error_report_fingerprint_company_uniq
+msgid "The same failure is only queued once per company."
+msgstr "Той самий збій стає в чергу один раз на компанію."
+
+#. module: atm
+#: model_terms:ir.actions.act_window,help:atm.action_atm_error_report
+msgid ""
+"Unexpected failures are queued here, so you can read exactly what\n"
+"                would be sent before anything leaves this database. Automatic\n"
+"                reporting is off until you turn it on in the settings."
+msgstr "Несподівані збої стають у чергу тут, щоб ви могли прочитати рівно те, що буде надіслано, перш ніж щось залишить цю базу. Автоматичне звітування вимкнене, доки ви не ввімкнете його в налаштуваннях."
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_update_available
+msgid "Update Available"
+msgstr "Є оновлення"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__update_message
+msgid "Update Message"
+msgstr "Повідомлення про оновлення"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__update_url
+msgid "Update Url"
+msgstr "Посилання на оновлення"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Updates"
+msgstr "Оновлення"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "Version %(latest)s is available. You have %(installed)s."
+msgstr "Вийшла версія %(latest)s. У вас %(installed)s."
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_update_check
+msgid "Version Check"
+msgstr "Перевірка версій"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_update_url
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Version Endpoint"
+msgstr "Адреса перевірки версій"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_update_summary
+msgid "Version Status"
+msgstr "Стан версії"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "Version check"
+msgstr "Перевірка версій"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_update.py:0
+msgid "Version checking is switched off."
+msgstr "Перевірку версій вимкнено."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__operation
+msgid "What the module was doing: the exchange direction and entity."
+msgstr "Що робив модуль: напрям обміну і сутність."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid ""
+"What were you doing when this happened? Written here, it is sent as typed --"
+" please do not paste customer names, document numbers or amounts."
+msgstr "Що ви робили, коли це сталося? Написане тут іде дослівно — будь ласка, не вставляйте імена клієнтів, номери документів чи суми."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_report_url
+msgid ""
+"Where error reports are sent. Point it at your own collector if your policy "
+"forbids outbound calls."
+msgstr "Куди надсилаються звіти про помилки. Вкажіть свій приймач, якщо ваші правила забороняють вихідні запити."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__frames
+msgid "Where in the code it failed. Paths are cut to the module root."
+msgstr "Де саме в коді впало. Шляхи обрізані до кореня модуля."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Where reports are sent. Point it at your own collector if your policy "
+"forbids outbound calls."
+msgstr "Куди надсилаються звіти. Вкажіть свій приймач, якщо ваші правила забороняють вихідні запити."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_update_url
+msgid "Where the current version number is read from."
+msgstr "Звідки читається номер поточної версії."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Where the current version number is read from. Point it elsewhere if your "
+"policy forbids outbound calls; leave it empty to switch the check off "
+"entirely."
+msgstr "Звідки читається номер поточної версії. Вкажіть свою адресу, якщо ваші правила забороняють вихідні запити; порожнє поле повністю вимикає перевірку."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__module
+msgid "Which module raised it, so the collector tells reports apart."
+msgstr "Який модуль її підняв, щоб приймач розрізняв звіти."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "You are up to date."
+msgstr "У вас найновіша версія."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "You have version %(installed)s, which is the latest."
+msgstr "У вас версія %(installed)s — вона найновіша."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid ""
+"You have version %(installed)s. The latest published version is not known "
+"yet."
+msgstr "У вас версія %(installed)s. Яка версія опублікована — поки невідомо."
