@@ -79,6 +79,12 @@
                         <setting id="atm_update_setting" string="Check for New Versions"
                                  help="Once a day this asks which version is current. The request carries no identifier: no database name, no install id, not even the version you are running -- it is the same bare question any visitor to the store page asks. Nothing is ever downloaded or installed automatically.">
                             <field name="atm_update_check" widget="radio"/>
+                            <!-- Odoo 17 вимагає, щоб поле, вжите в умові
+                                 видимості, було присутнє у вигляді. 18/19 це
+                                 прощають, але файл має лишатись однаковим на
+                                 всіх чотирьох серіях — інакше кожен наступний
+                                 бекпорт стає ручною роботою. -->
+                            <field name="atm_update_available" invisible="1"/>
                             <!-- One field, one sentence, built in Python. Text
                                  interleaved with fields looks the same on
                                  screen but reaches the translator as scraps
