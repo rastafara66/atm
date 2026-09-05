@@ -5,6 +5,41 @@ The technical name stays `atm`; earlier releases were published under the
 name "ATM - Automated Transaction Mechanics". Versions follow the Odoo
 convention: `<odoo series>.<major>.<minor>.<patch>`.
 
+## 2.3.0 — 2026-09-05
+
+### Added
+
+- **Version check.** Odoo never asks the App Store whether a third-party module
+  has been updated: its "Upgrade" button compares what is installed against
+  what is already on disk. So a customer who downloaded a build with a bug kept
+  that bug until they happened to revisit the store page. That is not a
+  hypothesis — in a sibling module a crash was fixed and published within the
+  hour while every existing install stayed broken.
+
+  Once a day a scheduled action asks which version is current, and a newer one
+  is announced on the exchange log record and in the settings, with a link to
+  the store. Nothing is ever downloaded or installed automatically: a module
+  placed in an addons directory by hand has to be replaced the same way.
+
+  The request is a bare GET. It carries no install id, no database name and not
+  even the version you are running — only which series to answer for. It is on
+  by default for that reason, unlike error reports, where there is something to
+  consent to. It can be switched off, or pointed at your own endpoint, in
+  Settings › Data Exchange › Updates.
+
+- The check covers the **1C / BAS Connector** as well, and a test now fails the
+  build if a module of this family is ever left off that list — the cheap half
+  of the design is that an add-on needs no check of its own, and its price is
+  that a forgotten name fails silently.
+
+### Fixed
+
+- The version endpoint answered for the 19.0 branch whatever was asked, so an
+  install of an earlier series would eventually have been told that "19.0.x is
+  newer than 16.0.x" — true as arithmetic, false as advice, and pointing at a
+  module it cannot run. The series now travels with the question, and an answer
+  from another series is discarded rather than shown.
+
 ## 2.2.2 — 2026-08-19
 
 ### Fixed
