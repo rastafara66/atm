@@ -38,10 +38,10 @@ systems, so the same mechanism bridges them without changing anything on that
 side. The user interface is available in Ukrainian.
 """,
     'author': 'chukhin',
-    'website': 'https://github.com/rastafara66/atm',
+    'website': 'https://aktiv.in.ua/dodatky/',
     'support': 'atm@yellow.in.ua',
     'category': 'Productivity',
-    'version': '19.0.2.3.0',
+    'version': '19.0.2.3.1',
     'license': 'LGPL-3',
     # The first image is the card picture in the App Store listing; the rest
     # form the gallery, in English, with the VAT split leading.
