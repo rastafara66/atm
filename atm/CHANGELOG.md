@@ -5,6 +5,20 @@ The technical name stays `atm`; earlier releases were published under the
 name "ATM - Automated Transaction Mechanics". Versions follow the Odoo
 convention: `<odoo series>.<major>.<minor>.<patch>`.
 
+## 16.0.2.3.3 — 2026-09-06
+
+### Fixed
+
+- 🔴 **Тест посилання на магазин був зламаний із 05.09 і цього ніхто не бачив.**
+  Коміт «сайт автора» тихо зробив `STORE_URL` двоаргументним (серія + назва), а
+  тест лишився з одним аргументом і падав `TypeError` на всіх чотирьох серіях.
+  Правка маніфестів була механічною, зміна коду поїхала разом із нею — і в
+  повідомленні коміту про неї не сказано жодного слова.
+  Тест тепер ще й перевіряє, що в посиланні стоїть САМЕ наша серія.
+  &mdash; The store-link test had been broken since 05.09: a manifest-sweep
+  commit quietly made `STORE_URL` take two arguments and the test kept passing
+  one. It now also asserts the link carries our own series.
+
 ## 16.0.2.3.2 — 2026-09-06
 
 ### Changed

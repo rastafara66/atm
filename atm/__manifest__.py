@@ -47,7 +47,7 @@ side. The user interface is available in Ukrainian.
     'author': 'chukhin',
     'website': 'https://aktiv.in.ua/dodatky/',
     'category': 'Productivity',
-    'version': '16.0.2.3.2',
+    'version': '16.0.2.3.3',
     'license': 'LGPL-3',
     # The first image is the card picture in the App Store listing; the rest
     # form the gallery, in English, with the VAT split leading.
