@@ -129,11 +129,18 @@ class TestUpdateCheck(TransactionCase):
         self.assertEqual([row[0] for row in self.Update._outdated()], ['atm'])
 
     def test_the_banner_carries_a_link_to_the_store(self):
-        """A notice with nowhere to go is only half the message."""
+        """A notice with nowhere to go is only half the message.
+
+        🔴 The link must carry OUR series. It used to be hardcoded to
+        `/19.0/`, so the banner on an Odoo 16 install pointed the buyer at a
+        page for a build their Odoo cannot run.
+        """
         self._publish({'atm': self._newer()})
         message, url = self.Update.update_banner()
         self.assertTrue(message)
-        self.assertEqual(url, updating.STORE_URL % 'atm')
+        series = updating.series_of(self._installed_version())
+        self.assertEqual(url, updating.STORE_URL % (series, 'atm'))
+        self.assertIn('/%s/' % series, url)
 
     def test_no_banner_when_up_to_date(self):
         self._publish({'atm': self._installed_version()})
