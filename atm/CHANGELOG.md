@@ -5,6 +5,20 @@ The technical name stays `atm`; earlier releases were published under the
 name "ATM - Automated Transaction Mechanics". Versions follow the Odoo
 convention: `<odoo series>.<major>.<minor>.<patch>`.
 
+## 16.0.2.3.2 — 2026-09-06
+
+### Changed
+
+- **`UA interface included` -> `Ukrainian interface included` in the summary.**
+  Measured in the store on 2026-09-06: a search for `Ukrainian` returns 89 apps
+  and none of ours was among them, while `1C` and `data exchange` find this
+  module fine. The store index does not expand `UA`. The name stays generic on
+  purpose — the module is not Ukraine-specific, only its interface and its
+  1C/BAS audience.
+  &mdash; Слово `Ukrainian` замість `UA` у summary: за запитом `Ukrainian`
+  магазин повертав 89 додатків і жодного нашого. Назву лишено загальною —
+  модуль не українських, а українські в ньому інтерфейс і аудиторія 1С/BAS.
+
 ## 2.3.1 — 2026-09-05
 
 ### Changed
