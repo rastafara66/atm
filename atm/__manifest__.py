@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 {
+    # 🔴 `Ukrainian` written out, not `UA`. Measured in the store on 2026-09-06:
+    # a search for `Ukrainian` returns 89 apps and none of ours was among them,
+    # while `1C` and `data exchange` find this module fine. The store index does
+    # not expand `UA`, and the description is not enough on its own -- proven on
+    # bank_sync_base, which has had the word `Ukrainian` in its description for
+    # months and still did not show up. The name stays generic on purpose: the
+    # module is not Ukraine-specific, only its interface and its 1C/BAS audience.
     'name': 'Data Exchange - JSON sync for orders, invoices and payments',
     'summary': 'Scheduled JSON exchange of contacts, products, orders, '
                'invoices and payments with an external accounting system '
-               '(1C, BAS) - UA interface included',
+               '(1C, BAS) - Ukrainian interface included',
     'description': """
 Data Exchange - JSON sync with an external accounting system
 ============================================================
@@ -40,7 +47,7 @@ side. The user interface is available in Ukrainian.
     'author': 'chukhin',
     'website': 'https://aktiv.in.ua/dodatky/',
     'category': 'Productivity',
-    'version': '17.0.2.3.1',
+    'version': '17.0.2.3.2',
     'license': 'LGPL-3',
     # The first image is the card picture in the App Store listing; the rest
     # form the gallery, in English, with the VAT split leading.
