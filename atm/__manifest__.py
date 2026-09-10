@@ -44,7 +44,7 @@ File exchange over a shared directory is how 1C and BAS integrate with other
 systems, so the same mechanism bridges them without changing anything on that
 side. The user interface is available in Ukrainian.
 """,
-    'author': 'chukhin',
+    'author': '3A Studio',
     'website': 'https://aktiv.in.ua/dodatky/',
     'support': 'atm@yellow.in.ua',
     'category': 'Productivity',
