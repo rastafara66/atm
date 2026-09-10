@@ -11,6 +11,12 @@
     'summary': 'Scheduled JSON exchange of contacts, products, orders, '
                'invoices and payments with an external accounting system '
                '(1C, BAS) - Ukrainian interface included',
+    # Для НАШОЇ сторінки: у `summary` англійські слова стоять
+    # заради пошуку в магазині, читачеві aktiv.in.ua вони ні до
+    # чого. Odoo невідомі ключі маніфеста ігнорує.
+    'summary_uk': 'Обмін JSON за розкладом: контрагенти, товари, замовлення, рахунки й '
+                  'оплати з зовнішньою обліковою системою (1С, BAS). Український '
+                  'інтерфейс.',
     'description': """
 Data Exchange - JSON sync with an external accounting system
 ============================================================
