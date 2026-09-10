@@ -3,6 +3,13 @@
 JSON file exchange between Odoo and another accounting system. Newest on top.
 Обмін файлами між Odoo та іншою обліковою системою. Найновіше — зверху.
 
+## 19.0.2.3.5 — 2026-09-10
+
+### Fixed / Виправлено
+
+- 🔴 **Права після встановлення.** Групу модуля не було підключено до адміністратора взагалі, тож той, хто щойно поставив додаток, не відкривав 2 моделі з 3: меню видно, всередині — «Помилка доступу». Ставить зазвичай адміністратор. Оновлення лагодить саме, робити нічого не треба.
+- Rights after install: the module's group was never granted to the administrator, so whoever installed it could not open 2 of the 3 models. On upgrade the fix applies itself.
+
 ## 19.0.2.3.3 — 2026-09-06
 
 ### Fixed
