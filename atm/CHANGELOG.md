@@ -97,9 +97,8 @@ JSON file exchange between Odoo and another accounting system. Newest on top.
 - **Store description rebuilt on the shared layout** used across the whole line
   (Odoo's own `oe_container` / `oe_row` / `oe_span6` classes) instead of hand-rolled
   inline styles — in the catalogue the modules looked like products by different
-  authors. Generated from `3A/tools/store/specs/atm.py`, so the layout cannot drift.
-- Changelog on the page grouped into meaningful entries; the version comes straight
-  from `__manifest__.py`, so page and manifest cannot disagree (invariant 93).
+  authors.
+- Changelog on the page grouped into meaningful entries.
 
 ### Added
 
