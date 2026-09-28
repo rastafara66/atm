@@ -3,6 +3,15 @@
 JSON file exchange between Odoo and another accounting system. Newest on top.
 Обмін файлами між Odoo та іншою обліковою системою. Найновіше — зверху.
 
+## 19.0.2.3.6 — 2026-09-28
+
+### Changed
+
+- The description opens with links to its English and Ukrainian versions,
+  each complete on its own; the Ukrainian version shows Ukrainian screenshots.
+  Опис: угорі посилання «English · Українською», англійська й українська
+  версії — окремі й повні, в українській — українські знімки.
+
 ## 19.0.2.3.5 — 2026-09-10
 
 ### Fixed / Виправлено
