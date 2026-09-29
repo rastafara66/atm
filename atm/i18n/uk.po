@@ -52,7 +52,7 @@ msgstr "Не вдалося визначити %(field)s рядка: %(target)s 
 #. module: atm
 #: model:ir.model,name:atm.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Налаштування"
 
 #. module: atm
 #: model:ir.ui.menu,name:atm.menu_atm_configuration
@@ -93,13 +93,13 @@ msgstr "Створено"
 #: model:ir.model.fields,field_description:atm.field_atm_exchange_log__create_uid
 #: model:ir.model.fields,field_description:atm.field_atm_orderlist__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Створив"
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_atm_exchange_log__create_date
 #: model:ir.model.fields,field_description:atm.field_atm_orderlist__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Створено"
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_customer_refund
@@ -182,7 +182,7 @@ msgstr "Тека, у яку записуються і з якої читають
 #: model:ir.model.fields,field_description:atm.field_res_partner__display_name
 #: model:ir.model.fields,field_description:atm.field_sale_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Назва для відображення"
 
 #. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
@@ -335,7 +335,7 @@ msgstr "Файл"
 #: model:ir.model.fields,field_description:atm.field_res_partner__id
 #: model:ir.model.fields,field_description:atm.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: atm
 #: model:ir.model.fields,help:atm.field_account_bank_statement_line__atm_external_ref
@@ -376,19 +376,19 @@ msgstr "Завантажені документи завжди створюют�
 #. module: atm
 #: model:ir.model,name:atm.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Запис у журналі"
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_atm_exchange_log__write_uid
 #: model:ir.model.fields,field_description:atm.field_atm_orderlist__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Востаннє оновив"
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_atm_exchange_log__write_date
 #: model:ir.model.fields,field_description:atm.field_atm_orderlist__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Останнє оновлення"
 
 #. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
@@ -433,7 +433,7 @@ msgstr "Оплати"
 #. module: atm
 #: model:ir.model,name:atm.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Варіант товару"
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_product
@@ -444,7 +444,7 @@ msgstr "Номенклатура"
 #. module: atm
 #: model:ir.model,name:atm.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Замовлення на купівлю"
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_purchase_order
@@ -478,7 +478,7 @@ msgstr "Виконує обмін негайно для всіх увімкне�
 #. module: atm
 #: model:ir.model,name:atm.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Замовлення на продаж"
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_sale_order
@@ -547,7 +547,7 @@ msgstr "напр. /var/lib/odoo/exchange"
 #. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
 msgid "odoo"
-msgstr ""
+msgstr "odoo"
 
 #. module: atm
 #: model:ir.ui.menu,name:atm.menu_atm_error_report

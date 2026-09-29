@@ -3,6 +3,12 @@
 JSON file exchange between Odoo and another accounting system. Newest on top.
 Обмін файлами між Odoo та іншою обліковою системою. Найновіше — зверху.
 
+## 19.0.2.3.8 — 2026-09-29
+
+### Fixed
+
+- Виправлено помилки. Bug fixes.
+
 ## 19.0.2.3.7 — 2026-09-28
 
 ### Changed
