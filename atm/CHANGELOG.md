@@ -3,6 +3,13 @@
 JSON file exchange between Odoo and another accounting system. Newest on top.
 Обмін файлами між Odoo та іншою обліковою системою. Найновіше — зверху.
 
+## 19.0.2.4.0 — 2026-09-29
+
+### Added
+
+- French, German, Spanish and Dutch translations ship with the module.
+- Французька, німецька, іспанська й нідерландська — у складі модуля.
+
 ## 19.0.2.3.9 — 2026-09-29
 
 ### Changed

@@ -252,8 +252,12 @@ class TestUpdateBannerIsVisible(TransactionCase):
         """
         self.env['ir.config_parameter'].sudo().set_param(
             updating.PARAM_LATEST, False)
-        summary = self.env['res.config.settings']._atm_version_values()[
-            'atm_update_summary']
+        # 🔴 Мова задана явно. Рядок перекладений, тож у базі, куди завантажили
+        # українську, той самий правильний код повертав «Ще немає відомостей…»
+        # і тест падав — не через поведінку, а через мову перевіряльника.
+        # Перевіряємо ЛОГІКУ, тому дивимось на англійське джерело.
+        summary = self.env['res.config.settings'].with_context(
+            lang='en_US')._atm_version_values()['atm_update_summary']
         self.assertIn('not known', summary)
 
     def test_the_settings_page_actually_renders(self):
