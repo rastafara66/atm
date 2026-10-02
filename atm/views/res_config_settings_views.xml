@@ -8,6 +8,10 @@
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
                 <app string="Data Exchange" name="atm" logo="/atm/static/description/icon.png">
+                    <block title="Odoo 18 edition" name="atm_series_note">
+                        <setting id="atm_series_note_setting" string="Not all features of newer versions"
+                                 help="This is the Odoo 18 edition of Data Exchange. Some features of newer versions are not available here; the full feature set is in the version for Odoo 19."/>
+                    </block>
                     <block title="Exchange File" name="atm_file_setting_container">
                         <setting id="atm_export_dir_setting" string="Exchange Directory"
                                  help="Directory the JSON files are written to and read from. It must be reachable by the Odoo server process.">

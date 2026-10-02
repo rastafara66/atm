@@ -990,3 +990,18 @@ msgid ""
 "You have version %(installed)s. The latest published version is not known "
 "yet."
 msgstr "У вас версія %(installed)s. Яка версія опублікована — поки невідомо."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Odoo 18 edition"
+msgstr "Версія для Odoo 18"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Not all features of newer versions"
+msgstr "Доступні не всі функції новіших версій"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "This is the Odoo 18 edition of Data Exchange. Some features of newer versions are not available here; the full feature set is in the version for Odoo 19."
+msgstr "Це версія Data Exchange для Odoo 18. Частини функцій новіших версій тут немає; повний набір — у версії для Odoo 19."

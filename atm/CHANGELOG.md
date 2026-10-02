@@ -5,6 +5,12 @@ The technical name stays `atm`; earlier releases were published under the
 name "ATM - Automated Transaction Mechanics". Versions follow the Odoo
 convention: `<odoo series>.<major>.<minor>.<patch>`.
 
+## 18.0.2.3.4 — 2026-10-02
+
+### Changed
+
+- Примітка: у версії для Odoo 18 доступні не всі функції новіших версій. Note: not all features of newer versions are available in the Odoo 18 edition.
+
 ## 18.0.2.3.3 — 2026-09-06
 
 ### Fixed
