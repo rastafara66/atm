@@ -57,7 +57,10 @@ PARAM_CHECKED = 'atm.latest_checked'
 # so there is no hand-kept copy of a version number to forget about. A second
 # service for a second product would just be a second thing to remember.
 DEFAULT_URL = 'https://yellow.in.ua/bank-sync/latest'
-STORE_URL = 'https://apps.odoo.com/apps/modules/19.0/%s'
+# The series comes from the installed version, not a literal: a literal
+# `/19.0/` sent the buyer of every other series to a page for a build
+# their Odoo cannot run (same code in all branches, nothing to port).
+STORE_URL = 'https://apps.odoo.com/apps/modules/%s/%s/'
 
 CHECK_TIMEOUT = 10
 
@@ -232,7 +235,7 @@ class AtmUpdate(models.AbstractModel):
             'A newer version of %(module)s is available: %(latest)s '
             '(you have %(installed)s).',
             module=name, latest=latest, installed=installed
-        ), STORE_URL % name
+        ), STORE_URL % (series_of(installed) or '18.0', name)
 
 
 class AtmExchangeLogUpdate(models.Model):
