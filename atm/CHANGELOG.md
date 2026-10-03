@@ -3,6 +3,13 @@
 JSON file exchange between Odoo and another accounting system. Newest on top.
 Обмін файлами між Odoo та іншою обліковою системою. Найновіше — зверху.
 
+## 19.0.2.5.0 — 2026-10-03
+
+### Added
+
+- Hints on fields and buttons. The import log lists every record it could not import, with the reason.
+- Підказки на полях і кнопках. Журнал імпорту називає кожен запис, який не вдалося завантажити, і причину.
+
 ## 19.0.2.4.0 – 19.0.2.4.1 — 2026-09-29
 
 ### Added

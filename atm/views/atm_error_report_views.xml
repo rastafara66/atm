@@ -26,9 +26,11 @@
                 <header>
                     <button name="action_send_now" type="object"
                             string="Send Now" class="btn-primary"
-                            invisible="state == 'sent'"/>
+                            invisible="state == 'sent'"
+                            help="Send this report now, without waiting for the scheduled job. Exactly what the 'What gets sent' tab shows leaves the database, nothing else."/>
                     <button name="action_discard" type="object"
                             string="Discard"
+                            help="Delete this report without sending it."
                             confirm="Delete this report? It will not be sent."/>
                     <field name="state" widget="statusbar"
                            statusbar_visible="pending,sent"/>

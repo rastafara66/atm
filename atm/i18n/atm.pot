@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20260908\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 06:05+0000\n"
-"PO-Revision-Date: 2026-09-29 06:05+0000\n"
+"POT-Creation-Date: 2026-10-03 05:40+0000\n"
+"PO-Revision-Date: 2026-10-03 05:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -57,6 +57,12 @@ msgstr ""
 
 #. module: atm
 #. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "... and %s more."
+msgstr ""
+
+#. module: atm
+#. odoo-python
 #: code:addons/atm/models/atm_update.py:0
 #: code:addons/atm/models/res_config_settings.py:0
 msgid ""
@@ -67,6 +73,13 @@ msgstr ""
 #. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
 msgid "Add a comment"
+msgstr ""
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Ask now which version is the latest, and say what came back -- including why"
+" the check failed, if it did."
 msgstr ""
 
 #. module: atm
@@ -265,6 +278,11 @@ msgstr ""
 
 #. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "Delete this report without sending it."
+msgstr ""
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
 msgid "Delete this report? It will not be sent."
 msgstr ""
 
@@ -391,8 +409,22 @@ msgid "Exchange Log"
 msgstr ""
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_purchase_order
+msgid ""
+"Exchange confirmed purchase orders through purchase_orders.json. Requests "
+"for quotation are not exported."
+msgstr ""
+
+#. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
 msgid "Exchange confirmed purchase orders."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_sale_order
+msgid ""
+"Exchange confirmed sales orders through sale_orders.json. Quotations are not"
+" exported."
 msgstr ""
 
 #. module: atm
@@ -401,8 +433,22 @@ msgid "Exchange confirmed sales orders."
 msgstr ""
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_partner
+msgid ""
+"Exchange contacts through partners.json. Switch off to leave contacts out of"
+" both export and import."
+msgstr ""
+
+#. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
 msgid "Exchange contacts."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_customer_payment
+msgid ""
+"Exchange customer payments through customer_payments.json. Draft payments "
+"are not exported."
 msgstr ""
 
 #. module: atm
@@ -412,14 +458,15 @@ msgstr ""
 
 #. module: atm
 #. odoo-python
-#: code:addons/atm/models/atm_exchange.py:0
-msgid "Exchange directory does not exist: %s"
+#: code:addons/atm/models/atm_exchange_log.py:0
+msgid "Exchange file"
 msgstr ""
 
 #. module: atm
-#. odoo-python
-#: code:addons/atm/models/atm_exchange_log.py:0
-msgid "Exchange file"
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_customer_refund
+msgid ""
+"Exchange posted customer credit notes through customer_refunds.json. Drafts "
+"are not exported."
 msgstr ""
 
 #. module: atm
@@ -428,8 +475,22 @@ msgid "Exchange posted customer credit notes."
 msgstr ""
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_customer_invoice
+msgid ""
+"Exchange posted customer invoices through customer_invoices.json. Drafts are"
+" not exported."
+msgstr ""
+
+#. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
 msgid "Exchange posted customer invoices."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_vendor_bill
+msgid ""
+"Exchange posted vendor bills through vendor_bills.json. Drafts are not "
+"exported."
 msgstr ""
 
 #. module: atm
@@ -438,13 +499,34 @@ msgid "Exchange posted vendor bills."
 msgstr ""
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_vendor_refund
+msgid ""
+"Exchange posted vendor credit notes through vendor_refunds.json. Drafts are "
+"not exported."
+msgstr ""
+
+#. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
 msgid "Exchange posted vendor credit notes."
 msgstr ""
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_product
+msgid ""
+"Exchange products through products.json. Documents refer to products, so "
+"importing documents without them fails."
+msgstr ""
+
+#. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
 msgid "Exchange products."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_vendor_payment
+msgid ""
+"Exchange vendor payments through vendor_payments.json. Draft payments are "
+"not exported."
 msgstr ""
 
 #. module: atm
@@ -470,6 +552,13 @@ msgid "Export finished"
 msgstr ""
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__direction
+msgid ""
+"Export: records were written from this database to a file. Import: records "
+"were read from a file into this database."
+msgstr ""
+
+#. module: atm
 #: model:ir.model.fields,field_description:atm.field_account_bank_statement_line__atm_external_ref
 #: model:ir.model.fields,field_description:atm.field_account_move__atm_external_ref
 #: model:ir.model.fields,field_description:atm.field_account_payment__atm_external_ref
@@ -485,7 +574,10 @@ msgstr ""
 #. module: atm
 #. odoo-python
 #: code:addons/atm/models/atm_external_ref.py:0
-msgid "External reference \"%(ref)s\" is already used by %(name)s."
+msgid ""
+"External reference \"%(ref)s\" is already used by %(name)s. The key must be "
+"unique, or the next import would not know which of the two records to "
+"update. Open one of them and change or clear its external reference."
 msgstr ""
 
 #. module: atm
@@ -519,6 +611,32 @@ msgstr ""
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_atm_error_report__frames
 msgid "Frames"
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__file_path
+msgid "Full path of the file written or read, on the Odoo server."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__record_count
+msgid ""
+"How many records the file held (import) or received (export), whatever "
+"happened to each of them."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__attempts
+msgid ""
+"How many times sending was tried. After five failed attempts the report is "
+"marked Could not send."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__occurrences
+msgid ""
+"How many times this same failure has happened. The report itself is queued "
+"and sent only once."
 msgstr ""
 
 #. module: atm
@@ -595,6 +713,13 @@ msgid "Installed Version"
 msgstr ""
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_update_summary
+msgid ""
+"Installed and published versions in one sentence. To update, download the "
+"new version from the Odoo Apps store and upgrade the module in Apps."
+msgstr ""
+
+#. module: atm
 #: model:ir.model,name:atm.model_account_move
 msgid "Journal Entry"
 msgstr ""
@@ -656,12 +781,6 @@ msgid "No address is configured for the version check."
 msgstr ""
 
 #. module: atm
-#. odoo-python
-#: code:addons/atm/models/res_config_settings.py:0
-msgid "No entity is enabled for exchange."
-msgstr ""
-
-#. module: atm
 #: model_terms:ir.actions.act_window,help:atm.action_atm_exchange_log
 msgid "No exchange has run yet"
 msgstr ""
@@ -681,6 +800,14 @@ msgstr ""
 #. module: atm
 #: model_terms:ir.actions.act_window,help:atm.action_atm_error_report
 msgid "Nothing has gone wrong"
+msgstr ""
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid ""
+"Nothing was exchanged: every entity is switched off. Turn on at least one "
+"under Master Data or Documents and save the settings first."
 msgstr ""
 
 #. module: atm
@@ -720,6 +847,19 @@ msgid ""
 "identifier: no database name, no install id, not even the version you are "
 "running -- it is the same bare question any visitor to the store page asks. "
 "Nothing is ever downloaded or installed automatically."
+msgstr ""
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Open the log of every export and import run: counts, files and the reason "
+"for each failed record."
+msgstr ""
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Open the queued error reports: read each one in full, send it or discard it."
 msgstr ""
 
 #. module: atm
@@ -774,8 +914,60 @@ msgid "Purchase Orders"
 msgstr ""
 
 #. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Read every enabled entity from its JSON file now. Existing records are found"
+" by external reference and updated; confirmed and posted documents are left "
+"as they are."
+msgstr ""
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "Record %(number)s (%(ref)s): %(reason)s"
+msgstr ""
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid ""
+"Record %(number)s: it has neither \"external_ref\" nor \"name\", so it "
+"cannot be matched with a record here."
+msgstr ""
+
+#. module: atm
 #: model:ir.model.fields,field_description:atm.field_atm_exchange_log__record_count
 msgid "Records"
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__updated_count
+msgid "Records found by their external reference and updated."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__skipped_count
+msgid ""
+"Records left untouched on purpose -- for example, a document that is already"
+" confirmed or posted here is never overwritten."
+msgstr ""
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "Records that could not be imported: %s"
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__failed_count
+msgid ""
+"Records that could not be written. Message names each of them and the "
+"reason; fix the data and run the exchange again."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__created_count
+msgid "Records that were new to this database and were created."
 msgstr ""
 
 #. module: atm
@@ -803,6 +995,14 @@ msgstr ""
 #. module: atm
 #: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__state__running
 msgid "Running"
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__state
+msgid ""
+"Running: the run has not finished yet. Done: the file was processed; some "
+"records may still have failed, see Failures. Failed: the run stopped, or not"
+" a single record could be written; Message gives the reasons."
 msgstr ""
 
 #. module: atm
@@ -835,6 +1035,13 @@ msgid "Send automatic error reports"
 msgstr ""
 
 #. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid ""
+"Send this report now, without waiting for the scheduled job. Exactly what "
+"the 'What gets sent' tab shows leaves the database, nothing else."
+msgstr ""
+
+#. module: atm
 #: model:ir.model.fields.selection,name:atm.selection__atm_error_report__state__sent
 msgid "Sent"
 msgstr ""
@@ -842,6 +1049,11 @@ msgstr ""
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_atm_error_report__sent_date
 msgid "Sent Date"
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_update_available
+msgid "Set when the published version is newer than the installed one."
 msgstr ""
 
 #. module: atm
@@ -855,6 +1067,11 @@ msgstr ""
 msgid ""
 "Short identifier of this database. It prefixes the external references "
 "generated for records that do not have one yet."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__update_message
+msgid "Shown when a newer version of Data Exchange is published."
 msgstr ""
 
 #. module: atm
@@ -880,8 +1097,29 @@ msgid "System Code"
 msgstr ""
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__http_status
+msgid ""
+"The HTTP status code of the failed request, if the failure came from a "
+"server; 0 otherwise. A bare number with no business data."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__company_id
+msgid "The company whose exchange failed. Each company keeps its own queue."
+msgstr ""
+
+#. module: atm
 #: model:ir.model.fields,help:atm.field_atm_error_report__error_type
 msgid "The exception class, never its text."
+msgstr ""
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid ""
+"The exchange directory %s does not exist on the Odoo server, so there is "
+"nothing to import from it. Create it, or correct the path in Settings > Data"
+" Exchange."
 msgstr ""
 
 #. module: atm
@@ -893,8 +1131,29 @@ msgid ""
 msgstr ""
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_version_latest
+msgid ""
+"The newest published version, as of the last check. Empty until the first "
+"check succeeds."
+msgstr ""
+
+#. module: atm
 #: model:ir.model.constraint,message:atm.constraint_atm_error_report_fingerprint_company_uniq
-msgid "The same failure is only queued once per company."
+msgid ""
+"The same failure is only queued once per company. Open the report already in"
+" the queue instead: its Occurrences count goes up."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__update_url
+msgid ""
+"The store page of the newer version: download it there, then upgrade the "
+"module in Apps."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_version_installed
+msgid "The version of Data Exchange installed in this database."
 msgstr ""
 
 #. module: atm
@@ -909,6 +1168,14 @@ msgstr ""
 #. module: atm
 #: model:ir.model.fields.selection,name:atm.selection__atm_error_report__state__pending
 msgid "To send"
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__state
+msgid ""
+"To send: queued; the scheduled job tries to send it, up to five times. Sent:"
+" delivered. Could not send: five attempts failed and the job gave up -- "
+"check the Reporting Endpoint in Settings and press Send Now."
 msgstr ""
 
 #. module: atm
@@ -1005,8 +1272,31 @@ msgid "What gets sent"
 msgstr ""
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__message
+msgid ""
+"What happened in this run: every failed record with its reason and what to "
+"do about it."
+msgstr ""
+
+#. module: atm
 #: model:ir.model.fields,help:atm.field_atm_error_report__operation
 msgid "What the module was doing: the exchange direction and entity."
+msgstr ""
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid ""
+"What to do: correct these records in the source system, or import the "
+"records they refer to first, then run the import again. Records already "
+"imported are matched by their external reference and are not duplicated."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__entity
+msgid ""
+"What was exchanged in this run. Each entity has its own file and its own "
+"switch in Settings > Data Exchange."
 msgstr ""
 
 #. module: atm
@@ -1014,6 +1304,16 @@ msgstr ""
 msgid ""
 "What were you doing when this happened? Written here, it is sent as typed --"
 " please do not paste customer names, document numbers or amounts."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_version_checked
+msgid "When the published version was last read successfully."
+msgstr ""
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__sent_date
+msgid "When the report was delivered. Sent reports are removed after 30 days."
 msgstr ""
 
 #. module: atm
@@ -1056,6 +1356,13 @@ msgstr ""
 #. module: atm
 #: model:ir.model.fields,help:atm.field_atm_error_report__module
 msgid "Which module raised it, so the collector tells reports apart."
+msgstr ""
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Write every enabled entity to its JSON file in the exchange directory now. "
+"Save the settings first: unsaved changes are not used."
 msgstr ""
 
 #. module: atm

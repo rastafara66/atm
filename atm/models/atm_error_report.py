@@ -129,7 +129,8 @@ class AtmErrorReport(models.Model):
     _rec_name = 'error_type'
 
     company_id = fields.Many2one(
-        'res.company', required=True, default=lambda self: self.env.company)
+        'res.company', required=True, default=lambda self: self.env.company,
+        help='The company whose exchange failed. Each company keeps its own queue.')
     fingerprint = fields.Char(
         required=True,
         index=True,
@@ -143,10 +144,15 @@ class AtmErrorReport(models.Model):
         required=True,
         index=True,
         help='Which module raised it, so the collector tells reports apart.')
-    http_status = fields.Integer()
+    http_status = fields.Integer(
+        help='The HTTP status code of the failed request, if the failure came '
+             'from a server; 0 otherwise. A bare number with no business data.')
     frames = fields.Text(
         help='Where in the code it failed. Paths are cut to the module root.')
-    occurrences = fields.Integer(default=1)
+    occurrences = fields.Integer(
+        default=1,
+        help='How many times this same failure has happened. The report itself '
+             'is queued and sent only once.')
     comment = fields.Text(
         string='Your comment',
         help='Optional. Anything typed here is sent as written -- do not paste '
@@ -155,9 +161,18 @@ class AtmErrorReport(models.Model):
         [('pending', 'To send'), ('sent', 'Sent'), ('failed', 'Could not send')],
         default='pending',
         required=True,
-        index=True)
-    attempts = fields.Integer(default=0)
-    sent_date = fields.Datetime(readonly=True)
+        index=True,
+        help='To send: queued; the scheduled job tries to send it, up to five '
+             'times. Sent: delivered. Could not send: five attempts failed and '
+             'the job gave up -- check the Reporting Endpoint in Settings and '
+             'press Send Now.')
+    attempts = fields.Integer(
+        default=0,
+        help='How many times sending was tried. After five failed attempts the '
+             'report is marked Could not send.')
+    sent_date = fields.Datetime(
+        readonly=True,
+        help='When the report was delivered. Sent reports are removed after 30 days.')
     payload = fields.Text(
         compute='_compute_payload',
         help='Exactly what leaves this database. Nothing else is transmitted.')
@@ -170,7 +185,8 @@ class AtmErrorReport(models.Model):
     # this is one of the few places the branches genuinely differ.
     _fingerprint_company_uniq = models.Constraint(
         'UNIQUE(fingerprint, company_id)',
-        'The same failure is only queued once per company.')
+        'The same failure is only queued once per company. Open the report '
+        'already in the queue instead: its Occurrences count goes up.')
 
     @api.depends('fingerprint', 'error_type', 'operation', 'http_status',
                  'frames', 'occurrences', 'comment')

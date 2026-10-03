@@ -15,6 +15,20 @@ from odoo.tests import TransactionCase, tagged
 from ..models import atm_update as updating
 
 
+def read_manifest(path):
+    with open(path, encoding='utf-8') as handle:
+        return eval(handle.read(), {'__builtins__': {}})  # noqa: S307
+
+
+#: Who "we" are -- read from our own manifest, never written a second time.
+#: The vendor name changed once (``chukhin`` became ``3A Studio``), and a copy
+#: of the old name here left the scan below finding nothing while every test
+#: around it stayed green.
+AUTHOR = read_manifest(os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    '__manifest__.py'))['author']
+
+
 def our_addons_beside(addons_dir):
     """Modules of ours, in ``addons_dir``, built on top of Data Exchange.
 
@@ -28,11 +42,10 @@ def our_addons_beside(addons_dir):
         if name == 'atm' or not os.path.isfile(manifest):
             continue
         try:
-            with open(manifest, encoding='utf-8') as handle:
-                spec = eval(handle.read(), {'__builtins__': {}})  # noqa: S307
+            spec = read_manifest(manifest)
         except Exception:  # noqa: BLE001 - not a manifest we can read
             continue
-        if (isinstance(spec, dict) and spec.get('author') == 'chukhin'
+        if (isinstance(spec, dict) and spec.get('author') == AUTHOR
                 and 'atm' in (spec.get('depends') or [])):
             found.add(name)
     return found
@@ -326,10 +339,10 @@ class TestModuleListIsComplete(TransactionCase):
                 handle.write(repr(spec))
 
         with tempfile.TemporaryDirectory() as root:
-            write(root, 'atm', {'author': 'chukhin', 'depends': []})
-            write(root, 'atm_new', {'author': 'chukhin', 'depends': ['atm']})
+            write(root, 'atm', {'author': AUTHOR, 'depends': []})
+            write(root, 'atm_new', {'author': AUTHOR, 'depends': ['atm']})
             write(root, 'atm_theirs', {'author': 'someone', 'depends': ['atm']})
-            write(root, 'bank_sync_base', {'author': 'chukhin',
+            write(root, 'bank_sync_base', {'author': AUTHOR,
                                            'depends': ['account']})
             os.makedirs(os.path.join(root, 'not_a_module'))
 

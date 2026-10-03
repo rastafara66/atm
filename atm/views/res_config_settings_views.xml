@@ -66,7 +66,8 @@
                             <field name="atm_error_reports" widget="radio"/>
                             <div class="mt8">
                                 <button name="action_atm_open_error_reports" type="object"
-                                        string="Review the queue" class="btn-link ps-0"/>
+                                        string="Review the queue" class="btn-link ps-0"
+                                        help="Open the queued error reports: read each one in full, send it or discard it."/>
                             </div>
                         </setting>
                         <setting id="atm_report_url_setting" string="Reporting Endpoint"
@@ -100,7 +101,8 @@
                             </div>
                             <div class="mt8">
                                 <button name="action_atm_check_update" type="object"
-                                        string="Check now" class="btn-link ps-0"/>
+                                        string="Check now" class="btn-link ps-0"
+                                        help="Ask now which version is the latest, and say what came back -- including why the check failed, if it did."/>
                             </div>
                         </setting>
                         <setting id="atm_update_url_setting" string="Version Endpoint"
@@ -113,9 +115,12 @@
                         <setting id="atm_actions_setting" string="Manual Run"
                                  help="Runs the exchange immediately for every enabled entity, without waiting for the scheduled action.">
                             <div class="mt8">
-                                <button name="action_atm_export_now" type="object" string="Export Now" class="btn-primary"/>
-                                <button name="action_atm_import_now" type="object" string="Import Now" class="btn-secondary ms-2"/>
-                                <button name="action_atm_open_logs" type="object" string="Exchange Log" class="btn-link ms-2"/>
+                                <button name="action_atm_export_now" type="object" string="Export Now" class="btn-primary"
+                                        help="Write every enabled entity to its JSON file in the exchange directory now. Save the settings first: unsaved changes are not used."/>
+                                <button name="action_atm_import_now" type="object" string="Import Now" class="btn-secondary ms-2"
+                                        help="Read every enabled entity from its JSON file now. Existing records are found by external reference and updated; confirmed and posted documents are left as they are."/>
+                                <button name="action_atm_open_logs" type="object" string="Exchange Log" class="btn-link ms-2"
+                                        help="Open the log of every export and import run: counts, files and the reason for each failed record."/>
                             </div>
                         </setting>
                     </block>

@@ -33,7 +33,10 @@ class AtmExternalRefMixin(models.AbstractModel):
             ], limit=1)
             if duplicate:
                 raise ValidationError(_(
-                    'External reference "%(ref)s" is already used by %(name)s.',
+                    'External reference "%(ref)s" is already used by %(name)s. '
+                    'The key must be unique, or the next import would not know '
+                    'which of the two records to update. Open one of them and '
+                    'change or clear its external reference.',
                     ref=record.atm_external_ref,
                     name=duplicate.display_name,
                 ))

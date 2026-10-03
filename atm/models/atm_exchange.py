@@ -58,8 +58,10 @@ class AtmExchange(models.AbstractModel):
                 'Set it in Settings > Data Exchange.'))
         if not os.path.isdir(path):
             if not create:
-                raise UserError(_('Exchange directory does not exist: %s')
-                                % path)
+                raise UserError(_(
+                    'The exchange directory %s does not exist on the Odoo '
+                    'server, so there is nothing to import from it. Create it, '
+                    'or correct the path in Settings > Data Exchange.') % path)
             os.makedirs(path, exist_ok=True)
         return path
 
@@ -598,10 +600,19 @@ class AtmExchange(models.AbstractModel):
                 else payload
 
             model = self.env[spec.model]
-            for data in records:
+            # Every failure is named in the log, with its position in the file:
+            # "3 failed" alone sends the user to the server log, which they
+            # usually cannot read, and fixing one record at a time is a guessing
+            # game about how many are left.
+            problems = []
+            for number, data in enumerate(records, 1):
                 external_ref = data.get('external_ref') or data.get('name')
                 if not external_ref:
                     failed += 1
+                    problems.append(_(
+                        'Record %(number)s: it has neither "external_ref" nor '
+                        '"name", so it cannot be matched with a record here.')
+                        % {'number': number})
                     continue
                 try:
                     # A savepoint per record: a database level error (a
@@ -632,6 +643,8 @@ class AtmExchange(models.AbstractModel):
                             created += 1
                 except Exception as error:  # noqa: BLE001 - counted, not fatal
                     failed += 1
+                    problems.append(_('Record %(number)s (%(ref)s): %(reason)s') % {
+                        'number': number, 'ref': external_ref, 'reason': error})
                     _logger.warning('Could not import %s %s: %s',
                                     code, external_ref, error)
                     # Data the other side sent that this database cannot use is
@@ -649,10 +662,7 @@ class AtmExchange(models.AbstractModel):
                 'updated_count': updated,
                 'skipped_count': skipped,
                 'failed_count': failed,
-                'message': _('%(created)s created, %(updated)s updated, '
-                             '%(skipped)s skipped, %(failed)s failed.') % {
-                    'created': created, 'updated': updated,
-                    'skipped': skipped, 'failed': failed},
+                'message': self._import_message(created, updated, skipped, failed, problems),
             })
             _logger.info('Imported %s: %s created, %s updated, %s skipped, '
                          '%s failed', code, created, updated, skipped, failed)
@@ -691,6 +701,28 @@ class AtmExchange(models.AbstractModel):
             return False
         getattr(record, method_name)()
         return True
+
+    #: How many failed records the log names one by one; the count is always exact.
+    PROBLEMS_SHOWN = 100
+
+    @api.model
+    def _import_message(self, created, updated, skipped, failed, problems):
+        """Summary of an import run: the counts, every failed record, what to do."""
+        lines = [_('%(created)s created, %(updated)s updated, '
+                   '%(skipped)s skipped, %(failed)s failed.') % {
+            'created': created, 'updated': updated,
+            'skipped': skipped, 'failed': failed}]
+        if problems:
+            lines.append(_('Records that could not be imported: %s') % len(problems))
+            lines += problems[:self.PROBLEMS_SHOWN]
+            if len(problems) > self.PROBLEMS_SHOWN:
+                lines.append(_('... and %s more.') % (len(problems) - self.PROBLEMS_SHOWN))
+            lines.append(_(
+                'What to do: correct these records in the source system, or '
+                'import the records they refer to first, then run the import '
+                'again. Records already imported are matched by their external '
+                'reference and are not duplicated.'))
+        return '\n'.join(lines)
 
     @api.model
     def _is_updatable(self, record):

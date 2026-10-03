@@ -50,6 +50,12 @@ msgstr "Записано %s запис(ів)."
 
 #. module: atm
 #. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "... and %s more."
+msgstr "... і ще %s."
+
+#. module: atm
+#. odoo-python
 #: code:addons/atm/models/atm_update.py:0
 #: code:addons/atm/models/res_config_settings.py:0
 msgid ""
@@ -61,6 +67,13 @@ msgstr "Вийшла новіша версія %(module)s: %(latest)s (у вас
 #: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
 msgid "Add a comment"
 msgstr "Додати коментар"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Ask now which version is the latest, and say what came back -- including why"
+" the check failed, if it did."
+msgstr "Спитати зараз, яка версія найновіша, і показати відповідь — зокрема, чому перевірка не вдалася, якщо так сталося."
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_atm_error_report__attempts
@@ -260,6 +273,11 @@ msgstr "Обмін даними: надіслати звіти про помил
 
 #. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "Delete this report without sending it."
+msgstr "Видалити цей звіт, не надсилаючи його."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
 msgid "Delete this report? It will not be sent."
 msgstr "Видалити цей звіт? Його не буде надіслано."
 
@@ -386,9 +404,23 @@ msgid "Exchange Log"
 msgstr "Журнал обміну"
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_purchase_order
+msgid ""
+"Exchange confirmed purchase orders through purchase_orders.json. Requests "
+"for quotation are not exported."
+msgstr "Обмінювати підтверджені замовлення постачальникам через файл purchase_orders.json. Запити цін не вивантажуються."
+
+#. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
 msgid "Exchange confirmed purchase orders."
 msgstr "Обмінюватися підтвердженими замовленнями постачальникам."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_sale_order
+msgid ""
+"Exchange confirmed sales orders through sale_orders.json. Quotations are not"
+" exported."
+msgstr "Обмінювати підтверджені замовлення клієнтів через файл sale_orders.json. Комерційні пропозиції не вивантажуються."
 
 #. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
@@ -396,9 +428,23 @@ msgid "Exchange confirmed sales orders."
 msgstr "Обмінюватися підтвердженими замовленнями клієнтів."
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_partner
+msgid ""
+"Exchange contacts through partners.json. Switch off to leave contacts out of"
+" both export and import."
+msgstr "Обмінювати контрагентів через файл partners.json. Вимкніть, щоб контрагенти не вивантажувались і не завантажувались."
+
+#. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
 msgid "Exchange contacts."
 msgstr "Обмінюватися контрагентами."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_customer_payment
+msgid ""
+"Exchange customer payments through customer_payments.json. Draft payments "
+"are not exported."
+msgstr "Обмінювати оплати від клієнтів через файл customer_payments.json. Чернетки оплат не вивантажуються."
 
 #. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
@@ -407,15 +453,16 @@ msgstr "Обмінюватися оплатами від клієнтів."
 
 #. module: atm
 #. odoo-python
-#: code:addons/atm/models/atm_exchange.py:0
-msgid "Exchange directory does not exist: %s"
-msgstr "Тека обміну не існує: %s"
-
-#. module: atm
-#. odoo-python
 #: code:addons/atm/models/atm_exchange_log.py:0
 msgid "Exchange file"
 msgstr "Файл обміну"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_customer_refund
+msgid ""
+"Exchange posted customer credit notes through customer_refunds.json. Drafts "
+"are not exported."
+msgstr "Обмінювати проведені повернення від клієнтів через файл customer_refunds.json. Чернетки не вивантажуються."
 
 #. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
@@ -423,9 +470,23 @@ msgid "Exchange posted customer credit notes."
 msgstr "Обмінюватися проведеними поверненнями від клієнтів."
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_customer_invoice
+msgid ""
+"Exchange posted customer invoices through customer_invoices.json. Drafts are"
+" not exported."
+msgstr "Обмінювати проведені рахунки клієнтам через файл customer_invoices.json. Чернетки не вивантажуються."
+
+#. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
 msgid "Exchange posted customer invoices."
 msgstr "Обмінюватися проведеними рахунками клієнтам."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_vendor_bill
+msgid ""
+"Exchange posted vendor bills through vendor_bills.json. Drafts are not "
+"exported."
+msgstr "Обмінювати проведені рахунки постачальників через файл vendor_bills.json. Чернетки не вивантажуються."
 
 #. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
@@ -433,14 +494,35 @@ msgid "Exchange posted vendor bills."
 msgstr "Обмінюватися проведеними рахунками постачальників."
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_vendor_refund
+msgid ""
+"Exchange posted vendor credit notes through vendor_refunds.json. Drafts are "
+"not exported."
+msgstr "Обмінювати проведені повернення постачальникам через файл vendor_refunds.json. Чернетки не вивантажуються."
+
+#. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
 msgid "Exchange posted vendor credit notes."
 msgstr "Обмінюватися проведеними поверненнями постачальникам."
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_product
+msgid ""
+"Exchange products through products.json. Documents refer to products, so "
+"importing documents without them fails."
+msgstr "Обмінювати номенклатуру через файл products.json. Документи посилаються на номенклатуру, тож без неї документи не завантажаться."
+
+#. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
 msgid "Exchange products."
 msgstr "Обмінюватися номенклатурою."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_entity_vendor_payment
+msgid ""
+"Exchange vendor payments through vendor_payments.json. Draft payments are "
+"not exported."
+msgstr "Обмінювати оплати постачальникам через файл vendor_payments.json. Чернетки оплат не вивантажуються."
 
 #. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
@@ -465,6 +547,13 @@ msgid "Export finished"
 msgstr "Вивантаження завершено"
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__direction
+msgid ""
+"Export: records were written from this database to a file. Import: records "
+"were read from a file into this database."
+msgstr "Вивантаження: записи з цієї бази записано у файл. Завантаження: записи з файла прочитано в цю базу."
+
+#. module: atm
 #: model:ir.model.fields,field_description:atm.field_account_bank_statement_line__atm_external_ref
 #: model:ir.model.fields,field_description:atm.field_account_move__atm_external_ref
 #: model:ir.model.fields,field_description:atm.field_account_payment__atm_external_ref
@@ -480,8 +569,11 @@ msgstr "Зовнішній ідентифікатор"
 #. module: atm
 #. odoo-python
 #: code:addons/atm/models/atm_external_ref.py:0
-msgid "External reference \"%(ref)s\" is already used by %(name)s."
-msgstr "Зовнішній ідентифікатор «%(ref)s» вже використовує %(name)s."
+msgid ""
+"External reference \"%(ref)s\" is already used by %(name)s. The key must be "
+"unique, or the next import would not know which of the two records to "
+"update. Open one of them and change or clear its external reference."
+msgstr "Зовнішній ідентифікатор «%(ref)s» уже має %(name)s. Ідентифікатор мусить бути унікальним, інакше наступне завантаження не знатиме, який із двох записів оновлювати. Відкрийте один із них і змініть або очистьте його зовнішній ідентифікатор."
 
 #. module: atm
 #: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__state__failed
@@ -515,6 +607,32 @@ msgstr "Уперше"
 #: model:ir.model.fields,field_description:atm.field_atm_error_report__frames
 msgid "Frames"
 msgstr "Місце в коді"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__file_path
+msgid "Full path of the file written or read, on the Odoo server."
+msgstr "Повний шлях до записаного чи прочитаного файла на сервері Odoo."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__record_count
+msgid ""
+"How many records the file held (import) or received (export), whatever "
+"happened to each of them."
+msgstr "Скільки записів було у файлі (завантаження) або потрапило в нього (вивантаження) — незалежно від того, що сталося з кожним."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__attempts
+msgid ""
+"How many times sending was tried. After five failed attempts the report is "
+"marked Could not send."
+msgstr "Скільки разів пробували надіслати. Після п'яти невдалих спроб звіт отримує стан «Не вдалося надіслати»."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__occurrences
+msgid ""
+"How many times this same failure has happened. The report itself is queued "
+"and sent only once."
+msgstr "Скільки разів траплялася ця сама помилка. Сам звіт стає в чергу й надсилається лише один раз."
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_atm_error_report__http_status
@@ -590,6 +708,13 @@ msgid "Installed Version"
 msgstr "Встановлена версія"
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_update_summary
+msgid ""
+"Installed and published versions in one sentence. To update, download the "
+"new version from the Odoo Apps store and upgrade the module in Apps."
+msgstr "Встановлена й опублікована версії одним реченням. Щоб оновитися, завантажте нову версію з магазину Odoo Apps і оновіть модуль у «Застосунках»."
+
+#. module: atm
 #: model:ir.model,name:atm.model_account_move
 msgid "Journal Entry"
 msgstr "Запис у журналі"
@@ -651,12 +776,6 @@ msgid "No address is configured for the version check."
 msgstr "Адресу перевірки версій не задано."
 
 #. module: atm
-#. odoo-python
-#: code:addons/atm/models/res_config_settings.py:0
-msgid "No entity is enabled for exchange."
-msgstr "Жодну сутність не увімкнено для обміну."
-
-#. module: atm
 #: model_terms:ir.actions.act_window,help:atm.action_atm_exchange_log
 msgid "No exchange has run yet"
 msgstr "Обмін ще не виконувався"
@@ -677,6 +796,14 @@ msgstr "Немає файлу для завантаження: %s"
 #: model_terms:ir.actions.act_window,help:atm.action_atm_error_report
 msgid "Nothing has gone wrong"
 msgstr "Поки що нічого не зламалося"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid ""
+"Nothing was exchanged: every entity is switched off. Turn on at least one "
+"under Master Data or Documents and save the settings first."
+msgstr "Нічого не обміняно: усі сутності вимкнено. Спершу увімкніть хоча б одну у розділі «Довідники» чи «Документи» й збережіть налаштування."
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_atm_error_report__occurrences
@@ -716,6 +843,19 @@ msgid ""
 "running -- it is the same bare question any visitor to the store page asks. "
 "Nothing is ever downloaded or installed automatically."
 msgstr "Раз на добу питає, яка версія поточна. Запит не несе жодного ідентифікатора: ні назви бази, ні коду інсталяції, ні навіть вашої версії — це те саме запитання, яке ставить будь-хто, хто відкрив сторінку додатка. Нічого не завантажується і не встановлюється автоматично."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Open the log of every export and import run: counts, files and the reason "
+"for each failed record."
+msgstr "Відкрити журнал усіх вивантажень і завантажень: кількості, файли й причину для кожного запису з помилкою."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Open the queued error reports: read each one in full, send it or discard it."
+msgstr "Відкрити звіти про помилки в черзі: прочитати кожен повністю, надіслати або видалити."
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_atm_error_report__operation
@@ -769,9 +909,61 @@ msgid "Purchase Orders"
 msgstr "Замовлення постачальникам"
 
 #. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Read every enabled entity from its JSON file now. Existing records are found"
+" by external reference and updated; confirmed and posted documents are left "
+"as they are."
+msgstr "Прочитати зараз кожну увімкнену сутність з її файла JSON. Наявні записи знаходяться за зовнішнім ідентифікатором і оновлюються; підтверджені й проведені документи лишаються як є."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "Record %(number)s (%(ref)s): %(reason)s"
+msgstr "Запис %(number)s (%(ref)s): %(reason)s"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid ""
+"Record %(number)s: it has neither \"external_ref\" nor \"name\", so it "
+"cannot be matched with a record here."
+msgstr "Запис %(number)s: у ньому немає ні «external_ref», ні «name», тож його не зіставити з жодним записом тут."
+
+#. module: atm
 #: model:ir.model.fields,field_description:atm.field_atm_exchange_log__record_count
 msgid "Records"
 msgstr "Записів"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__updated_count
+msgid "Records found by their external reference and updated."
+msgstr "Записи, знайдені за зовнішнім ідентифікатором і оновлені."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__skipped_count
+msgid ""
+"Records left untouched on purpose -- for example, a document that is already"
+" confirmed or posted here is never overwritten."
+msgstr "Записи, які навмисно не чіпали: наприклад, документ, уже підтверджений чи проведений тут, ніколи не переписується."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "Records that could not be imported: %s"
+msgstr "Записів, які не вдалося завантажити: %s"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__failed_count
+msgid ""
+"Records that could not be written. Message names each of them and the "
+"reason; fix the data and run the exchange again."
+msgstr "Записи, які не вдалося записати. У «Повідомленні» названо кожен і причину; виправте дані й запустіть обмін ще раз."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__created_count
+msgid "Records that were new to this database and were created."
+msgstr "Записи, яких у цій базі ще не було, — їх створено."
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_report_url
@@ -799,6 +991,14 @@ msgstr "Виконано"
 #: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__state__running
 msgid "Running"
 msgstr "Виконується"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__state
+msgid ""
+"Running: the run has not finished yet. Done: the file was processed; some "
+"records may still have failed, see Failures. Failed: the run stopped, or not"
+" a single record could be written; Message gives the reasons."
+msgstr "Виконується: обмін ще не завершився. Готово: файл оброблено; окремі записи все одно могли не записатися — див. «Помилок». Помилка: обмін зупинився або не записався жоден запис; причини — у «Повідомленні»."
 
 #. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
@@ -830,6 +1030,13 @@ msgid "Send automatic error reports"
 msgstr "Надсилати звіти про помилки"
 
 #. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid ""
+"Send this report now, without waiting for the scheduled job. Exactly what "
+"the 'What gets sent' tab shows leaves the database, nothing else."
+msgstr "Надіслати цей звіт зараз, не чекаючи запланованої дії. З бази виходить рівно те, що показано на вкладці «Що саме надсилається», і нічого більше."
+
+#. module: atm
 #: model:ir.model.fields.selection,name:atm.selection__atm_error_report__state__sent
 msgid "Sent"
 msgstr "Надіслано"
@@ -838,6 +1045,11 @@ msgstr "Надіслано"
 #: model:ir.model.fields,field_description:atm.field_atm_error_report__sent_date
 msgid "Sent Date"
 msgstr "Надіслано"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_update_available
+msgid "Set when the published version is newer than the installed one."
+msgstr "Позначається, коли опублікована версія новіша за встановлену."
 
 #. module: atm
 #: model:ir.ui.menu,name:atm.menu_atm_settings
@@ -851,6 +1063,11 @@ msgid ""
 "Short identifier of this database. It prefixes the external references "
 "generated for records that do not have one yet."
 msgstr "Короткий ідентифікатор цієї бази. Він додається на початку зовнішніх ідентифікаторів, які створюються для записів, що їх ще не мають."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__update_message
+msgid "Shown when a newer version of Data Exchange is published."
+msgstr "З'являється, коли опубліковано новішу версію «Обміну даними»."
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_atm_exchange_log__skipped_count
@@ -875,9 +1092,30 @@ msgid "System Code"
 msgstr "Код системи"
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__http_status
+msgid ""
+"The HTTP status code of the failed request, if the failure came from a "
+"server; 0 otherwise. A bare number with no business data."
+msgstr "Код стану HTTP невдалого запиту, якщо помилку повернув сервер; інакше 0. Просто число, без жодних ділових даних."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__company_id
+msgid "The company whose exchange failed. Each company keeps its own queue."
+msgstr "Компанія, у якої збій обміну. Кожна компанія має власну чергу."
+
+#. module: atm
 #: model:ir.model.fields,help:atm.field_atm_error_report__error_type
 msgid "The exception class, never its text."
 msgstr "Клас винятку, ніколи не його текст."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid ""
+"The exchange directory %s does not exist on the Odoo server, so there is "
+"nothing to import from it. Create it, or correct the path in Settings > Data"
+" Exchange."
+msgstr "Теки обміну %s на сервері Odoo немає, тож завантажувати нема звідки. Створіть її або виправте шлях у меню Налаштування > Обмін даними."
 
 #. module: atm
 #. odoo-python
@@ -888,9 +1126,30 @@ msgid ""
 msgstr "Теку обміну не налаштовано. Вкажіть її в меню Налаштування > Обмін даними."
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_version_latest
+msgid ""
+"The newest published version, as of the last check. Empty until the first "
+"check succeeds."
+msgstr "Найновіша опублікована версія на момент останньої перевірки. Порожньо, доки перша перевірка не вдасться."
+
+#. module: atm
 #: model:ir.model.constraint,message:atm.constraint_atm_error_report_fingerprint_company_uniq
-msgid "The same failure is only queued once per company."
-msgstr "Той самий збій стає в чергу один раз на компанію."
+msgid ""
+"The same failure is only queued once per company. Open the report already in"
+" the queue instead: its Occurrences count goes up."
+msgstr "Та сама помилка стає в чергу лише раз на компанію. Відкрийте звіт, що вже є в черзі: у ньому зростає «Повторень»."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__update_url
+msgid ""
+"The store page of the newer version: download it there, then upgrade the "
+"module in Apps."
+msgstr "Сторінка новішої версії в магазині: завантажте її там, потім оновіть модуль у «Застосунках»."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_version_installed
+msgid "The version of Data Exchange installed in this database."
+msgstr "Версія «Обміну даними», встановлена в цій базі."
 
 #. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
@@ -905,6 +1164,14 @@ msgstr "Це сам запит, а не переказ його змісту. Т
 #: model:ir.model.fields.selection,name:atm.selection__atm_error_report__state__pending
 msgid "To send"
 msgstr "До надсилання"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__state
+msgid ""
+"To send: queued; the scheduled job tries to send it, up to five times. Sent:"
+" delivered. Could not send: five attempts failed and the job gave up -- "
+"check the Reporting Endpoint in Settings and press Send Now."
+msgstr "До надсилання: у черзі; запланована дія пробує надіслати його до п'яти разів. Надіслано: доставлено. Не вдалося надіслати: п'ять спроб не вдалися, і дія припинила спроби — перевірте «Адресу приймача звітів» у налаштуваннях і натисніть «Надіслати зараз»."
 
 #. module: atm
 #: model_terms:ir.actions.act_window,help:atm.action_atm_error_report
@@ -1000,9 +1267,32 @@ msgid "What gets sent"
 msgstr "Що саме надсилається"
 
 #. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__message
+msgid ""
+"What happened in this run: every failed record with its reason and what to "
+"do about it."
+msgstr "Що сталося під час обміну: кожен запис із помилкою, її причина й що з нею робити."
+
+#. module: atm
 #: model:ir.model.fields,help:atm.field_atm_error_report__operation
 msgid "What the module was doing: the exchange direction and entity."
 msgstr "Що робив модуль: напрям обміну і сутність."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid ""
+"What to do: correct these records in the source system, or import the "
+"records they refer to first, then run the import again. Records already "
+"imported are matched by their external reference and are not duplicated."
+msgstr "Що зробити: виправте ці записи в системі-джерелі або спершу завантажте записи, на які вони посилаються, і запустіть завантаження ще раз. Уже завантажені записи зіставляються за зовнішнім ідентифікатором і не дублюються."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_exchange_log__entity
+msgid ""
+"What was exchanged in this run. Each entity has its own file and its own "
+"switch in Settings > Data Exchange."
+msgstr "Що обмінювали цього разу. Кожна сутність має свій файл і свій перемикач у меню Налаштування > Обмін даними."
 
 #. module: atm
 #: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
@@ -1010,6 +1300,16 @@ msgid ""
 "What were you doing when this happened? Written here, it is sent as typed --"
 " please do not paste customer names, document numbers or amounts."
 msgstr "Що ви робили, коли це сталося? Написане тут іде дослівно — будь ласка, не вставляйте імена клієнтів, номери документів чи суми."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_version_checked
+msgid "When the published version was last read successfully."
+msgstr "Коли опубліковану версію востаннє вдалося прочитати."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__sent_date
+msgid "When the report was delivered. Sent reports are removed after 30 days."
+msgstr "Коли звіт доставлено. Надіслані звіти видаляються через 30 днів."
 
 #. module: atm
 #: model:ir.model.fields,help:atm.field_res_config_settings__atm_report_url
@@ -1052,6 +1352,13 @@ msgstr "Звідки читається номер поточної версії
 #: model:ir.model.fields,help:atm.field_atm_error_report__module
 msgid "Which module raised it, so the collector tells reports apart."
 msgstr "Який модуль її підняв, щоб приймач розрізняв звіти."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Write every enabled entity to its JSON file in the exchange directory now. "
+"Save the settings first: unsaved changes are not used."
+msgstr "Записати зараз кожну увімкнену сутність у її файл JSON у теці обміну. Спершу збережіть налаштування: незбережені зміни не враховуються."
 
 #. module: atm
 #. odoo-python
