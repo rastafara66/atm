@@ -18,6 +18,9 @@ class TestImportReport(TransactionCase):
 
     def setUp(self):
         super().setUp()
+        # The messages are compared in English; in a Ukrainian database the
+        # same correct code would answer in Ukrainian.
+        self.env = self.env(context=dict(self.env.context, lang='en_US'))
         self.folder = tempfile.TemporaryDirectory()
         self.addCleanup(self.folder.cleanup)
         self.env['ir.config_parameter'].sudo().set_param(
