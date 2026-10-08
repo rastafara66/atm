@@ -3,7 +3,7 @@
 JSON file exchange between Odoo and another accounting system. Newest on top.
 Обмін файлами між Odoo та іншою обліковою системою. Найновіше — зверху.
 
-## 19.0.2.5.0 – 19.0.2.5.1 — 2026-10-03
+## 19.0.2.5.0 – 19.0.2.5.2 — 2026-10-03
 
 ### Added
 
