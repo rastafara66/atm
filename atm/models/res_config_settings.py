@@ -158,9 +158,9 @@ class ResConfigSettings(models.TransientModel):
     def get_values(self):
         res = super().get_values()
         param = self.env['ir.config_parameter'].sudo()
-        res['atm_date_from'] = param.get_param('atm.date_from') or False
+        res['atm_date_from'] = param.get_str('atm.date_from') or False
         for spec in ENTITIES:
-            res['atm_entity_%s' % spec.code] = param.get_param(
+            res['atm_entity_%s' % spec.code] = param.get_str(
                 spec.setting_param, 'True') in ATM_TRUE
         res.update(self._atm_version_values())
         return res
@@ -175,7 +175,7 @@ class ResConfigSettings(models.TransientModel):
         latest = published.get('atm') or ''
         available = bool(latest
                          and parse_version(latest) > parse_version(installed))
-        checked = param.get_param(PARAM_CHECKED, '')
+        checked = param.get_str(PARAM_CHECKED, '')
 
         if available:
             summary = _('Version %(latest)s is available. You have '
@@ -235,9 +235,9 @@ class ResConfigSettings(models.TransientModel):
     def set_values(self):
         super().set_values()
         param = self.env['ir.config_parameter'].sudo()
-        param.set_param('atm.date_from', self.atm_date_from or '')
+        param.set_str('atm.date_from', self.atm_date_from or '')
         for spec in ENTITIES:
-            param.set_param(
+            param.set_str(
                 spec.setting_param,
                 'True' if self['atm_entity_%s' % spec.code] else 'False')
 

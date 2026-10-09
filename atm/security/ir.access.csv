@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+access_atm_exchange_log_user,atm.exchange.log user,atm.exchange.log,base.group_user,r,
+access_atm_exchange_log_manager,atm.exchange.log manager,atm.exchange.log,atm.group_atm_manager,crud,
+access_atm_orderlist_manager,atm.orderlist manager,atm.orderlist,atm.group_atm_manager,crud,
+access_atm_error_report_manager,atm.error.report manager,atm.error.report,atm.group_atm_manager,crud,

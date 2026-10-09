@@ -205,7 +205,7 @@ class AtmErrorReport(models.Model):
         self.ensure_one()
         return {
             'schema': SCHEMA,
-            'install_id': self.env['ir.config_parameter'].sudo().get_param(
+            'install_id': self.env['ir.config_parameter'].sudo().get_str(
                 PARAM_INSTALL_ID, ''),
             'odoo_version': self._odoo_version(),
             'module': self.module or 'atm',
@@ -307,7 +307,7 @@ class AtmErrorReport(models.Model):
 
     @api.model
     def _reporting_enabled(self):
-        return self.env['ir.config_parameter'].sudo().get_param(
+        return self.env['ir.config_parameter'].sudo().get_str(
             PARAM_CONSENT) == 'on'
 
     @api.model
@@ -320,10 +320,10 @@ class AtmErrorReport(models.Model):
         random number and says nothing about who the database belongs to.
         """
         params = self.env['ir.config_parameter'].sudo()
-        value = params.get_param(PARAM_INSTALL_ID)
+        value = params.get_str(PARAM_INSTALL_ID)
         if not value:
             value = uuid.uuid4().hex
-            params.set_param(PARAM_INSTALL_ID, value)
+            params.set_str(PARAM_INSTALL_ID, value)
         return value
 
     # ------------------------------------------------------------------
@@ -348,7 +348,7 @@ class AtmErrorReport(models.Model):
 
     def _send(self):
         self.ensure_one()
-        url = self.env['ir.config_parameter'].sudo().get_param(
+        url = self.env['ir.config_parameter'].sudo().get_str(
             PARAM_URL, DEFAULT_URL)
         if not url:
             return False

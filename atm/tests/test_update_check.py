@@ -74,7 +74,7 @@ class TestUpdateCheck(TransactionCase):
         cls.params = cls.env['ir.config_parameter'].sudo()
 
     def _publish(self, versions):
-        self.params.set_param(updating.PARAM_LATEST, json.dumps(versions))
+        self.params.set_str(updating.PARAM_LATEST, json.dumps(versions))
 
     def _installed_version(self):
         module = self.env['ir.module.module'].sudo().search(
@@ -133,7 +133,7 @@ class TestUpdateCheck(TransactionCase):
         self.assertEqual(self.Update.update_banner(), (False, False))
 
     def test_nothing_published_means_no_banner(self):
-        self.params.set_param(updating.PARAM_LATEST, False)
+        self.params.set_str(updating.PARAM_LATEST, False)
         self.assertEqual(self.Update._outdated(), [])
 
     def test_only_our_modules_are_believed(self):
@@ -161,7 +161,7 @@ class TestUpdateCheck(TransactionCase):
 
     # -- the check itself ---------------------------------------------------
     def test_check_is_skipped_when_switched_off(self):
-        self.params.set_param(updating.PARAM_UPDATE_CHECK, 'off')
+        self.params.set_str(updating.PARAM_UPDATE_CHECK, 'off')
         with patch('requests.get') as get:
             self.assertFalse(self.Update._cron_check())
         get.assert_not_called()
@@ -172,23 +172,23 @@ class TestUpdateCheck(TransactionCase):
         The opposite of the error reports, deliberately: there the default is
         off, because there is something to consent to.
         """
-        self.params.set_param(updating.PARAM_UPDATE_CHECK, False)
+        self.params.set_str(updating.PARAM_UPDATE_CHECK, False)
         self.assertTrue(self.Update._enabled())
 
     def test_an_unreachable_server_is_not_an_incident(self):
-        self.params.set_param(updating.PARAM_UPDATE_CHECK, 'on')
+        self.params.set_str(updating.PARAM_UPDATE_CHECK, 'on')
         with patch('requests.get', side_effect=OSError('no route to host')):
             self.assertFalse(self.Update._cron_check())
 
     def test_a_nonsense_answer_is_ignored(self):
-        self.params.set_param(updating.PARAM_UPDATE_CHECK, 'on')
-        self.params.set_param(updating.PARAM_LATEST, False)
+        self.params.set_str(updating.PARAM_UPDATE_CHECK, 'on')
+        self.params.set_str(updating.PARAM_LATEST, False)
         with patch('requests.get', return_value=_Answer(['not', 'a', 'map'])):
             self.assertFalse(self.Update._cron_check())
         self.assertEqual(self.Update._published(), {})
 
     def test_a_good_answer_is_stored(self):
-        self.params.set_param(updating.PARAM_UPDATE_CHECK, 'on')
+        self.params.set_str(updating.PARAM_UPDATE_CHECK, 'on')
         newer = self._newer()
         with patch('requests.get',
                    return_value=_Answer({'atm': newer, 'evil': {'x': 1}})):
@@ -197,7 +197,7 @@ class TestUpdateCheck(TransactionCase):
 
     def test_the_request_asks_for_our_own_series(self):
         """Otherwise the endpoint answers for the newest branch it knows."""
-        self.params.set_param(updating.PARAM_UPDATE_CHECK, 'on')
+        self.params.set_str(updating.PARAM_UPDATE_CHECK, 'on')
         with patch('requests.get',
                    return_value=_Answer({'atm': self._newer()})) as get:
             self.Update._run_check()
@@ -212,8 +212,8 @@ class TestUpdateCheck(TransactionCase):
         reads the stored number straight out, and would otherwise show a
         version this database cannot install.
         """
-        self.params.set_param(updating.PARAM_UPDATE_CHECK, 'on')
-        self.params.set_param(updating.PARAM_LATEST, False)
+        self.params.set_str(updating.PARAM_UPDATE_CHECK, 'on')
+        self.params.set_str(updating.PARAM_LATEST, False)
         with patch('requests.get',
                    return_value=_Answer({'atm': '99.0.1.0.0'})):
             ok, reason = self.Update._run_check()
@@ -228,7 +228,7 @@ class TestUpdateCheck(TransactionCase):
         Without a reason, "you are up to date" and "the request never left the
         building" are the same blank page.
         """
-        self.params.set_param(updating.PARAM_UPDATE_CHECK, 'on')
+        self.params.set_str(updating.PARAM_UPDATE_CHECK, 'on')
         with patch('requests.get', side_effect=OSError('no route to host')):
             ok, reason = self.Update._run_check()
         self.assertFalse(ok)
@@ -263,7 +263,7 @@ class TestUpdateBannerIsVisible(TransactionCase):
         as a fact -- and a customer who believes they are current is the one
         thing this whole feature exists to prevent.
         """
-        self.env['ir.config_parameter'].sudo().set_param(
+        self.env['ir.config_parameter'].sudo().set_str(
             updating.PARAM_LATEST, False)
         # 🔴 Мова задана явно. Рядок перекладений, тож у базі, куди завантажили
         # українську, той самий правильний код повертав «Ще немає відомостей…»

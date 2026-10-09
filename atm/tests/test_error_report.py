@@ -28,7 +28,7 @@ class TestAtmErrorReport(TransactionCase):
         # Written on the test's own cursor. The reporter reads consent before
         # it opens its second connection, so no commit is needed -- and Odoo
         # forbids committing inside a test anyway.
-        self.params.set_param(PARAM_CONSENT, 'on')
+        self.params.set_str(PARAM_CONSENT, 'on')
 
     def _capture(self, error, operation):
         """Raise ``error`` and let the reporter queue it, as production does."""
@@ -115,7 +115,7 @@ class TestAtmErrorReport(TransactionCase):
     def test_nothing_is_queued_without_consent(self):
         operation = 'test:silent'
         self.addCleanup(self._delete, operation)
-        self.params.set_param(PARAM_CONSENT, 'off')
+        self.params.set_str(PARAM_CONSENT, 'off')
         self._capture(TypeError('boom'), operation)
         self.assertFalse(self._read_back(operation))
 
@@ -123,7 +123,7 @@ class TestAtmErrorReport(TransactionCase):
         """An unset parameter must behave exactly like an explicit refusal."""
         operation = 'test:unasked'
         self.addCleanup(self._delete, operation)
-        self.params.set_param(PARAM_CONSENT, '')
+        self.params.set_str(PARAM_CONSENT, '')
         self._capture(TypeError('boom'), operation)
         self.assertFalse(self._read_back(operation))
 
@@ -197,7 +197,7 @@ class TestAtmErrorReport(TransactionCase):
 
     def test_install_id_is_random_and_stable(self):
         """It separates one install failing often from many failing once."""
-        self.params.set_param(PARAM_INSTALL_ID, '')
+        self.params.set_str(PARAM_INSTALL_ID, '')
         first = self.Report._install_id()
         self.assertTrue(first)
         self.assertEqual(first, self.Report._install_id())

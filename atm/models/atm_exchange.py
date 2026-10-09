@@ -45,7 +45,7 @@ class AtmExchange(models.AbstractModel):
     # ------------------------------------------------------------------
     @api.model
     def _get_param(self, key, default=None):
-        value = self.env['ir.config_parameter'].sudo().get_param(key)
+        value = self.env['ir.config_parameter'].sudo().get_str(key)
         return value if value not in (None, False, '') else default
 
     @api.model

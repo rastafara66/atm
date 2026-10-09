@@ -23,7 +23,7 @@ class TestImportReport(TransactionCase):
         self.env = self.env(context=dict(self.env.context, lang='en_US'))
         self.folder = tempfile.TemporaryDirectory()
         self.addCleanup(self.folder.cleanup)
-        self.env['ir.config_parameter'].sudo().set_param(
+        self.env['ir.config_parameter'].sudo().set_str(
             'atm.export_dir', self.folder.name)
 
     def _import_partners(self, records):
