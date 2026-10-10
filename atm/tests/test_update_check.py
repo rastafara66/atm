@@ -15,6 +15,20 @@ from odoo.tests import TransactionCase, tagged
 from ..models import atm_update as updating
 
 
+def read_manifest(path):
+    with open(path, encoding='utf-8') as handle:
+        return eval(handle.read(), {'__builtins__': {}})  # noqa: S307
+
+
+#: Who "we" are -- read from our own manifest, never written a second time.
+#: The vendor name changed once (``chukhin`` became ``3A Studio``), and a copy
+#: of the old name here left the scan below finding nothing while every test
+#: around it stayed green.
+AUTHOR = read_manifest(os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    '__manifest__.py'))['author']
+
+
 def our_addons_beside(addons_dir):
     """Modules of ours, in ``addons_dir``, built on top of Data Exchange.
 
@@ -28,11 +42,10 @@ def our_addons_beside(addons_dir):
         if name == 'atm' or not os.path.isfile(manifest):
             continue
         try:
-            with open(manifest, encoding='utf-8') as handle:
-                spec = eval(handle.read(), {'__builtins__': {}})  # noqa: S307
+            spec = read_manifest(manifest)
         except Exception:  # noqa: BLE001 - not a manifest we can read
             continue
-        if (isinstance(spec, dict) and spec.get('author') == 'chukhin'
+        if (isinstance(spec, dict) and spec.get('author') == AUTHOR
                 and 'atm' in (spec.get('depends') or [])):
             found.add(name)
     return found
@@ -252,8 +265,12 @@ class TestUpdateBannerIsVisible(TransactionCase):
         """
         self.env['ir.config_parameter'].sudo().set_param(
             updating.PARAM_LATEST, False)
-        summary = self.env['res.config.settings']._atm_version_values()[
-            'atm_update_summary']
+        # 🔴 Мова задана явно. Рядок перекладений, тож у базі, куди завантажили
+        # українську, той самий правильний код повертав «Ще немає відомостей…»
+        # і тест падав — не через поведінку, а через мову перевіряльника.
+        # Перевіряємо ЛОГІКУ, тому дивимось на англійське джерело.
+        summary = self.env['res.config.settings'].with_context(
+            lang='en_US')._atm_version_values()['atm_update_summary']
         self.assertIn('not known', summary)
 
     def test_the_settings_page_actually_renders(self):
@@ -262,10 +279,19 @@ class TestUpdateBannerIsVisible(TransactionCase):
         Every other test here reads fields directly, so a typo in the view --
         or a field the arch names and the model does not -- would pass them all
         and fail only in the browser.
+
+        The assembled view, not our own arch: an xpath that lands nowhere still
+        leaves our file exactly as written. `get_view` is the 17+ spelling and
+        `fields_view_get` the older one -- this module ships on four series
+        from one source, so the test asks rather than assumes.
         """
-        view = self.env['res.config.settings'].get_view(view_type='form')
-        self.assertIn('atm_update_summary', view['arch'])
-        self.assertIn('action_atm_check_update', view['arch'])
+        settings = self.env['res.config.settings']
+        if hasattr(settings, 'get_view'):
+            arch = settings.get_view(view_type='form')['arch']
+        else:  # Odoo 16 and earlier
+            arch = settings.fields_view_get(view_type='form')['arch']
+        self.assertIn('atm_update_summary', arch)
+        self.assertIn('action_atm_check_update', arch)
 
 
 @tagged('post_install', '-at_install')
@@ -313,10 +339,10 @@ class TestModuleListIsComplete(TransactionCase):
                 handle.write(repr(spec))
 
         with tempfile.TemporaryDirectory() as root:
-            write(root, 'atm', {'author': 'chukhin', 'depends': []})
-            write(root, 'atm_new', {'author': 'chukhin', 'depends': ['atm']})
+            write(root, 'atm', {'author': AUTHOR, 'depends': []})
+            write(root, 'atm_new', {'author': AUTHOR, 'depends': ['atm']})
             write(root, 'atm_theirs', {'author': 'someone', 'depends': ['atm']})
-            write(root, 'bank_sync_base', {'author': 'chukhin',
+            write(root, 'bank_sync_base', {'author': AUTHOR,
                                            'depends': ['account']})
             os.makedirs(os.path.join(root, 'not_a_module'))
 

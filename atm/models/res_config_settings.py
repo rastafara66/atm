@@ -54,23 +54,46 @@ class ResConfigSettings(models.TransientModel):
     # False, so "switched off by the user" and "never configured" would look
     # exactly the same, and a disabled entity would come back on. The value is
     # written explicitly as 'True' / 'False' below.
-    atm_entity_partner = fields.Boolean(string='Contacts', default=True)
-    atm_entity_product = fields.Boolean(string='Products', default=True)
-    atm_entity_sale_order = fields.Boolean(string='Sales Orders', default=True)
+    atm_entity_partner = fields.Boolean(
+        string='Contacts', default=True,
+        help='Exchange contacts through partners.json. Switch off to leave '
+             'contacts out of both export and import.')
+    atm_entity_product = fields.Boolean(
+        string='Products', default=True,
+        help='Exchange products through products.json. Documents refer to '
+             'products, so importing documents without them fails.')
+    atm_entity_sale_order = fields.Boolean(
+        string='Sales Orders', default=True,
+        help='Exchange confirmed sales orders through sale_orders.json. '
+             'Quotations are not exported.')
     atm_entity_purchase_order = fields.Boolean(
-        string='Purchase Orders', default=True)
+        string='Purchase Orders', default=True,
+        help='Exchange confirmed purchase orders through purchase_orders.json. '
+             'Requests for quotation are not exported.')
     atm_entity_customer_invoice = fields.Boolean(
-        string='Customer Invoices', default=True)
+        string='Customer Invoices', default=True,
+        help='Exchange posted customer invoices through customer_invoices.json. '
+             'Drafts are not exported.')
     atm_entity_vendor_bill = fields.Boolean(
-        string='Vendor Bills', default=True)
+        string='Vendor Bills', default=True,
+        help='Exchange posted vendor bills through vendor_bills.json. '
+             'Drafts are not exported.')
     atm_entity_customer_refund = fields.Boolean(
-        string='Customer Credit Notes', default=True)
+        string='Customer Credit Notes', default=True,
+        help='Exchange posted customer credit notes through '
+             'customer_refunds.json. Drafts are not exported.')
     atm_entity_vendor_refund = fields.Boolean(
-        string='Vendor Credit Notes', default=True)
+        string='Vendor Credit Notes', default=True,
+        help='Exchange posted vendor credit notes through vendor_refunds.json. '
+             'Drafts are not exported.')
     atm_entity_customer_payment = fields.Boolean(
-        string='Customer Payments', default=True)
+        string='Customer Payments', default=True,
+        help='Exchange customer payments through customer_payments.json. Draft '
+             'payments are not exported.')
     atm_entity_vendor_payment = fields.Boolean(
-        string='Vendor Payments', default=True)
+        string='Vendor Payments', default=True,
+        help='Exchange vendor payments through vendor_payments.json. Draft '
+             'payments are not exported.')
 
     # Three states on purpose, not a boolean: "never asked" has to count as
     # "no", and a boolean cannot tell it from a deliberate "off". Nothing is
@@ -109,14 +132,27 @@ class ResConfigSettings(models.TransientModel):
         config_parameter=UPDATE_PARAM_URL,
         default=UPDATE_DEFAULT_URL,
         help='Where the current version number is read from.')
-    atm_version_installed = fields.Char('Installed Version', readonly=True)
-    atm_version_latest = fields.Char('Latest Version', readonly=True)
-    atm_version_checked = fields.Char('Last Checked', readonly=True)
-    atm_update_available = fields.Boolean('Update Available', readonly=True)
+    atm_version_installed = fields.Char(
+        'Installed Version', readonly=True,
+        help='The version of Data Exchange installed in this database.')
+    atm_version_latest = fields.Char(
+        'Latest Version', readonly=True,
+        help='The newest published version, as of the last check. Empty until '
+             'the first check succeeds.')
+    atm_version_checked = fields.Char(
+        'Last Checked', readonly=True,
+        help='When the published version was last read successfully.')
+    atm_update_available = fields.Boolean(
+        'Update Available', readonly=True,
+        help='Set when the published version is newer than the installed one.')
     # Built as one sentence rather than assembled in the view: text interleaved
     # with fields reaches the translator as fragments, and a fragment cannot be
     # turned into a Ukrainian sentence -- the word order is not the same.
-    atm_update_summary = fields.Char('Version Status', readonly=True)
+    atm_update_summary = fields.Char(
+        'Version Status', readonly=True,
+        help='Installed and published versions in one sentence. To update, '
+             'download the new version from the Odoo Apps store and upgrade '
+             'the module in Apps.')
 
     @api.model
     def get_values(self):
@@ -229,7 +265,10 @@ class ResConfigSettings(models.TransientModel):
 
     def _atm_notify(self, logs, title):
         if not logs:
-            raise UserError(_('No entity is enabled for exchange.'))
+            raise UserError(_(
+                'Nothing was exchanged: every entity is switched off. Turn on '
+                'at least one under Master Data or Documents and save the '
+                'settings first.'))
         failed = logs.filtered(lambda log: log.state == 'failed')
         message = _('%(total)s entity(ies) processed, %(failed)s failed.') % {
             'total': len(logs), 'failed': len(failed)}

@@ -11,6 +11,12 @@
     'summary': 'Scheduled JSON exchange of contacts, products, orders, '
                'invoices and payments with an external accounting system '
                '(1C, BAS) - Ukrainian interface included',
+    # Для НАШОЇ сторінки: у `summary` англійські слова стоять
+    # заради пошуку в магазині, читачеві aktiv.in.ua вони ні до
+    # чого. Odoo невідомі ключі маніфеста ігнорує.
+    'summary_uk': 'Обмін JSON за розкладом: контрагенти, товари, замовлення, рахунки й '
+                  'оплати з зовнішньою обліковою системою (1С, BAS). Український '
+                  'інтерфейс.',
     'description': """
 Data Exchange - JSON sync with an external accounting system
 ============================================================
@@ -44,10 +50,11 @@ File exchange over a shared directory is how 1C and BAS integrate with other
 systems, so the same mechanism bridges them without changing anything on that
 side. The user interface is available in Ukrainian.
 """,
-    'author': 'chukhin',
+    'author': '3A Studio',
     'website': 'https://aktiv.in.ua/dodatky/',
+    'support': 'atm@yellow.in.ua',
     'category': 'Productivity',
-    'version': '18.0.2.3.6',
+    'version': '19.0.2.5.2',
     'license': 'LGPL-3',
     # The first image is the card picture in the App Store listing; the rest
     # form the gallery, in English, with the VAT split leading.
@@ -69,6 +76,9 @@ side. The user interface is available in Ukrainian.
     'data': [
         'security/atm_security.xml',
         'security/ir.model.access.csv',
+        # 🔴 БЕЗ noupdate: інакше адміністратор, заведений
+        # покупцем, не відкриває моделі модуля після оновлення.
+        'security/atm_wiring.xml',
         'views/atm_exchange_log_views.xml',
         'views/atm_error_report_views.xml',
         'views/res_config_settings_views.xml',

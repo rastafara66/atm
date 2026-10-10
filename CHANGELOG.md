@@ -5,17 +5,6 @@ The technical name stays `atm`; earlier releases were published under the
 name "ATM - Automated Transaction Mechanics". Versions follow the Odoo
 convention: `<odoo series>.<major>.<minor>.<patch>`.
 
-## 2.3.1 — 2026-09-05
-
-### Changed
-
-- Author website now points at the line's own apps page,
-  `https://aktiv.in.ua/dodatky/`. It used to point at the GitHub repository.
-
-- The module now ships its own `CHANGELOG.md`. Until this build only the
-  repository had one, so whoever downloaded the package for this series got no
-  history inside the module at all.
-
 ## 2.3.0 — 2026-09-05
 
 ### Added
@@ -149,11 +138,13 @@ convention: `<odoo series>.<major>.<minor>.<patch>`.
 - A tax the importing database does not know leaves the field untouched for Odoo
   to fill from its own defaults, rather than applying the subset that did
   resolve: a partially applied tax set would quietly change the document totals.
+
+## 2.0.4 — 2026-08-16
+### Changed
 - Store description now points to **Контрагенти з ЄДР**, a free module by the same
   author: fill a partner record from its Ukrainian registry code. It is the natural
   next step right after an import from 1C/BAS, when the counterparties exist but
-  every field is empty. This reached the 19.0 series as 2.0.4 and arrives here
-  together with the VAT breakdown.
+  every field is empty.
 
 ## 2.0.3 — 2026-08-08
 

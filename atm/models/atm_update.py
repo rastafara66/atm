@@ -57,9 +57,12 @@ PARAM_CHECKED = 'atm.latest_checked'
 # so there is no hand-kept copy of a version number to forget about. A second
 # service for a second product would just be a second thing to remember.
 DEFAULT_URL = 'https://yellow.in.ua/bank-sync/latest'
-# The series comes from the installed version, not a literal: a literal
-# `/19.0/` sent the buyer of every other series to a page for a build
-# their Odoo cannot run (same code in all branches, nothing to port).
+
+# 🔴 Серія в адресі, а не 19.0 намертво. Сторінка додатка існує ОКРЕМО для
+# кожної серії (перевірено: /16.0/atm/ ... /19.0/atm/ — усі чотири віддають
+# 200), і послати інсталяцію 16.0 на сторінку 19.0 означає запропонувати їй
+# збірку, якої вона встановити не може. Це та сама помилка, від якої захищає
+# порівняння версій у межах серії, — тільки на кроці пізніше, вже в посиланні.
 STORE_URL = 'https://apps.odoo.com/apps/modules/%s/%s/'
 
 CHECK_TIMEOUT = 10
@@ -235,7 +238,7 @@ class AtmUpdate(models.AbstractModel):
             'A newer version of %(module)s is available: %(latest)s '
             '(you have %(installed)s).',
             module=name, latest=latest, installed=installed
-        ), STORE_URL % (series_of(installed) or '18.0', name)
+        ), STORE_URL % (series_of(installed) or '19.0', name)
 
 
 class AtmExchangeLogUpdate(models.Model):
@@ -247,8 +250,13 @@ class AtmExchangeLogUpdate(models.Model):
     """
     _inherit = 'atm.exchange.log'
 
-    update_message = fields.Char(compute='_compute_update_message')
-    update_url = fields.Char(compute='_compute_update_message')
+    update_message = fields.Char(
+        compute='_compute_update_message',
+        help='Shown when a newer version of Data Exchange is published.')
+    update_url = fields.Char(
+        compute='_compute_update_message',
+        help='The store page of the newer version: download it there, then '
+             'upgrade the module in Apps.')
 
     def _compute_update_message(self):
         # Asked once for the whole recordset: the answer does not depend on the

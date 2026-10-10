@@ -1,0 +1,1096 @@
+# German translation for the atm module.
+msgid ""
+msgstr ""
+"Project-Id-Version: atm 19.0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid ""
+"%(created)s created, %(updated)s updated, %(skipped)s skipped, %(failed)s "
+"failed."
+msgstr "%(created)s angelegt, %(updated)s aktualisiert, %(skipped)s übersprungen, %(failed)s fehlgeschlagen."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "%(total)s entity(ies) processed, %(failed)s failed."
+msgstr "%(total)s Entität(en) verarbeitet, %(failed)s fehlgeschlagen."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_update.py:0
+msgid "%(url)s knows of no %(series)s version of these modules."
+msgstr "%(url)s kennt keine %(series)s-Version dieser Module."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_update.py:0
+msgid "%s answered with something that is not a version list."
+msgstr "%s hat mit etwas geantwortet, das keine Versionsliste ist."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid ""
+"%s does not exist yet. It will be created on the first export if the server "
+"may write there."
+msgstr "%s gibt es noch nicht. Es wird beim ersten Export angelegt, wenn der Server dort schreiben darf."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "%s record(s) written."
+msgstr "%s Datensatz/Datensätze geschrieben."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_update.py:0
+#: code:addons/atm/models/res_config_settings.py:0
+msgid ""
+"A newer version of %(module)s is available: %(latest)s (you have "
+"%(installed)s)."
+msgstr "Eine neuere Version von %(module)s ist verfügbar: %(latest)s (Sie haben %(installed)s)."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "Add a comment"
+msgstr "Einen Kommentar hinzufügen"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__attempts
+msgid "Attempts"
+msgstr "Versuche"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Automatic Error Reports"
+msgstr "Automatische Fehlerberichte"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "Cannot resolve %(field)s: %(target)s was not imported yet."
+msgstr "%(field)s kann nicht aufgelöst werden: %(target)s wurde noch nicht importiert."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "Cannot resolve line %(field)s: %(target)s was not imported yet."
+msgstr "Zeile %(field)s kann nicht aufgelöst werden: %(target)s wurde noch nicht importiert."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Check for New Versions"
+msgstr "Auf neue Versionen prüfen"
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__res_config_settings__atm_update_check__on
+msgid "Check for new versions once a day"
+msgstr "Einmal täglich auf neue Versionen prüfen"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Check now"
+msgstr "Jetzt prüfen"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__company_id
+msgid "Company"
+msgstr "Unternehmen"
+
+#. module: atm
+#: model:ir.model,name:atm.model_res_config_settings
+msgid "Config Settings"
+msgstr "Konfigurationseinstellungen"
+
+#. module: atm
+#: model:ir.ui.menu,name:atm.menu_atm_configuration
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#. module: atm
+#: model_terms:ir.actions.act_window,help:atm.action_atm_exchange_log
+msgid ""
+"Configure the exchange directory in Settings, then enable the\n"
+"               Data Exchange scheduled actions or trigger a run manually."
+msgstr ""
+"Legen Sie das Austauschverzeichnis in den Einstellungen fest und aktivieren Sie\n"
+"               dann die geplanten Aktionen von Data Exchange oder starten Sie einen Lauf von Hand."
+
+#. module: atm
+#: model:res.groups,comment:atm.group_atm_manager
+msgid "Configures the exchange and may trigger it manually."
+msgstr "Richtet den Austausch ein und kann ihn von Hand starten."
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_auto_confirm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Confirm Imported Documents"
+msgstr "Importierte Belege bestätigen"
+
+#. module: atm
+#: model:ir.model,name:atm.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_partner
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__partner
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Contacts"
+msgstr "Kontakte"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_update.py:0
+msgid "Could not reach %(url)s: %(error)s"
+msgstr "%(url)s nicht erreichbar: %(error)s"
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_error_report__state__failed
+msgid "Could not send"
+msgstr "Senden nicht möglich"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__created_count
+msgid "Created"
+msgstr "Erstellt"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__create_uid
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__create_uid
+#: model:ir.model.fields,field_description:atm.field_atm_orderlist__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__create_date
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__create_date
+#: model:ir.model.fields,field_description:atm.field_atm_orderlist__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_customer_refund
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__customer_refund
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Customer Credit Notes"
+msgstr "Kundengutschriften"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_customer_invoice
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__customer_invoice
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Customer Invoices"
+msgstr "Kundenrechnungen"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_customer_payment
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__customer_payment
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Customer Payments"
+msgstr "Kundenzahlungen"
+
+#. module: atm
+#: model:ir.ui.menu,name:atm.menu_atm_root
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Data Exchange"
+msgstr "Data Exchange"
+
+#. module: atm
+#: model:ir.model,name:atm.model_atm_exchange
+msgid "Data Exchange Engine"
+msgstr "Data-Exchange-Modul"
+
+#. module: atm
+#: model:ir.model,name:atm.model_atm_error_report
+msgid "Data Exchange Error Report"
+msgstr "Data-Exchange-Fehlerbericht"
+
+#. module: atm
+#: model:ir.model,name:atm.model_atm_external_ref_mixin
+msgid "Data Exchange External Reference"
+msgstr "Data-Exchange-Fremdreferenz"
+
+#. module: atm
+#: model:ir.model,name:atm.model_atm_exchange_log
+msgid "Data Exchange Log"
+msgstr "Data-Exchange-Protokoll"
+
+#. module: atm
+#: model:res.groups,name:atm.group_atm_manager
+msgid "Data Exchange Manager"
+msgstr "Data-Exchange-Verantwortlicher"
+
+#. module: atm
+#: model:ir.actions.act_window,name:atm.action_atm_settings
+msgid "Data Exchange Settings"
+msgstr "Data-Exchange-Einstellungen"
+
+#. module: atm
+#: model:ir.model,name:atm.model_atm_update
+msgid "Data Exchange Update Check"
+msgstr "Data-Exchange-Versionsprüfung"
+
+#. module: atm
+#: model:ir.actions.server,name:atm.ir_cron_atm_update_check_ir_actions_server
+msgid "Data Exchange: check for a newer version"
+msgstr "Data Exchange: auf eine neuere Version prüfen"
+
+#. module: atm
+#: model:ir.actions.server,name:atm.ir_cron_atm_export_ir_actions_server
+msgid "Data Exchange: export to external system"
+msgstr "Data Exchange: Export in das Fremdsystem"
+
+#. module: atm
+#: model:ir.actions.server,name:atm.ir_cron_atm_import_ir_actions_server
+msgid "Data Exchange: import from external system"
+msgstr "Data Exchange: Import aus dem Fremdsystem"
+
+#. module: atm
+#: model:ir.actions.server,name:atm.ir_cron_atm_send_error_reports_ir_actions_server
+msgid "Data Exchange: send error reports"
+msgstr "Data Exchange: Fehlerberichte senden"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "Delete this report? It will not be sent."
+msgstr "Diesen Bericht löschen? Er wird nicht gesendet."
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__direction
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_search
+msgid "Direction"
+msgstr "Richtung"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "Directory not found"
+msgstr "Verzeichnis nicht gefunden"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_export_dir
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Directory the JSON files are written to and read from. It must be reachable "
+"by the Odoo server process."
+msgstr "Verzeichnis, in das die JSON-Dateien geschrieben und aus dem sie gelesen werden. Der Odoo-Serverprozess muss darauf zugreifen können."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "Discard"
+msgstr "Verwerfen"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_account_move__display_name
+#: model:ir.model.fields,field_description:atm.field_account_payment__display_name
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__display_name
+#: model:ir.model.fields,field_description:atm.field_atm_exchange__display_name
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__display_name
+#: model:ir.model.fields,field_description:atm.field_atm_external_ref_mixin__display_name
+#: model:ir.model.fields,field_description:atm.field_atm_orderlist__display_name
+#: model:ir.model.fields,field_description:atm.field_atm_update__display_name
+#: model:ir.model.fields,field_description:atm.field_product_product__display_name
+#: model:ir.model.fields,field_description:atm.field_purchase_order__display_name
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:atm.field_res_partner__display_name
+#: model:ir.model.fields,field_description:atm.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__res_config_settings__atm_error_reports__off
+msgid "Do not send error reports"
+msgstr "Keine Fehlerberichte senden"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Documents"
+msgstr "Dokumente"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_date_from
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Documents dated before this day are never exported. Leave empty to export "
+"the whole history."
+msgstr "Belege vor diesem Datum werden nie exportiert. Leer lassen, um die gesamte Historie zu exportieren."
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__state__done
+msgid "Done"
+msgstr "Erledigt"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__entity
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_search
+msgid "Entity"
+msgstr "Entität"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "Error Report"
+msgstr "Fehlerbericht"
+
+#. module: atm
+#: model:ir.actions.act_window,name:atm.action_atm_error_report
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_error_reports
+#: model:ir.ui.menu,name:atm.menu_atm_error_report
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_list
+msgid "Error Reports"
+msgstr "Fehlerberichte"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__error_type
+msgid "Error Type"
+msgstr "Fehlertyp"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__payload
+msgid "Exactly what leaves this database. Nothing else is transmitted."
+msgstr "Genau das, was diese Datenbank verlässt. Nichts anderes wird übertragen."
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_export_dir
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange Directory"
+msgstr "Austauschverzeichnis"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_date_from
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange Documents Since"
+msgstr "Belege austauschen ab"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange File"
+msgstr "Austauschdatei"
+
+#. module: atm
+#: model:ir.actions.act_window,name:atm.action_atm_exchange_log
+#: model:ir.ui.menu,name:atm.menu_atm_exchange_log
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_form
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_list
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_search
+msgid "Exchange Log"
+msgstr "Austauschprotokoll"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange confirmed purchase orders."
+msgstr "Bestätigte Bestellungen austauschen."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange confirmed sales orders."
+msgstr "Bestätigte Kundenaufträge austauschen."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange contacts."
+msgstr "Kontakte austauschen."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange customer payments."
+msgstr "Kundenzahlungen austauschen."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "Exchange directory does not exist: %s"
+msgstr "Das Austauschverzeichnis gibt es nicht: %s"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange_log.py:0
+msgid "Exchange file"
+msgstr "Austauschdatei"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange posted customer credit notes."
+msgstr "Gebuchte Kundengutschriften austauschen."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange posted customer invoices."
+msgstr "Gebuchte Ausgangsrechnungen austauschen."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange posted vendor bills."
+msgstr "Gebuchte Eingangsrechnungen austauschen."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange posted vendor credit notes."
+msgstr "Gebuchte Lieferantengutschriften austauschen."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange products."
+msgstr "Artikel austauschen."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Exchange vendor payments."
+msgstr "Lieferantenzahlungen austauschen."
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__direction__export
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_search
+msgid "Export"
+msgstr "Exportieren"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Export Now"
+msgstr "Jetzt exportieren"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "Export finished"
+msgstr "Export abgeschlossen"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_account_bank_statement_line__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_account_move__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_account_payment__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_atm_external_ref_mixin__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_product_product__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_purchase_order__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_res_partner__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_res_users__atm_external_ref
+#: model:ir.model.fields,field_description:atm.field_sale_order__atm_external_ref
+msgid "External Reference"
+msgstr "Externe Referenz"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_external_ref.py:0
+msgid "External reference \"%(ref)s\" is already used by %(name)s."
+msgstr "Die Fremdreferenz „%(ref)s“ wird bereits von %(name)s verwendet."
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__state__failed
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_search
+msgid "Failed"
+msgstr "Fehlgeschlagen"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__failed_count
+msgid "Failures"
+msgstr "Fehlschläge"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__file_path
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_form
+msgid "File"
+msgstr "Datei"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__fingerprint
+msgid "Fingerprint"
+msgstr "Fingerabdruck"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_list
+msgid "First seen"
+msgstr "Erstmals gesehen"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__frames
+msgid "Frames"
+msgstr "Stack-Frames"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__http_status
+msgid "Http Status"
+msgstr "HTTP-Status"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_account_move__id
+#: model:ir.model.fields,field_description:atm.field_account_payment__id
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__id
+#: model:ir.model.fields,field_description:atm.field_atm_exchange__id
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__id
+#: model:ir.model.fields,field_description:atm.field_atm_external_ref_mixin__id
+#: model:ir.model.fields,field_description:atm.field_atm_orderlist__id
+#: model:ir.model.fields,field_description:atm.field_atm_update__id
+#: model:ir.model.fields,field_description:atm.field_product_product__id
+#: model:ir.model.fields,field_description:atm.field_purchase_order__id
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__id
+#: model:ir.model.fields,field_description:atm.field_res_partner__id
+#: model:ir.model.fields,field_description:atm.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_account_bank_statement_line__atm_external_ref
+#: model:ir.model.fields,help:atm.field_account_move__atm_external_ref
+#: model:ir.model.fields,help:atm.field_account_payment__atm_external_ref
+#: model:ir.model.fields,help:atm.field_atm_external_ref_mixin__atm_external_ref
+#: model:ir.model.fields,help:atm.field_product_product__atm_external_ref
+#: model:ir.model.fields,help:atm.field_purchase_order__atm_external_ref
+#: model:ir.model.fields,help:atm.field_res_partner__atm_external_ref
+#: model:ir.model.fields,help:atm.field_res_users__atm_external_ref
+#: model:ir.model.fields,help:atm.field_sale_order__atm_external_ref
+msgid ""
+"Identifier of this record in the external system. Records are matched by "
+"this key during import, so it must stay stable."
+msgstr "Kennung dieses Datensatzes im Fremdsystem. Beim Import werden Datensätze über diesen Schlüssel zugeordnet, er muss also stabil bleiben."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__fingerprint
+msgid "Identifies the same bug across occurrences, so it is reported once."
+msgstr "Erkennt denselben Fehler über mehrere Vorkommen hinweg, damit er nur einmal gemeldet wird."
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__direction__import
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_search
+msgid "Import"
+msgstr "Importieren"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Import Now"
+msgstr "Jetzt importieren"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "Import finished"
+msgstr "Import abgeschlossen"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_auto_confirm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Imported documents are always created as drafts. Enable this to confirm "
+"orders and post invoices and payments that were already confirmed or posted "
+"in the external system."
+msgstr "Importierte Belege werden immer als Entwurf angelegt. Aktivieren Sie dies, um Aufträge zu bestätigen und Rechnungen und Zahlungen zu buchen, die im Fremdsystem bereits bestätigt oder gebucht waren."
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_version_installed
+msgid "Installed Version"
+msgstr "Installierte Version"
+
+#. module: atm
+#: model:ir.model,name:atm.model_account_move
+msgid "Journal Entry"
+msgstr "Journalbuchung"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_version_checked
+msgid "Last Checked"
+msgstr "Zuletzt geprüft"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__write_uid
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__write_uid
+#: model:ir.model.fields,field_description:atm.field_atm_orderlist__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert von"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__write_date
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__write_date
+#: model:ir.model.fields,field_description:atm.field_atm_orderlist__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_version_latest
+msgid "Latest Version"
+msgstr "Neueste Version"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Manual Run"
+msgstr "Manueller Lauf"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Master Data"
+msgstr "Stammdaten"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__message
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_form
+msgid "Message"
+msgstr "Nachricht"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__module
+msgid "Module"
+msgstr "Modul"
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__res_config_settings__atm_update_check__off
+msgid "Never check"
+msgstr "Nie prüfen"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_update.py:0
+msgid "No address is configured for the version check."
+msgstr "Für die Versionsprüfung ist keine Adresse konfiguriert."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "No entity is enabled for exchange."
+msgstr "Für den Austausch ist keine Entität aktiviert."
+
+#. module: atm
+#: model_terms:ir.actions.act_window,help:atm.action_atm_exchange_log
+msgid "No exchange has run yet"
+msgstr "Es wurde noch kein Austausch ausgeführt"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange_log.py:0
+msgid "No file"
+msgstr "Keine Datei"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "No file to import: %s"
+msgstr "Keine Datei zum Importieren: %s"
+
+#. module: atm
+#: model_terms:ir.actions.act_window,help:atm.action_atm_error_report
+msgid "Nothing has gone wrong"
+msgstr "Es ist nichts schiefgegangen"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__occurrences
+msgid "Occurrences"
+msgstr "Vorkommen"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_update_check
+msgid ""
+"Odoo never asks the store whether a third-party module has been updated, so "
+"without this a fixed bug would stay in place until you happened to revisit "
+"the store page."
+msgstr "Odoo fragt den Store nie, ob ein Fremdmodul aktualisiert wurde; ohne dies bliebe ein behobener Fehler bestehen, bis Sie zufällig wieder auf die Store-Seite schauen."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Off unless you turn it on. Unexpected failures are reported as the exception"
+" class and the lines of code it passed through -- never the text of the "
+"error, which is where names, document numbers and amounts live."
+msgstr "Aus, solange Sie es nicht einschalten. Unerwartete Störungen werden als Ausnahmeklasse und als die durchlaufenen Codezeilen gemeldet -- nie als Fehlertext, denn dort stehen Namen, Belegnummern und Beträge."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_error_reports
+msgid ""
+"Off unless you turn it on. When on, unexpected failures are queued as the "
+"exception class and the line of code that failed -- never the error text, "
+"which is where names and amounts live. Every queued report can be read in "
+"full before it is sent."
+msgstr "Aus, solange Sie es nicht einschalten. Eingeschaltet werden unerwartete Störungen als Ausnahmeklasse und als fehlgeschlagene Codezeile eingereiht -- nie als Fehlertext, denn dort stehen Namen und Beträge. Jeder eingereihte Bericht kann vor dem Versand vollständig gelesen werden."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Once a day this asks which version is current. The request carries no "
+"identifier: no database name, no install id, not even the version you are "
+"running -- it is the same bare question any visitor to the store page asks. "
+"Nothing is ever downloaded or installed automatically."
+msgstr "Einmal täglich wird hier gefragt, welche Version aktuell ist. Die Anfrage enthält keine Kennung: keinen Datenbanknamen, keine Installations-ID, nicht einmal die Version, die Sie einsetzen -- es ist dieselbe nackte Frage, die jeder Besucher der Store-Seite stellt. Es wird nie etwas automatisch heruntergeladen oder installiert."
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__operation
+msgid "Operation"
+msgstr "Vorgang"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__comment
+msgid ""
+"Optional. Anything typed here is sent as written -- do not paste customer "
+"names, document numbers or amounts."
+msgstr "Optional. Was hier eingetragen wird, geht unverändert mit -- fügen Sie keine Kundennamen, Belegnummern oder Beträge ein."
+
+#. module: atm
+#: model:ir.model,name:atm.model_atm_orderlist
+msgid "Order list (deprecated, use the exchange engine)"
+msgstr "Auftragsliste (veraltet, das Austauschmodul verwenden)"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__payload
+msgid "Payload"
+msgstr "Nutzdaten"
+
+#. module: atm
+#: model:ir.model,name:atm.model_account_payment
+msgid "Payments"
+msgstr "Zahlungen"
+
+#. module: atm
+#: model:ir.model,name:atm.model_product_product
+msgid "Product Variant"
+msgstr "Produktvariante"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_product
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__product
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Products"
+msgstr "Produkte"
+
+#. module: atm
+#: model:ir.model,name:atm.model_purchase_order
+msgid "Purchase Order"
+msgstr "Bestellung"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_purchase_order
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__purchase_order
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Purchase Orders"
+msgstr "Bestellungen"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__record_count
+msgid "Records"
+msgstr "Datensätze"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_report_url
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Reporting Endpoint"
+msgstr "Adresse für Berichte"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Review the queue"
+msgstr "Warteschlange durchsehen"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Run Now"
+msgstr "Jetzt durchführen"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_form
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_list
+msgid "Run at"
+msgstr "Ausgeführt am"
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__state__running
+msgid "Running"
+msgstr "Laufend"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Runs the exchange immediately for every enabled entity, without waiting for "
+"the scheduled action."
+msgstr "Führt den Austausch sofort für jede aktivierte Entität aus, ohne auf die geplante Aktion zu warten."
+
+#. module: atm
+#: model:ir.model,name:atm.model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_sale_order
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__sale_order
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Sales Orders"
+msgstr "Verkaufsaufträge"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "Send Now"
+msgstr "Jetzt senden"
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__res_config_settings__atm_error_reports__on
+msgid "Send automatic error reports"
+msgstr "Automatische Fehlerberichte senden"
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_error_report__state__sent
+msgid "Sent"
+msgstr "Gesendet"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__sent_date
+msgid "Sent Date"
+msgstr "Versanddatum"
+
+#. module: atm
+#: model:ir.ui.menu,name:atm.menu_atm_settings
+msgid "Settings"
+msgstr "Einstellungen"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_system_code
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Short identifier of this database. It prefixes the external references "
+"generated for records that do not have one yet."
+msgstr "Kurzkennung dieser Datenbank. Sie steht vor den Fremdreferenzen, die für Datensätze ohne eigene Referenz erzeugt werden."
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__skipped_count
+msgid "Skipped"
+msgstr "Übersprungen"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__state
+msgid "State"
+msgstr "Status"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__state
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_exchange_log_search
+msgid "Status"
+msgstr "Status"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_system_code
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "System Code"
+msgstr "Systemcode"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__error_type
+msgid "The exception class, never its text."
+msgstr "Die Ausnahmeklasse, niemals ihr Text."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid ""
+"The exchange directory is not configured. Set it in Settings > Data "
+"Exchange."
+msgstr "Das Austauschverzeichnis ist nicht eingerichtet. Legen Sie es unter Einstellungen > Data Exchange fest."
+
+#. module: atm
+#: model:ir.model.constraint,message:atm.constraint_atm_error_report_fingerprint_company_uniq
+msgid "The same failure is only queued once per company."
+msgstr "Derselbe Fehler wird je Unternehmen nur einmal eingereiht."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid ""
+"This is the request itself, not a summary of it.\n"
+"                                The text of the error is never included: only the\n"
+"                                class of the exception and the lines of code it\n"
+"                                passed through. Nothing else leaves this database."
+msgstr ""
+"Das ist die Anfrage selbst, nicht deren Zusammenfassung.\n"
+"                                Der Fehlertext ist nie enthalten: nur die Klasse\n"
+"                                der Ausnahme und die durchlaufenen Codezeilen.\n"
+"                                Mehr verlässt diese Datenbank nicht."
+
+#. module: atm
+#: model:ir.model.fields.selection,name:atm.selection__atm_error_report__state__pending
+msgid "To send"
+msgstr "Zu senden"
+
+#. module: atm
+#: model_terms:ir.actions.act_window,help:atm.action_atm_error_report
+msgid ""
+"Unexpected failures are queued here, so you can read exactly what\n"
+"                would be sent before anything leaves this database. Automatic\n"
+"                reporting is off until you turn it on in the settings."
+msgstr ""
+"Unerwartete Störungen werden hier eingereiht, damit Sie genau lesen können, was\n"
+"                gesendet würde, bevor irgendetwas diese Datenbank verlässt. Der\n"
+"                automatische Versand ist aus, bis Sie ihn in den Einstellungen einschalten."
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_update_available
+msgid "Update Available"
+msgstr "Aktualisierung verfügbar"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__update_message
+msgid "Update Message"
+msgstr "Update-Meldung"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__update_url
+msgid "Update Url"
+msgstr "Update-URL"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_exchange_log__updated_count
+msgid "Updated"
+msgstr "Aktualisiert"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Updates"
+msgstr "Aktualisierungen"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_vendor_bill
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__vendor_bill
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Vendor Bills"
+msgstr "Lieferantenrechnungen"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_vendor_refund
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__vendor_refund
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Vendor Credit Notes"
+msgstr "Lieferantengutschriften"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_vendor_payment
+#: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__entity__vendor_payment
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Vendor Payments"
+msgstr "Lieferantenzahlungen"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "Version %(latest)s is available. You have %(installed)s."
+msgstr "Version %(latest)s ist verfügbar. Sie haben %(installed)s."
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_update_check
+msgid "Version Check"
+msgstr "Versionsprüfung"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_update_url
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "Version Endpoint"
+msgstr "Adresse der Versionsangabe"
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_update_summary
+msgid "Version Status"
+msgstr "Versionsstatus"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "Version check"
+msgstr "Versionsprüfung"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_update.py:0
+msgid "Version checking is switched off."
+msgstr "Die Versionsprüfung ist ausgeschaltet."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "What gets sent"
+msgstr "Was gesendet wird"
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__operation
+msgid "What the module was doing: the exchange direction and entity."
+msgstr "Was das Modul gerade tat: Austauschrichtung und Entität."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid ""
+"What were you doing when this happened? Written here, it is sent as typed --"
+" please do not paste customer names, document numbers or amounts."
+msgstr "Was haben Sie getan, als das passiert ist? Was hier steht, geht unverändert mit -- bitte keine Kundennamen, Belegnummern oder Beträge einfügen."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_report_url
+msgid ""
+"Where error reports are sent. Point it at your own collector if your policy "
+"forbids outbound calls."
+msgstr "Wohin Fehlerberichte gesendet werden. Richten Sie es auf Ihren eigenen Sammler, wenn Ihre Richtlinien ausgehende Aufrufe verbieten."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__frames
+msgid "Where in the code it failed. Paths are cut to the module root."
+msgstr "Wo im Code der Fehler auftrat. Pfade werden auf das Modulverzeichnis gekürzt."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.view_atm_error_report_form
+msgid "Where it failed"
+msgstr "Wo es fehlgeschlagen ist"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Where reports are sent. Point it at your own collector if your policy "
+"forbids outbound calls."
+msgstr "Wohin Berichte gesendet werden. Richten Sie es auf Ihren eigenen Sammler, wenn Ihre Richtlinien ausgehende Aufrufe verbieten."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_res_config_settings__atm_update_url
+msgid "Where the current version number is read from."
+msgstr "Woher die aktuelle Versionsnummer gelesen wird."
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid ""
+"Where the current version number is read from. Point it elsewhere if your "
+"policy forbids outbound calls; leave it empty to switch the check off "
+"entirely."
+msgstr "Woher die aktuelle Versionsnummer gelesen wird. Richten Sie es anderswohin, wenn Ihre Richtlinien ausgehende Aufrufe verbieten; leer lassen schaltet die Prüfung ganz ab."
+
+#. module: atm
+#: model:ir.model.fields,help:atm.field_atm_error_report__module
+msgid "Which module raised it, so the collector tells reports apart."
+msgstr "Welches Modul ihn ausgelöst hat, damit der Sammler die Berichte unterscheidet."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "You are up to date."
+msgstr "Sie sind auf dem aktuellen Stand."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid "You have version %(installed)s, which is the latest."
+msgstr "Sie haben Version %(installed)s, das ist die neueste."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/res_config_settings.py:0
+msgid ""
+"You have version %(installed)s. The latest published version is not known "
+"yet."
+msgstr "Sie haben Version %(installed)s. Die neueste veröffentlichte Version ist noch nicht bekannt."
+
+#. module: atm
+#: model:ir.model.fields,field_description:atm.field_atm_error_report__comment
+msgid "Your comment"
+msgstr "Ihr Kommentar"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "e.g. /var/lib/odoo/exchange"
+msgstr "z. B. /var/lib/odoo/exchange"
+
+#. module: atm
+#: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
+msgid "odoo"
+msgstr "odoo"
