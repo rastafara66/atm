@@ -5,7 +5,7 @@
             <field name="name">Data Exchange Manager</field>
             <field name="comment">Configures the exchange and may trigger it manually.</field>
             <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
-            <field name="user_ids" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
         </record>
     </data>
 </odoo>

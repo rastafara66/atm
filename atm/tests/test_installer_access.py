@@ -25,7 +25,7 @@ class TestInstallerCanUseIt(TransactionCase):
         return self.env["res.users"].create({
             "name": "Freshly created administrator",
             "login": "fresh-admin-atm",
-            "group_ids": [(6, 0, [
+            "groups_id": [(6, 0, [
                 self.env.ref("base.group_user").id,
                 self.env.ref("base.group_system").id,
             ])],

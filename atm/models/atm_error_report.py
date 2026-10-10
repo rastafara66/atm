@@ -183,10 +183,10 @@ class AtmErrorReport(models.Model):
     # the method that used to apply them is still there, which is what made the
     # old spelling look safe. Older series have no ``models.Constraint``, so
     # this is one of the few places the branches genuinely differ.
-    _fingerprint_company_uniq = models.Constraint(
-        'UNIQUE(fingerprint, company_id)',
-        'The same failure is only queued once per company. Open the report '
-        'already in the queue instead: its Occurrences count goes up.')
+    _sql_constraints = [
+        ('fingerprint_company_uniq', 'UNIQUE(fingerprint, company_id)', 'The same failure is only queued once per company. Open the report '
+        'already in the queue instead: its Occurrences count goes up.'),
+    ]
 
     @api.depends('fingerprint', 'error_type', 'operation', 'http_status',
                  'frames', 'occurrences', 'comment')
