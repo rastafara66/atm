@@ -3,7 +3,7 @@
 JSON file exchange between Odoo and another accounting system. Newest on top.
 Обмін файлами між Odoo та іншою обліковою системою. Найновіше — зверху.
 
-## 20.0.2.5.0 – 20.0.2.5.2 — 2026-10-03
+## 20.0.2.5.0 – 20.0.2.5.3 — 2026-10-29
 
 ### Added
 
@@ -14,6 +14,11 @@ JSON file exchange between Odoo and another accounting system. Newest on top.
 
 - Bug fixes (19.0.2.5.1).
 - Виправлено помилки (19.0.2.5.1).
+
+### Changed — 20.0.2.5.3
+
+- Odoo onboarding tours are switched off for all users.
+- Навчальні тури Odoo вимкнено для всіх користувачів.
 
 ## 19.0.2.4.0 – 19.0.2.4.1 — 2026-09-29
 

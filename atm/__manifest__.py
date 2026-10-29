@@ -54,7 +54,7 @@ side. The user interface is available in Ukrainian.
     'website': 'https://aktiv.in.ua/dodatky/',
     'support': 'atm@yellow.in.ua',
     'category': 'Productivity',
-    'version': '20.0.2.5.2',
+    'version': '20.0.2.5.3',
     'license': 'LGPL-3',
     # The first image is the card picture in the App Store listing; the rest
     # form the gallery, in English, with the VAT split leading.
@@ -72,8 +72,10 @@ side. The user interface is available in Ukrainian.
         'sale_management',
         'purchase',
         'account',
+        'web_tour',
     ],
     'data': [
+        'data/tours_off.xml',
         'security/atm_security.xml',
         'security/ir.access.csv',
         # 🔴 БЕЗ noupdate: інакше адміністратор, заведений
