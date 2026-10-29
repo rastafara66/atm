@@ -3,3 +3,4 @@ from . import test_error_report
 from . import test_update_check
 from . import test_installer_access
 from . import test_import_report
+from . import test_tours_off
