@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Odoo onboarding tours off for everyone already in the database: on install and on every
+         update of the module (models/res_users_tours.py). -->
+    <function model="res.users" name="_atm_tours_off"/>
+</odoo>
