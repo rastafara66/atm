@@ -18,6 +18,24 @@ msgstr "Створено: %(created)s, оновлено: %(updated)s, пропу
 
 #. module: atm
 #. odoo-python
+#: code:addons/atm/models/ua_tax_ids.py:0
+msgid ""
+"%(number)s has 12 digits, so it is a VAT payer IPN, not an EDRPOU / RNOKPP "
+"code. Put the IPN into “VAT payer IPN” (button next to this field) and the "
+"EDRPOU code (8 digits) or the RNOKPP (10 digits) here."
+msgstr "%(number)s — 12 цифр, тобто ІПН платника ПДВ, а не код ЄДРПОУ / РНОКПП. ІПН запишіть у «ІПН платника ПДВ» (кнопка поруч із цим полем), а сюди — код ЄДРПОУ (8 цифр) чи РНОКПП (10 цифр)."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/ua_tax_ids.py:0
+msgid ""
+"%(number)s has 8 digits, so it is an EDRPOU code, not a VAT payer IPN. Put "
+"the code into “EDRPOU / RNOKPP” and the IPN (12 digits for a company, 10 for"
+" an individual entrepreneur) here."
+msgstr "%(number)s — 8 цифр, тобто код ЄДРПОУ, а не ІПН платника ПДВ. Код запишіть у «Код ЄДРПОУ / РНОКПП», а сюди — ІПН (12 цифр у юрособи, 10 у ФОП)."
+
+#. module: atm
+#. odoo-python
 #: code:addons/atm/models/res_config_settings.py:0
 msgid "%(total)s entity(ies) processed, %(failed)s failed."
 msgstr "Оброблено сутностей: %(total)s, з помилками: %(failed)s."
@@ -319,6 +337,7 @@ msgstr "Відхилити"
 #: model:ir.model.fields,field_description:atm.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:atm.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:atm.field_res_partner__display_name
+#: model:ir.model.fields,field_description:atm.field_res_users__display_name
 #: model:ir.model.fields,field_description:atm.field_sale_order__display_name
 msgid "Display Name"
 msgstr "Назва для відображення"
@@ -345,6 +364,12 @@ msgstr "Документи, датовані раніше за цей день, 
 #: model:ir.model.fields.selection,name:atm.selection__atm_exchange_log__state__done
 msgid "Done"
 msgstr "Готово"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/ua_tax_ids.py:0
+msgid "EDRPOU / RNOKPP"
+msgstr "Код ЄДРПОУ / РНОКПП"
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_atm_exchange_log__entity
@@ -652,6 +677,7 @@ msgstr "HTTP-статус"
 #: model:ir.model.fields,field_description:atm.field_purchase_order__id
 #: model:ir.model.fields,field_description:atm.field_res_config_settings__id
 #: model:ir.model.fields,field_description:atm.field_res_partner__id
+#: model:ir.model.fields,field_description:atm.field_res_users__id
 #: model:ir.model.fields,field_description:atm.field_sale_order__id
 msgid "ID"
 msgstr "ID"
@@ -701,6 +727,15 @@ msgid ""
 "orders and post invoices and payments that were already confirmed or posted "
 "in the external system."
 msgstr "Завантажені документи завжди створюються як чернетки. Увімкніть, щоб підтверджувати замовлення та проводити рахунки й оплати, які вже були підтверджені або проведені у зовнішній системі."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/ua_tax_ids.py:0
+msgid ""
+"Individual tax number of a VAT payer: 12 digits for a company, 10 for an "
+"individual entrepreneur (the same as the RNOKPP). Leave it empty if the "
+"partner does not pay VAT."
+msgstr "Індивідуальний податковий номер платника ПДВ: 12 цифр у юрособи, 10 у ФОП (збігається з РНОКПП). Порожньо, якщо контрагент не платить ПДВ."
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_version_installed
@@ -1133,6 +1168,12 @@ msgid ""
 msgstr "Найновіша опублікована версія на момент останньої перевірки. Порожньо, доки перша перевірка не вдасться."
 
 #. module: atm
+#. odoo-python
+#: code:addons/atm/models/ua_tax_ids.py:0
+msgid "The number is in the wrong field"
+msgstr "Номер не в тому полі"
+
+#. module: atm
 #: model:ir.model.constraint,message:atm.constraint_atm_error_report_fingerprint_company_uniq
 msgid ""
 "The same failure is only queued once per company. Open the report already in"
@@ -1205,6 +1246,17 @@ msgstr "Оновлено"
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
 msgid "Updates"
 msgstr "Оновлення"
+
+#. module: atm
+#: model:ir.model,name:atm.model_res_users
+msgid "User"
+msgstr "Користувач"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/ua_tax_ids.py:0
+msgid "VAT payer IPN"
+msgstr "ІПН платника ПДВ"
 
 #. module: atm
 #: model:ir.model.fields,field_description:atm.field_res_config_settings__atm_entity_vendor_bill

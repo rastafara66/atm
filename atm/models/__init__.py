@@ -8,3 +8,4 @@ from . import atm_update
 from . import atm_orderlist
 from . import res_config_settings
 from . import res_users_tours
+from . import ua_tax_ids
