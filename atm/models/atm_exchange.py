@@ -15,6 +15,7 @@ from odoo.exceptions import UserError
 
 from .atm_exceptions import AtmDataError
 from .entities import ENTITIES, ENTITIES_BY_CODE
+from .ua_tax_ids import UA_VAT
 
 _logger = logging.getLogger(__name__)
 
@@ -380,6 +381,14 @@ class AtmExchange(models.AbstractModel):
             name = self._pick_field(record, field_name)
             if name:
                 data[key] = self._export_m2o(record, name, entity_code)
+        if spec.model == 'res.partner':
+            # A Ukrainian partner has two numbers, and which field holds which depends on the Odoo series
+            # (models/ua_tax_ids.py). The file names them, so an export from 19.0 imports right into 20.0.
+            code, ipn = record._l10n_ua_tax_codes()
+            if code:
+                data['ua_code'] = code
+            if ipn:
+                data['ua_ipn'] = ipn
 
         if spec.line_field:
             content_lines = record[spec.line_field].filtered(
@@ -514,6 +523,12 @@ class AtmExchange(models.AbstractModel):
     @api.model
     def _postprocess_values(self, spec, data, values):
         """Adjust values that cannot be written as they came from the file."""
+        if spec.model == 'res.partner' and ('ua_code' in data or 'ua_ipn' in data):
+            # The two Ukrainian numbers go where this Odoo series keeps them (models/ua_tax_ids.py); a raw
+            # `vat` from another series would put the IPN into the code field or the other way round.
+            values.pop('vat', None)
+            values.update(self.env['res.partner']._l10n_ua_tax_vals(
+                code=data.get('ua_code') or '', ipn=data.get('ua_ipn') or ''))
         reference_field = self.SEQUENCE_OWNED_MODELS.get(spec.model)
         if reference_field and reference_field in self.env[spec.model]._fields:
             values.pop('name', None)
@@ -632,6 +647,11 @@ class AtmExchange(models.AbstractModel):
                                 continue
                             if lines:
                                 values[spec.line_field] = lines
+                            if isinstance(values.get('additional_identifiers'), dict):
+                                # Odoo 20 writes the JSON whole: keep the identifiers the file says nothing about.
+                                kept = {key: value for key, value in (existing.additional_identifiers or {}).items()
+                                        if key != UA_VAT}
+                                values['additional_identifiers'] = {**kept, **values['additional_identifiers']}
                             existing.write(values)
                             self._apply_target_state(existing, data)
                             updated += 1
