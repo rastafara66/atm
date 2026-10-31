@@ -54,7 +54,7 @@ side. The user interface is available in Ukrainian.
     'website': 'https://aktiv.in.ua/dodatky/',
     'support': 'atm@yellow.in.ua',
     'category': 'Productivity',
-    'version': '18.0.2.5.3',
+    'version': '18.0.2.6.0',
     'license': 'LGPL-3',
     # The first image is the card picture in the App Store listing; the rest
     # form the gallery, in English, with the VAT split leading.
@@ -76,6 +76,8 @@ side. The user interface is available in Ukrainian.
     ],
     'data': [
         'data/tours_off.xml',
+        # Tax ID label for Ukrainian companies follows the Odoo series (models/ua_tax_ids.py).
+        'data/ua_tax_ids.xml',
         'security/atm_security.xml',
         'security/ir.model.access.csv',
         # 🔴 БЕЗ noupdate: інакше адміністратор, заведений
