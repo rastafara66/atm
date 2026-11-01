@@ -954,6 +954,12 @@ msgstr "Прочитати зараз кожну увімкнену сутніс
 #. module: atm
 #. odoo-python
 #: code:addons/atm/models/atm_exchange.py:0
+msgid "Record %(number)s (%(ref)s): %(note)s"
+msgstr "Запис %(number)s (%(ref)s): %(note)s"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
 msgid "Record %(number)s (%(ref)s): %(reason)s"
 msgstr "Запис %(number)s (%(ref)s): %(reason)s"
 
@@ -974,6 +980,12 @@ msgstr "Записів"
 #: model:ir.model.fields,help:atm.field_atm_exchange_log__updated_count
 msgid "Records found by their external reference and updated."
 msgstr "Записи, знайдені за зовнішнім ідентифікатором і оновлені."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "Records imported with a correction: %s"
+msgstr "Записів, завантажених із виправленням: %s"
 
 #. module: atm
 #: model:ir.model.fields,help:atm.field_atm_exchange_log__skipped_count
@@ -1334,6 +1346,14 @@ msgstr "Що робив модуль: напрям обміну і сутніс�
 #. odoo-python
 #: code:addons/atm/models/atm_exchange.py:0
 msgid ""
+"What to do: correct these numbers in the source system; the next import "
+"brings the corrected number into the same record."
+msgstr "Що зробити: виправте ці номери в системі-джерелі; наступне завантаження внесе виправлений номер у той самий запис."
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid ""
 "What to do: correct these records in the source system, or import the "
 "records they refer to first, then run the import again. Records already "
 "imported are matched by their external reference and are not duplicated."
@@ -1446,3 +1466,23 @@ msgstr "напр. /var/lib/odoo/exchange"
 #: model_terms:ir.ui.view,arch_db:atm.res_config_settings_view_form
 msgid "odoo"
 msgstr "odoo"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid ""
+"the 8 digits \"%s\" sent as the VAT payer IPN are an EDRPOU code, they were "
+"written as the code"
+msgstr "8 цифр «%s», надіслані як ІПН платника ПДВ, — це код ЄДРПОУ; їх записано як код"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "the EDRPOU / RNOKPP code \"%s\" is not 8 or 10 digits, it was not written"
+msgstr "код ЄДРПОУ / РНОКПП «%s» має не 8 і не 10 цифр — його не записано"
+
+#. module: atm
+#. odoo-python
+#: code:addons/atm/models/atm_exchange.py:0
+msgid "the VAT payer IPN \"%s\" is not 12 or 10 digits, it was not written"
+msgstr "ІПН платника ПДВ «%s» має не 12 і не 10 цифр — його не записано"

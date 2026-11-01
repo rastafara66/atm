@@ -3,12 +3,17 @@
 JSON file exchange between Odoo and another accounting system. Newest on top.
 Обмін файлами між Odoo та іншою обліковою системою. Найновіше — зверху.
 
-## 19.0.2.6.0 — 2026-10-31
+## 19.0.2.6.0 – 19.0.2.6.1 — 2026-11-01
 
 ### Changed
 
 - Ukrainian partners: EDRPOU / RNOKPP code and VAT payer IPN exchanged as separate values.
 - Контрагенти України: код ЄДРПОУ / РНОКПП і ІПН платника ПДВ — окремими значеннями.
+
+### Fixed
+
+- Bug fixes (19.0.2.6.1).
+- Виправлено помилки (19.0.2.6.1).
 
 ## 19.0.2.5.0 – 19.0.2.5.3 — 2026-10-29
 
