@@ -51,3 +51,55 @@ class TestPartnerTaxIds(TransactionCase):
                              'ua_ipn': '123456789099'}])
         self.assertEqual(log.failed_count, 0, log.message)
         self.assertEqual(partner._l10n_ua_tax_codes(), (CODE, '123456789099'))
+
+
+@tagged('post_install', '-at_install')
+class TestPartnerNumbersChecked(TransactionCase):
+    """A number of the wrong length does not lose the partner: it is corrected or left out, and the log says so.
+
+    Odoo 20 refuses an IPN that is not 12 or 10 digits with a validation error, and the partner would not be
+    imported at all; source systems often hold the 8-digit EDRPOU in the IPN field.
+    """
+
+    _import = TestPartnerTaxIds._import
+
+    def setUp(self):
+        super().setUp()
+        # The messages are compared in English; a Ukrainian database answers the same in Ukrainian.
+        self.env = self.env(context=dict(self.env.context, lang='en_US'))
+        self.folder = tempfile.TemporaryDirectory()
+        self.addCleanup(self.folder.cleanup)
+        self.env['ir.config_parameter'].sudo().set_str('atm.export_dir', self.folder.name)
+        self.ua = self.env.ref('base.ua')
+
+    def _partner(self, ref):
+        partner = self.env['res.partner'].search([('atm_external_ref', '=', ref)])
+        partner.country_id = self.ua
+        return partner
+
+    def test_eight_digits_in_the_ipn_field_are_the_code(self):
+        log = self._import([{'external_ref': 'ATM-UA-8', 'name': 'ТОВ «Вісім»', 'ua_code': '', 'ua_ipn': CODE}])
+        self.assertEqual((log.created_count, log.failed_count), (1, 0), log.message)
+        self.assertEqual(self._partner('ATM-UA-8')._l10n_ua_tax_codes(), (CODE, ''))
+        self.assertIn('Records imported with a correction: 1', log.message)
+        self.assertIn('are an EDRPOU code', log.message)
+
+    def test_an_ipn_of_the_wrong_length_is_left_out_and_named(self):
+        log = self._import([{'external_ref': 'ATM-UA-9', 'name': 'ТОВ «Дев\'ять»', 'ua_code': CODE,
+                             'ua_ipn': '123456789'}])
+        self.assertEqual((log.created_count, log.failed_count), (1, 0), log.message)
+        self.assertEqual(self._partner('ATM-UA-9')._l10n_ua_tax_codes(), (CODE, ''))
+        self.assertIn('Record 1 (ATM-UA-9): the VAT payer IPN "123456789" is not 12 or 10 digits', log.message)
+        self.assertIn('What to do: correct these numbers in the source system', log.message)
+
+    def test_a_code_of_the_wrong_length_is_left_out_and_named(self):
+        log = self._import([{'external_ref': 'ATM-UA-C', 'name': 'ТОВ «Код»', 'ua_code': '1234567', 'ua_ipn': IPN}])
+        self.assertEqual((log.created_count, log.failed_count), (1, 0), log.message)
+        self.assertEqual(self._partner('ATM-UA-C')._l10n_ua_tax_codes(), ('', IPN))
+        self.assertIn('the EDRPOU / RNOKPP code "1234567" is not 8 or 10 digits', log.message)
+
+    def test_the_code_repeated_in_the_ipn_field_needs_no_note(self):
+        log = self._import([{'external_ref': 'ATM-UA-R', 'name': 'ТОВ «Повтор»', 'ua_code': CODE, 'ua_ipn': CODE}])
+        self.assertEqual((log.created_count, log.failed_count), (1, 0), log.message)
+        self.assertEqual(self._partner('ATM-UA-R')._l10n_ua_tax_codes(), (CODE, ''))
+        self.assertNotIn('correction', log.message)
