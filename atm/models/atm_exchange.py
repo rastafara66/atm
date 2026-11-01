@@ -15,7 +15,7 @@ from odoo.exceptions import UserError
 
 from .atm_exceptions import AtmDataError
 from .entities import ENTITIES, ENTITIES_BY_CODE
-from .ua_tax_ids import UA_VAT
+from .ua_tax_ids import UA_VAT, ua_digits
 
 _logger = logging.getLogger(__name__)
 
@@ -521,6 +521,36 @@ class AtmExchange(models.AbstractModel):
     }
 
     @api.model
+    def _check_partner_numbers(self, data):
+        """Correct or leave out the Ukrainian partner numbers this Odoo would refuse; return what was done.
+
+        The EDRPOU / RNOKPP code is 8 or 10 digits, the VAT payer IPN 12, or 10 for a sole trader. Source
+        systems often hold the 8-digit EDRPOU in the IPN field: with no code given, that is the code. Any other
+        number of the wrong length is not written -- Odoo 20 refuses such an IPN with a validation error, and the
+        whole partner would be lost with it -- and the log names it, so the user can correct it at the source.
+        """
+        notes = []
+        code, ipn = ua_digits(data.get('ua_code')), ua_digits(data.get('ua_ipn'))
+        if code and len(code) not in (8, 10):
+            notes.append(_('the EDRPOU / RNOKPP code "%s" is not 8 or 10 digits, it was not written')
+                         % data.get('ua_code'))
+            code = ''
+        if ipn and len(ipn) not in (10, 12):
+            if len(ipn) == 8 and not code:
+                notes.append(_('the 8 digits "%s" sent as the VAT payer IPN are an EDRPOU code, '
+                               'they were written as the code') % data.get('ua_ipn'))
+                code = ipn
+            elif ipn != code:
+                notes.append(_('the VAT payer IPN "%s" is not 12 or 10 digits, it was not written')
+                             % data.get('ua_ipn'))
+            ipn = ''
+        if 'ua_code' in data or code:
+            data['ua_code'] = code
+        if 'ua_ipn' in data:
+            data['ua_ipn'] = ipn
+        return notes
+
+    @api.model
     def _postprocess_values(self, spec, data, values):
         """Adjust values that cannot be written as they came from the file."""
         if spec.model == 'res.partner' and ('ua_code' in data or 'ua_ipn' in data):
@@ -619,7 +649,7 @@ class AtmExchange(models.AbstractModel):
             # "3 failed" alone sends the user to the server log, which they
             # usually cannot read, and fixing one record at a time is a guessing
             # game about how many are left.
-            problems = []
+            problems, corrections = [], []
             for number, data in enumerate(records, 1):
                 external_ref = data.get('external_ref') or data.get('name')
                 if not external_ref:
@@ -637,6 +667,8 @@ class AtmExchange(models.AbstractModel):
                     with self.env.cr.savepoint():
                         existing = model.search(
                             [('atm_external_ref', '=', external_ref)], limit=1)
+                        notes = self._check_partner_numbers(data) if spec.model == 'res.partner' and (
+                            'ua_code' in data or 'ua_ipn' in data) else []
                         values = self._prepare_values(spec, data)
                         values['atm_external_ref'] = external_ref
                         lines = self._prepare_line_values(spec, data)
@@ -661,6 +693,8 @@ class AtmExchange(models.AbstractModel):
                             record = model.create(values)
                             self._apply_target_state(record, data)
                             created += 1
+                        corrections += [_('Record %(number)s (%(ref)s): %(note)s') % {
+                            'number': number, 'ref': external_ref, 'note': note} for note in notes]
                 except Exception as error:  # noqa: BLE001 - counted, not fatal
                     failed += 1
                     problems.append(_('Record %(number)s (%(ref)s): %(reason)s') % {
@@ -682,7 +716,7 @@ class AtmExchange(models.AbstractModel):
                 'updated_count': updated,
                 'skipped_count': skipped,
                 'failed_count': failed,
-                'message': self._import_message(created, updated, skipped, failed, problems),
+                'message': self._import_message(created, updated, skipped, failed, problems, corrections),
             })
             _logger.info('Imported %s: %s created, %s updated, %s skipped, '
                          '%s failed', code, created, updated, skipped, failed)
@@ -726,8 +760,8 @@ class AtmExchange(models.AbstractModel):
     PROBLEMS_SHOWN = 100
 
     @api.model
-    def _import_message(self, created, updated, skipped, failed, problems):
-        """Summary of an import run: the counts, every failed record, what to do."""
+    def _import_message(self, created, updated, skipped, failed, problems, corrections=None):
+        """Summary of an import run: the counts, every failed record, every value corrected, what to do."""
         lines = [_('%(created)s created, %(updated)s updated, '
                    '%(skipped)s skipped, %(failed)s failed.') % {
             'created': created, 'updated': updated,
@@ -742,6 +776,14 @@ class AtmExchange(models.AbstractModel):
                 'import the records they refer to first, then run the import '
                 'again. Records already imported are matched by their external '
                 'reference and are not duplicated.'))
+        if corrections:
+            lines.append(_('Records imported with a correction: %s') % len(corrections))
+            lines += corrections[:self.PROBLEMS_SHOWN]
+            if len(corrections) > self.PROBLEMS_SHOWN:
+                lines.append(_('... and %s more.') % (len(corrections) - self.PROBLEMS_SHOWN))
+            lines.append(_(
+                'What to do: correct these numbers in the source system; the next import '
+                'brings the corrected number into the same record.'))
         return '\n'.join(lines)
 
     @api.model
